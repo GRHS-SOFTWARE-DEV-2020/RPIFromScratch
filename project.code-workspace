@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "./boot"
+		},
+		{
+			"path": "./build"
+		},
+		{
+			"path": "./doc"
+		},
+		{
+			"path": "./make"
+		},
+		{
+			"path": "./modules"
+		},
+		{
+			"path": "./out"
+		},
+		{
+			"path": "./tmp"
+		}
+	]
+}
