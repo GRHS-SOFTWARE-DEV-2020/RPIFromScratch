@@ -1,0 +1,112 @@
+
+D_ARMTIMER_BCM_0.0.1_3B+_32.elf:     file format elf32-littlearm
+
+
+Disassembly of section .init:
+
+00000000 <D_ARMTIMER_API_JUMPTABLE>:
+   0:	ea00000c 	b	38 <D_ARMTIMER_is_timer_running>
+   4:	ea00000f 	b	48 <D_ARMTIMER_get_timer>
+   8:	ea000011 	b	54 <D_ARMTIMER_set_timer>
+   c:	ea000013 	b	60 <D_ARMTIMER_set_timer_reload>
+  10:	ea000015 	b	6c <D_ARMTIMER_start_timer>
+  14:	ea000019 	b	80 <D_ARMTIMER_stop_timer>
+  18:	ea00001d 	b	94 <D_ARMTIMER_set_timer_prescale>
+  1c:	ea000021 	b	a8 <D_ARMTIMER_is_freecount_running>
+  20:	ea000024 	b	b8 <D_ARMTIMER_get_freecount>
+  24:	ea000026 	b	c4 <D_ARMTIMER_start_freecount>
+  28:	ea00002a 	b	d8 <D_ARMTIMER_stop_freecount>
+  2c:	ea00002e 	b	ec <D_ARMTIMER_set_freecount_prescale>
+  30:	ea000034 	b	108 <D_ARMTIMER_enable_interrupt>
+  34:	ea000038 	b	11c <D_ARMTIMER_disable_interrupt>
+
+00000038 <D_ARMTIMER_is_timer_running>:
+  38:	e59f00f0 	ldr	r0, [pc, #240]	; 130 <D_ARMTIMER_disable_interrupt+0x14>
+  3c:	e5907408 	ldr	r7, [r0, #1032]	; 0x408
+  40:	e2077080 	and	r7, r7, #128	; 0x80
+  44:	e1a0f00e 	mov	pc, lr
+
+00000048 <D_ARMTIMER_get_timer>:
+  48:	e59f00e0 	ldr	r0, [pc, #224]	; 130 <D_ARMTIMER_disable_interrupt+0x14>
+  4c:	e5907404 	ldr	r7, [r0, #1028]	; 0x404
+  50:	e1a0f00e 	mov	pc, lr
+
+00000054 <D_ARMTIMER_set_timer>:
+  54:	e59f00d4 	ldr	r0, [pc, #212]	; 130 <D_ARMTIMER_disable_interrupt+0x14>
+  58:	e5807190 	str	r7, [r0, #400]	; 0x190
+  5c:	e1a0f00e 	mov	pc, lr
+
+00000060 <D_ARMTIMER_set_timer_reload>:
+  60:	e59f00c8 	ldr	r0, [pc, #200]	; 130 <D_ARMTIMER_disable_interrupt+0x14>
+  64:	e5807418 	str	r7, [r0, #1048]	; 0x418
+  68:	e1a0f00e 	mov	pc, lr
+
+0000006c <D_ARMTIMER_start_timer>:
+  6c:	e59f00bc 	ldr	r0, [pc, #188]	; 130 <D_ARMTIMER_disable_interrupt+0x14>
+  70:	e5901408 	ldr	r1, [r0, #1032]	; 0x408
+  74:	e3811080 	orr	r1, r1, #128	; 0x80
+  78:	e5801408 	str	r1, [r0, #1032]	; 0x408
+  7c:	e1a0f00e 	mov	pc, lr
+
+00000080 <D_ARMTIMER_stop_timer>:
+  80:	e59f00a8 	ldr	r0, [pc, #168]	; 130 <D_ARMTIMER_disable_interrupt+0x14>
+  84:	e5901408 	ldr	r1, [r0, #1032]	; 0x408
+  88:	e3c11080 	bic	r1, r1, #128	; 0x80
+  8c:	e5801408 	str	r1, [r0, #1032]	; 0x408
+  90:	e1a0f00e 	mov	pc, lr
+
+00000094 <D_ARMTIMER_set_timer_prescale>:
+  94:	e59f0094 	ldr	r0, [pc, #148]	; 130 <D_ARMTIMER_disable_interrupt+0x14>
+  98:	e30013ff 	movw	r1, #1023	; 0x3ff
+  9c:	e0077001 	and	r7, r7, r1
+  a0:	e580741c 	str	r7, [r0, #1052]	; 0x41c
+  a4:	e1a0f00e 	mov	pc, lr
+
+000000a8 <D_ARMTIMER_is_freecount_running>:
+  a8:	e59f0080 	ldr	r0, [pc, #128]	; 130 <D_ARMTIMER_disable_interrupt+0x14>
+  ac:	e5907408 	ldr	r7, [r0, #1032]	; 0x408
+  b0:	e2077c02 	and	r7, r7, #512	; 0x200
+  b4:	e1a0f00e 	mov	pc, lr
+
+000000b8 <D_ARMTIMER_get_freecount>:
+  b8:	e59f0070 	ldr	r0, [pc, #112]	; 130 <D_ARMTIMER_disable_interrupt+0x14>
+  bc:	e5907420 	ldr	r7, [r0, #1056]	; 0x420
+  c0:	e1a0f00e 	mov	pc, lr
+
+000000c4 <D_ARMTIMER_start_freecount>:
+  c4:	e59f0064 	ldr	r0, [pc, #100]	; 130 <D_ARMTIMER_disable_interrupt+0x14>
+  c8:	e5901408 	ldr	r1, [r0, #1032]	; 0x408
+  cc:	e3811c02 	orr	r1, r1, #512	; 0x200
+  d0:	e5801408 	str	r1, [r0, #1032]	; 0x408
+  d4:	e1a0f00e 	mov	pc, lr
+
+000000d8 <D_ARMTIMER_stop_freecount>:
+  d8:	e59f0050 	ldr	r0, [pc, #80]	; 130 <D_ARMTIMER_disable_interrupt+0x14>
+  dc:	e5901408 	ldr	r1, [r0, #1032]	; 0x408
+  e0:	e3c11c02 	bic	r1, r1, #512	; 0x200
+  e4:	e5801408 	str	r1, [r0, #1032]	; 0x408
+  e8:	e1a0f00e 	mov	pc, lr
+
+000000ec <D_ARMTIMER_set_freecount_prescale>:
+  ec:	e59f003c 	ldr	r0, [pc, #60]	; 130 <D_ARMTIMER_disable_interrupt+0x14>
+  f0:	e20770ff 	and	r7, r7, #255	; 0xff
+  f4:	e1a07807 	lsl	r7, r7, #16
+  f8:	e5901408 	ldr	r1, [r0, #1032]	; 0x408
+  fc:	e1877001 	orr	r7, r7, r1
+ 100:	e5807408 	str	r7, [r0, #1032]	; 0x408
+ 104:	e1a0f00e 	mov	pc, lr
+
+00000108 <D_ARMTIMER_enable_interrupt>:
+ 108:	e59f0020 	ldr	r0, [pc, #32]	; 130 <D_ARMTIMER_disable_interrupt+0x14>
+ 10c:	e5901408 	ldr	r1, [r0, #1032]	; 0x408
+ 110:	e3811020 	orr	r1, r1, #32
+ 114:	e5801408 	str	r1, [r0, #1032]	; 0x408
+ 118:	e1a0f00e 	mov	pc, lr
+
+0000011c <D_ARMTIMER_disable_interrupt>:
+ 11c:	e59f000c 	ldr	r0, [pc, #12]	; 130 <D_ARMTIMER_disable_interrupt+0x14>
+ 120:	e5901408 	ldr	r1, [r0, #1032]	; 0x408
+ 124:	e3c11020 	bic	r1, r1, #32
+ 128:	e5801408 	str	r1, [r0, #1032]	; 0x408
+ 12c:	e1a0f00e 	mov	pc, lr
+ 130:	3f00b000 	.word	0x3f00b000

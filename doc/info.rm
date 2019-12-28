@@ -1,0 +1,17 @@
+big picture goal is to have both 32 and 64 bit backends completely the same in terms of API presented to user applications.
+this kind of flexiblity takes away pressure for developers to make seperate versions of their programs.
+
+In order to reflect this principle, each module will exist in a folder with a 32 and 64 bit version of itself.
+General structure of the final program is as follows, fairly straightforward:
+
+	Drivers + RAM + Exceptions -> Kernel -> OS -> User Applications
+
+
+In order to reduce compile times I will implement a system to only recompile that which has been changed or is dependent on something
+that has changed (so a dependency tree).
+
+Once you've built the project, just copy the contents of the build folder into the micro sd card. The build system should handle
+setting up bootloaders and such.
+
+The "out" folder contains the compiled outputs sans raspberry pi bootloading + config files. This is so that the images can be built
+into the "out" folder once and then used many times to build working bootable cards for many different platforms.
