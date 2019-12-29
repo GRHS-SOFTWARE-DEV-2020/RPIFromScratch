@@ -5,41 +5,38 @@
     
     API FUNCTIONS (subroutine address = addressStoredAt[(driver_start + subroutine_offset)]): R1 IS NOT GUARENTEED TO MAINTAIN ORIGINAL VALUE!
 
-        (+0x00) D_ARMTIMER_is_timer_running         () : (r7[!0=true;0=false])   
-        (+0x04) D_ARMTIMER_get_timer                () : (r7[value32])
-        (+0x08) D_ARMTIMER_set_timer                (r7[value32]) : ()
-        (+0x0C) D_ARMTIMER_set_timer_reload         (r7[value32]) : ()
+        (+0x00) D_ARMTIMER_is_timer_running         () : (r8[!0=true;0=false])   
+        (+0x04) D_ARMTIMER_get_timer                () : (r8[value32])
+        (+0x08) D_ARMTIMER_set_timer                (r5[value32]) : ()
+        (+0x0C) D_ARMTIMER_set_timer_reload         (r5[value32]) : ()
         (+0x10) D_ARMTIMER_start_timer              () : ()
         (+0x14) D_ARMTIMER_stop_timer               () : ()
-        (+0x18) D_ARMTIMER_set_timer_prescale       (r7[value10]) : ()
-        (+0x1C) D_ARMTIMER_is_freecount_running     () : (r7[!0=true;0=false]) 
-        (+0x20) D_ARMTIMER_get_freecount            () : (r7[value32])
+        (+0x18) D_ARMTIMER_set_timer_prescale       (r5[value10]) : ()
+        (+0x1C) D_ARMTIMER_is_freecount_running     () : (r8[!0=true;0=false]) 
+        (+0x20) D_ARMTIMER_get_freecount            () : (r8[value32])
         (+0x24) D_ARMTIMER_start_freecount          () : ()
         (+0x28) D_ARMTIMER_stop_freecount           () : ()
-        (+0x2C) D_ARMTIMER_set_freecount_prescale   (r7[value8]) : ()
+        (+0x2C) D_ARMTIMER_set_freecount_prescale   (r5[value8]) : ()
         (+0x30) D_ARMTIMER_enable_interrupt         () : ()
         (+0x34) D_ARMTIMER_disable_interrupt        () : ()
  */
 
 // API Jump Table
 .org 0x0
-D_ARMTIMER_API_JUMPTABLE:
-    b D_ARMTIMER_is_timer_running
-    b D_ARMTIMER_get_timer
-    b D_ARMTIMER_set_timer
-    b D_ARMTIMER_set_timer_reload
-    b D_ARMTIMER_start_timer
-    b D_ARMTIMER_stop_timer
-    b D_ARMTIMER_set_timer_prescale
-
-    b D_ARMTIMER_is_freecount_running
-    b D_ARMTIMER_get_freecount
-    b D_ARMTIMER_start_freecount
-    b D_ARMTIMER_stop_freecount
-    b D_ARMTIMER_set_freecount_prescale
-
-    b D_ARMTIMER_enable_interrupt
-    b D_ARMTIMER_disable_interrupt
+D_ARMTIMER_0:   .word D_ARMTIMER_is_timer_running
+D_ARMTIMER_1:   .word D_ARMTIMER_get_timer
+D_ARMTIMER_2:   .word D_ARMTIMER_set_timer
+D_ARMTIMER_3:   .word D_ARMTIMER_set_timer_reload
+D_ARMTIMER_4:   .word D_ARMTIMER_start_timer
+D_ARMTIMER_5:   .word D_ARMTIMER_stop_timer
+D_ARMTIMER_6:   .word D_ARMTIMER_set_timer_prescale
+D_ARMTIMER_7:   .word D_ARMTIMER_is_freecount_running
+D_ARMTIMER_8:   .word D_ARMTIMER_get_freecount
+D_ARMTIMER_9:   .word D_ARMTIMER_start_freecount
+D_ARMTIMER_10:  .word D_ARMTIMER_stop_freecount
+D_ARMTIMER_11:  .word D_ARMTIMER_set_freecount_prescale
+D_ARMTIMER_12:  .word D_ARMTIMER_enable_interrupt
+D_ARMTIMER_13:  .word D_ARMTIMER_disable_interrupt
 
 
 /*
@@ -51,40 +48,31 @@ D_ARMTIMER_API_JUMPTABLE:
  */
 
 .macro _D_ARMTIMER_is_timer_running_1_
-D_ARMTIMER_is_timer_running:   
+D_ARMTIMER_is_timer_running:
     ldr r0, =0x3F00B000     
-    ldr r7, [r0, #0x408]
-    and r7, r7, #0x80
+    ldr r8, [r0, #0x408]
+    and r8, r8, #0x80
     mov pc, lr
 .endm
 
 .macro _D_ARMTIMER_get_timer_1_
 D_ARMTIMER_get_timer:   
     ldr r0, =0x3F00B000     
-    ldr r7, [r0, #0x404]
+    ldr r8, [r0, #0x404]
     mov pc, lr
 .endm
 
 .macro _D_ARMTIMER_set_timer_1_
 D_ARMTIMER_set_timer:
     ldr r0, =0x3F00B000
-    str r7, [r0, #400]
+    str r5, [r0, #400]
     mov pc, lr
 .endm
 
 .macro _D_ARMTIMER_set_timer_reload_1_
 D_ARMTIMER_set_timer_reload:
     ldr r0, =0x3F00B000
-    str r7, [r0, #0x418]
-    mov pc, lr
-.endm
-
-.macro _D_ARMTIMER_set_timer_prescale_1_
-D_ARMTIMER_set_timer_prescale:
-    ldr r0, =0x3F00B000
-    mov r1, #0x3FF
-    and r7, r7, r1
-    str r7, [r0, #0x41C]
+    str r5, [r0, #0x418]
     mov pc, lr
 .endm
 
@@ -106,18 +94,28 @@ D_ARMTIMER_stop_timer:
     mov pc, lr
 .endm
 
+
+.macro _D_ARMTIMER_set_timer_prescale_1_
+D_ARMTIMER_set_timer_prescale:
+    ldr r0, =0x3F00B000
+    mov r1, #0x3FF
+    and r5, r5, r1
+    str r5, [r0, #0x41C]
+    mov pc, lr
+.endm
+
 .macro _D_ARMTIMER_is_freecount_running_1_
 D_ARMTIMER_is_freecount_running:
     ldr r0, =0x3F00B000
-    ldr r7, [r0, #0x408]
-    and r7, r7, #0x200
+    ldr r8, [r0, #0x408]
+    and r8, r8, #0x200
     mov pc, lr
 .endm
 
 .macro _D_ARMTIMER_get_freecount_1_
 D_ARMTIMER_get_freecount:
     ldr r0, =0x3F00B000
-    ldr r7, [r0, #0x420]
+    ldr r8, [r0, #0x420]
     mov pc, lr
 .endm
 
@@ -142,11 +140,11 @@ D_ARMTIMER_stop_freecount:
 .macro _D_ARMTIMER_set_freecount_prescale_1_
 D_ARMTIMER_set_freecount_prescale:
     ldr r0, =0x3F00B000
-    and r7, r7, #0xFF
-    lsl r7, r7, #16
+    and r2, r7, #0xFF
+    lsl r2, r2, #16
     ldr r1, [r0, #0x408]
-    orr r7, r7, r1
-    str r7, [r0, #0x408]
+    orr r2, r2, r1
+    str r2, [r0, #0x408]
     mov pc, lr
 .endm
 

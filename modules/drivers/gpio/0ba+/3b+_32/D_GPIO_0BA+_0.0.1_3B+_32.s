@@ -25,4 +25,3 @@
         _D_GPIO_set_pin_function_4_1_
         _D_GPIO_set_pin_function_5_1_
         _D_GPIO_reserve_pin_1_
-

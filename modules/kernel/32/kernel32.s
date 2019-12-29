@@ -27,29 +27,38 @@ startup_:
 
     ldr sp, =0x00010000
 
-    ldr r0, GPIO_DRIVER     // calculate the subroutine address
+    ldr r0, GPIO_DRIVER     // set ACT pin function to output
     ldr r1, [r0, #0x20]
     add r0, r0, r1
-
-    mov r5, #29             // set subroutine arguement
-
-    add lr, pc, #0x8        // call subroutine
+    mov r5, #29
+    add lr, pc, #0x8
     mov pc, r0
 
 
-    ldr r0, GPIO_DRIVER     // calculate the subroutine address
+    ldr r0, GPIO_DRIVER     // turn on LED
     ldr r1, [r0]
     add r0, r0, r1
-
-    mov r5, #29             // set subroutine arguement
-
-    add lr, pc, #0x8        // call subroutine
+    mov r5, #29
+    add lr, pc, #0x8
     mov pc, r0
+
+    
 
 
 
     final_:
     b final_
 
+
+
+// Add the GPIO Driver
 GPIO_DRIVER:
-.incbin "../../../build/hardware_drivers/gpio/D_GPIO_0BA+_0.0.1_3B+_32.bin"
+.incbin "../../../build/drivers/gpio/D_GPIO_0BA+_0.0.1_3B+_32.bin"
+
+// Add the ARMTIMER Driver
+ARMTIMER_DRIVER:
+.incbin "../../../build/drivers/arm_timer/D_ARMTIMER_BCM_0.0.1_3B+_32.bin"
+
+// Add the EMMC Driver
+EMMC_DRIVER:
+//.incbin "../../../build/drivers/emmc/D_EMMC_SD_0.0.1_3B+_32.bin"
