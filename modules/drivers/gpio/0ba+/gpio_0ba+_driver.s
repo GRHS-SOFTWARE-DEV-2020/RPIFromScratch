@@ -41,7 +41,7 @@
 
 // API Subroutine Jump Table
 .org 0x0
-D_ARMTIMER_API_JUMPTABLE:
+D_GPIO_API_JUMPTABLE:
 
     b D_GPIO_set_pin
     b D_GPIO_clear_pin

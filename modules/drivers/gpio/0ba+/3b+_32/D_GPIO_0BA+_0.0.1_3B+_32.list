@@ -4,7 +4,7 @@ D_GPIO_0BA+_0.0.1_3B+_32.elf:     file format elf32-littlearm
 
 Disassembly of section .init:
 
-00000000 <D_ARMTIMER_API_JUMPTABLE>:
+00000000 <D_GPIO_API_JUMPTABLE>:
    0:	ea000011 	b	4c <D_GPIO_set_pin>
    4:	ea000019 	b	70 <D_GPIO_clear_pin>
    8:	ea000021 	b	94 <D_GPIO_get_pin_value>
