@@ -41,29 +41,25 @@
 
 // API Subroutine Jump Table
 .org 0x0
-D_GPIO_API_JUMPTABLE:
+D_GPIO_API_0: .word D_GPIO_set_pin
+D_GPIO_API_1: .word D_GPIO_clear_pin
 
-    b D_GPIO_set_pin
-    b D_GPIO_clear_pin
-    b D_GPIO_get_pin_value
+D_GPIO_API_2: .word D_GPIO_enable_event_detect
+D_GPIO_API_3: .word D_GPIO_disable_event_detect
+D_GPIO_API_4: .word D_GPIO_pin_event_status
+D_GPIO_API_5: .word D_GPIO_get_event_status_masks
 
-    b D_GPIO_enable_event_detect
-    b D_GPIO_disable_event_detect
-    b D_GPIO_pin_event_status
-    b D_GPIO_get_event_status_masks
+D_GPIO_API_6: .word D_GPIO_get_pin_function
+D_GPIO_API_7: .word D_GPIO_set_pin_function_input
+D_GPIO_API_8: .word D_GPIO_set_pin_function_output
+D_GPIO_API_9: .word D_GPIO_set_pin_function_0
+D_GPIO_API_10: .word D_GPIO_set_pin_function_1
+D_GPIO_API_11: .word D_GPIO_set_pin_function_2
+D_GPIO_API_12: .word D_GPIO_set_pin_function_3
+D_GPIO_API_13: .word D_GPIO_set_pin_function_4
+D_GPIO_API_14: .word D_GPIO_set_pin_function_5
 
-    b D_GPIO_get_pin_function
-    b D_GPIO_set_pin_function_input
-    b D_GPIO_set_pin_function_output
-    b D_GPIO_set_pin_function_0
-    b D_GPIO_set_pin_function_1
-    b D_GPIO_set_pin_function_2
-    b D_GPIO_set_pin_function_3
-    b D_GPIO_set_pin_function_4
-    b D_GPIO_set_pin_function_5
-
-    b D_GPIO_reserve_pin
-
+D_GPIO_API_15: .word D_GPIO_reserve_pin
 
 
 /*
@@ -83,12 +79,12 @@ D_GPIO_RESERVED_UPPER: .word 0x00000000
 D_GPIO_set_pin:
 
     ldr r0, =0x3F200000
-    mov r1, #1
 
     and r2, r5, #0x3F       // adjust if needed + make pin mask
     cmp r2, #32
     subpl r2, r2, #32
-    addpl r0, r0, #0x4
+    addpl r0, r0, #0x4   
+    mov r1, #1
     lsl r1, r1, r2
     
     str r1, [r0, #0x1C]
@@ -303,7 +299,7 @@ D_GPIO_get_pin_function:    // r7[first 6 bits] = pin number
 
     D_GPIO_get_pin_function_processing: // determine which pin to check now and do, each pin gets 3 bits that describe its function state
 
-        lsl r1, r2, #2      // this + next line are essentially a multiply by 3 
+        lsl r1, r2, #1      // this + next line are essentially a multiply by 3 
         add r1, r1, r2
         mov r2, #0x7
         lsl r2, r2, r1      // shifts the 3 bits over until we are masking the correct bits
@@ -345,7 +341,7 @@ D_GPIO_set_pin_function_input:
 
     D_GPIO_set_pin_function_input_processing: 
 
-        lsl r2, r1, #2      // form bit mask
+        lsl r2, r1, #1      // form bit mask
         add r2, r2, r1
         mov r1, #0x7
         mov r3, #0x7
@@ -395,7 +391,7 @@ D_GPIO_set_pin_function_output:
 
     D_GPIO_set_pin_function_output_processing: 
 
-        lsl r2, r1, #2      // form bit mask
+        lsl r2, r1, #1      // form bit mask
         add r2, r2, r1
         mov r1, #0x6
         mov r3, #0x7
@@ -445,7 +441,7 @@ D_GPIO_set_pin_function_0:
 
     D_GPIO_set_pin_function_0_processing: 
 
-        lsl r2, r1, #2      // form bit mask
+        lsl r2, r1, #1      // form bit mask
         add r2, r2, r1
         mov r1, #0x3
         mov r3, #0x7
@@ -495,7 +491,7 @@ D_GPIO_set_pin_function_1:
 
     D_GPIO_set_pin_function_1_processing: 
 
-        lsl r2, r1, #2      // form bit mask
+        lsl r2, r1, #1      // form bit mask
         add r2, r2, r1
         mov r1, #0x2
         mov r3, #0x7
@@ -545,7 +541,7 @@ D_GPIO_set_pin_function_2:
 
     D_GPIO_set_pin_function_2_processing: 
 
-        lsl r2, r1, #2      // form bit mask
+        lsl r2, r1, #1      // form bit mask
         add r2, r2, r1
         mov r1, #0x1
         mov r3, #0x7
@@ -595,7 +591,7 @@ D_GPIO_set_pin_function_3:
 
     D_GPIO_set_pin_function_3_processing: 
 
-        lsl r2, r1, #2      // form bit mask
+        lsl r2, r1, #1      // form bit mask
         add r2, r2, r1
         mov r1, #0x0
         mov r3, #0x7
@@ -645,7 +641,7 @@ D_GPIO_set_pin_function_4:
 
     D_GPIO_set_pin_function_4_processing: 
 
-        lsl r2, r1, #2      // form bit mask
+        lsl r2, r1, #1      // form bit mask
         add r2, r2, r1
         mov r1, #0x4
         mov r3, #0x7
@@ -694,7 +690,7 @@ D_GPIO_set_pin_function_5:
 
     D_GPIO_set_pin_function_5_processing: 
 
-        lsl r2, r1, #2      // form bit mask
+        lsl r2, r1, #1      // form bit mask
         add r2, r2, r1
         mov r1, #0x5
         mov r3, #0x7
