@@ -4,7 +4,7 @@
 
 # Below settings should be checked between every individual driver's makefile
 
-OUTPUT_PATH = ../../../../../build/hardware_drivers/arm_timer/
+OUTPUT_PATH = ../../../../../build/hardware_drivers/gpio/
 LINKER_SCRIPT_PATH = ../link.ld
 
 TOOLCHAIN = arm-none-eabi
@@ -14,8 +14,8 @@ LD_FLAGS = -T $(LINKER_SCRIPT_PATH)
 OBJCOPY_FLAGS = -O binary
 OBJDUMP_FLAGS = -d
 
-DRIVER_FAMILY = ARMTIMER
-DRIVER_CLUSTER = BCM
+DRIVER_FAMILY = GPIO
+DRIVER_CLUSTER = 0BA+
 DRIVER_VERSION = 0.0.1
 DRIVER_TARGET = 3B+_32
 
