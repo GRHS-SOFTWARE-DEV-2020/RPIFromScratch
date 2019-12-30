@@ -20,7 +20,10 @@ fixup_file = fixup.dat
 arm_64bit = 0
 
 
-# Sets the kernel to start from the given memory address 
-kernel_address = 0x8000
+# Sets the kernel to be loaded into the the 0x0 address, be aware of device tree loading
+kernel_old = 1
 
+
+# Set the device tree to be loaded into an expected location
+device_tree_address = 0x100
 
