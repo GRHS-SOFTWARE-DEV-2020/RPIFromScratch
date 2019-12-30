@@ -1,0 +1,190 @@
+/dts-v1/:
+
+
+/ {
+    /*
+    -------------------------------------------------------------------
+    Some examples of syntax and structure:
+    -------------------------------------------------------------------
+
+    node1 {
+        a-string-property = "A string";
+        a-string-list-property = "first string", "second string";
+        // !!! hex is implied in byte arrays. no '0x' prefix is required !!!
+        a-byte-data-property = [01 23 34 56];
+        child-node1 {
+            first-child-property;
+            second-child-property = <1>;
+            a-string-property = "Hello, world";
+        };
+        child-node2 {
+        };
+    };
+    node2 {
+        an-empty-property;
+        a-cell-property = <1 2 3 4>; // each number (cell) is a uint32
+        child-node1 {
+        };
+    };
+
+    -------------------------------------------------------------------
+
+    Node names should use the following format:
+
+        node-name@unit-address
+
+ 
+    node-name: 
+        node-name shall start with a lower or uppercase character and should describe the general class of device.
+        1-31 characters
+
+
+    unit-address: 
+        unit-address is specific to the bus type on which the node sits. this must match he first address specified
+        in the <"reg"> property of the node. if it has no "reg" property, the "@unit-address" must be ommitted.
+
+
+    (node properties names should only be 1-31 characters long!!!)
+
+
+    The name should be a generic name, reflecting the function of the device and not its precise programming model.
+    Consider using names from the following list:
+        •  adc  
+        •  accelerometer    
+        •  atm    
+        •  audio-codec  
+        •  audio-controller  
+        •  backlight     
+        •  bluetooth   
+        •  bus  
+        •  cache-controller  
+        •  camera    
+        •  can  
+        •  charger  
+        •  clock
+        •  clock-controller
+        •  compact-flash
+        •  cpu
+        •  cpus
+        •  crypto
+        •  disk
+        •  display
+        •  dma-controller
+        •  dsp
+        •  eeprom
+        •  efuse
+        •  endpoint
+        •  ethernet
+        •  ethernet-phy
+        •  fdc
+        •  flash
+        •  gnss
+        •  gpio
+        •  gpu
+        •  gyrometer
+        •  hdmi
+        •  i2c
+        •  i2c-mux
+        •  ide
+        •  interrupt-controller
+        •  isa
+        •  keyboard
+        •  key
+        •  keys
+        •  lcd-controller
+        •  led
+        •  leds
+        •  led-controller
+        •  light-sensor
+        •  magnetometer
+        •  mailbox
+        •  mdio
+        •  memory
+        •  memory-controller
+        •  mmc
+        •  mmc-slot
+        •  mouse
+        •  nand-controller
+        •  nvram
+        •  oscillator
+        •  parallel
+        •  pc-card
+        •  pci
+        •  pcie
+        •  phy
+        •  pinctrl
+        •  pmic
+        •  pmu
+        •  port
+        •  ports
+        •  power-monitor
+        •  pwm
+        •  regulator
+        •  reset-controller
+        •  rtc
+        •  sata
+        •  scsi
+        •  serial
+        •  sound
+        •  spi
+        •  sram-controller
+        •  ssi-controller
+        •  syscon
+        •  temperature-sensor
+        •  timer
+        •  touchscreen
+        •  usb
+        •  usb-hub
+        •  usb-phy
+        •  video-codec
+        •  vme
+        •  watchdog
+        •  wifi
+
+    -------------------------------------------------------------------
+
+    Node paths work like you would expect. Use '/' to path to route.
+
+    -------------------------------------------------------------------
+
+    Property types:
+        <empty> : Value is empty. Useful when the presence or absence of the property itself is suffecient
+        <u32> : 32 bit integer in !!! BIG ENDIAN !!! format.
+        <u64> : 64 bit integer
+        <string> : printable and null-terminated. 
+        <prop-encoded-array> : Format is specific to the property
+        <phandle> : a <u32> value used as a refernce to another node in the tree.
+        <stringlist> : list of null-terminated strings
+
+    -------------------------------------------------------------------
+
+    */
+
+
+    // some device tree building practice
+
+
+    // compatible defines which programming models to use for the device. should be used for device driver selection. Expresses compatibiliy with a family of similar devices
+
+    compatible = "rpi,RPI3A+";
+
+
+    // model defines the model number of the device
+
+    model = "rpi,RPI3B+";
+
+
+    // status defines the operational status
+
+    status = "okay";
+
+
+    // address-cells and size-cells describes how child nodes should be addressed
+    // address-cells defines the number of <u32> cells used to encode the address field of the reg property
+    // size-cells defines the number of <u32> cells used to encode the size field of the reg property
+    // these are not inherited and must be explicitly defined for nodes with child nodes
+
+    #address-cells = <1>;
+    #size-cells = <1>;
+
+};

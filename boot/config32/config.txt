@@ -1,21 +1,26 @@
 # Config for the 32 bit kernel
-# a DTB blob is loaded into addr 0x100
-# this can be used to determine board specifics to aid the kernel in cross-compatibility
+# a DTB blob is loaded at 0x100
+
 
 # Set required boot files
 
 start_file = start.elf
 fixup_file = fixup.dat
 
-# Default kernel names for devices:
+
+# Default kernel names for devices. Set kernel = <> to override:
 # kernel.img	-	Pi 1, Pi Zero, Compute Module
 # kernel7.img	-	Pi 2, Pi 3 (32b), Compute Module 3
 # kernel7l.img	-	Pi 4 (32b)
 # kernel8.img	-	Pi 3 (64b), Pi 4 (64b), Pi 2 rev1.2 (64)
+# kernel = 
+
 
 # Kernel encoding size
 arm_64bit = 0
 
+
 # Sets the kernel to start from the given memory address 
 kernel_address = 0x8000
+
 

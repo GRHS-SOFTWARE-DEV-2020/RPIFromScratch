@@ -1,0 +1,27 @@
+/dts-v1/:
+/plugin/
+
+
+/ {
+
+        compatible= "zmelo,d0001"
+
+        #address-cells = <1>    // the number of address cells
+        #size-cells = <1>       // the number of size cells
+
+        gpio@3F200000 {             // describe the GPIO peripheral
+
+            compatible = "zmelo,d0001"
+            reg = <0x3F200000 0xB0>;
+
+        };
+
+        armtimer@3F20B000 {         // describe the ARMTIMER peripheral
+
+            compatible = "zmelo,d0002"
+            reg = <0x3F200000 0xB0>;
+
+        };
+
+
+    };
