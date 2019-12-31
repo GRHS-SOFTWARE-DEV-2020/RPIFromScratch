@@ -4,8 +4,8 @@
 
 # Below settings should be checked between every individual driver's makefile
 
-OUTPUT_PATH = ../../../../../build/hardware_drivers/arm_timer/
-LINKER_SCRIPT_PATH = ../link.ld
+OUTPUT_PATH = ../../../build/kernel/
+LINKER_SCRIPT_PATH = link.ld
 
 TOOLCHAIN = arm-none-eabi
 
@@ -14,22 +14,14 @@ LD_FLAGS = -T $(LINKER_SCRIPT_PATH)
 OBJCOPY_FLAGS = -O binary
 OBJDUMP_FLAGS = -d
 
-DRIVER_FAMILY = ARMTIMER
-DRIVER_CLUSTER = BCM
-DRIVER_VERSION = 0.0.1
-DRIVER_TARGET = 3B+_32
+SOURCE = kernel7
+TARGET = kernel7
 
-
-
-# DO NOT CHANGE THESE OR IT BREAKS THE SCRIPT!
-
-DRIVER = D_$(DRIVER_FAMILY)_$(DRIVER_CLUSTER)_$(DRIVER_VERSION)_$(DRIVER_TARGET)
-
-SOURCE_FILE = $(DRIVER).s
-OBJECT_FILE = $(DRIVER).o
-LINK_FILE = $(DRIVER).elf
-LIST_FILE = $(DRIVER).list
-BUILD_FILE = $(OUTPUT_PATH)$(DRIVER).bin
+SOURCE_FILE = $(SOURCE).s
+OBJECT_FILE = $(SOURCE).o
+LINK_FILE = $(SOURCE).elf
+LIST_FILE = $(SOURCE).list
+BUILD_FILE = $(OUTPUT_PATH)$(TARGET).img
 
 
 

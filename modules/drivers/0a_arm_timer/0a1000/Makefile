@@ -4,7 +4,7 @@
 
 # Below settings should be checked between every individual driver's makefile
 
-OUTPUT_PATH = ../../../build/kernel/
+OUTPUT_PATH = ../../../../build/drivers/arm_timer/
 LINKER_SCRIPT_PATH = link.ld
 
 TOOLCHAIN = arm-none-eabi
@@ -14,14 +14,21 @@ LD_FLAGS = -T $(LINKER_SCRIPT_PATH)
 OBJCOPY_FLAGS = -O binary
 OBJDUMP_FLAGS = -d
 
-SOURCE = kernel32
-TARGET = kernel
+DRIVER_FAMILY = armtimer
+DRIVER_NAME = 0a1000
+DRIVER_WIDTH = 32
 
-SOURCE_FILE = $(SOURCE).s
-OBJECT_FILE = $(SOURCE).o
-LINK_FILE = $(SOURCE).elf
-LIST_FILE = $(SOURCE).list
-BUILD_FILE = $(OUTPUT_PATH)$(TARGET).img
+
+
+# DO NOT CHANGE THESE OR IT BREAKS THE SCRIPT!
+
+DRIVER = $(DRIVER_NAME)-$(DRIVER_WIDTH)-$(DRIVER_FAMILY)
+
+SOURCE_FILE = driver_source.s
+OBJECT_FILE = $(DRIVER).o
+LINK_FILE = $(DRIVER).elf
+LIST_FILE = $(DRIVER).list
+BUILD_FILE = $(OUTPUT_PATH)$(DRIVER).bin
 
 
 

@@ -4,8 +4,8 @@
 
 # Below settings should be checked between every individual driver's makefile
 
-OUTPUT_PATH = ../../../../../build/hardware_drivers/gpio/
-LINKER_SCRIPT_PATH = ../link.ld
+OUTPUT_PATH = ../../../../build/drivers/gpio/
+LINKER_SCRIPT_PATH = link.ld
 
 TOOLCHAIN = arm-none-eabi
 
@@ -14,18 +14,17 @@ LD_FLAGS = -T $(LINKER_SCRIPT_PATH)
 OBJCOPY_FLAGS = -O binary
 OBJDUMP_FLAGS = -d
 
-DRIVER_FAMILY = GPIO
-DRIVER_CLUSTER = 0BA+
-DRIVER_VERSION = 0.0.1
-DRIVER_TARGET = 3B+_32
+DRIVER_FAMILY = gpio
+DRIVER_NAME = 0e1000
+DRIVER_WIDTH = 32
 
 
 
 # DO NOT CHANGE THESE OR IT BREAKS THE SCRIPT!
 
-DRIVER = D_$(DRIVER_FAMILY)_$(DRIVER_CLUSTER)_$(DRIVER_VERSION)_$(DRIVER_TARGET)
+DRIVER = $(DRIVER_NAME)-$(DRIVER_WIDTH)-$(DRIVER_FAMILY)
 
-SOURCE_FILE = $(DRIVER).s
+SOURCE_FILE = driver_source.s
 OBJECT_FILE = $(DRIVER).o
 LINK_FILE = $(DRIVER).elf
 LIST_FILE = $(DRIVER).list

@@ -1,0 +1,40 @@
+
+kernel32.elf:     file format elf32-littlearm
+
+
+Disassembly of section .init:
+
+00000000 <_start>:
+   0:	ea000006 	b	20 <startup_>
+
+00000004 <_undefined_instruction>:
+   4:	ea00000c 	b	3c <final_>
+
+00000008 <_software_interrupt>:
+   8:	ea00000b 	b	3c <final_>
+
+0000000c <_abort_prefetch>:
+   c:	ea00000a 	b	3c <final_>
+
+00000010 <_abort_data>:
+  10:	ea000009 	b	3c <final_>
+  14:	00000000 	andeq	r0, r0, r0
+
+00000018 <_irq>:
+  18:	ea000007 	b	3c <final_>
+
+0000001c <_fiq>:
+  1c:	ea000006 	b	3c <final_>
+
+00000020 <startup_>:
+  20:	e59f0018 	ldr	r0, [pc, #24]	; 40 <final_+0x4>
+  24:	e3a01001 	mov	r1, #1
+  28:	e1a01d81 	lsl	r1, r1, #27
+  2c:	e5801008 	str	r1, [r0, #8]
+  30:	e3a01001 	mov	r1, #1
+  34:	e1a01e81 	lsl	r1, r1, #29
+  38:	e580101c 	str	r1, [r0, #28]
+
+0000003c <final_>:
+  3c:	eafffffe 	b	3c <final_>
+  40:	3f200000 	.word	0x3f200000

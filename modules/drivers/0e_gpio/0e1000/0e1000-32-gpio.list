@@ -1,5 +1,5 @@
 
-D_GPIO_0BA+_0.0.1_3B+_32.elf:     file format elf32-littlearm
+0e1000-32-gpio.elf:     file format elf32-littlearm
 
 
 Disassembly of section .init:

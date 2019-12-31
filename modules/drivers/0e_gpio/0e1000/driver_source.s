@@ -1,8 +1,8 @@
 .section .init
-.include "../gpio_0ba+_driver.s"
+.include "gpio_0e1000_header.s"
 
 /*
-    DRIVER DEFINITION FOR : rpi3b+ 32 bit
+    DRIVER DEFINITION FOR : brcm2710 architecture
  */
 
  // define the implementation

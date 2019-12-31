@@ -1,5 +1,5 @@
 
-D_ARMTIMER_BCM_0.0.1_3B+_32.elf:     file format elf32-littlearm
+0a1000-32-armtimer.elf:     file format elf32-littlearm
 
 
 Disassembly of section .init:

@@ -4,7 +4,7 @@
 gpu_mem=64
 
 # file name for the kernel we are using
-kernel=kernel.img
+kernel=kernel7.img
 
 # prevent overwriting code
 disable_commandline_tags=1

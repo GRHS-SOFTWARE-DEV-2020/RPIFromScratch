@@ -1,5 +1,5 @@
 .section .init
-.include "../arm_timer_bcm.s"
+.include "armtimer_0a1000_header.s"
 
 /*
     INDIVIDUAL DRIVER FOR : rpi3b+ 32 bit

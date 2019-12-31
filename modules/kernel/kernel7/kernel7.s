@@ -24,5 +24,15 @@ _fiq:                       b final_
 
 startup_:
     
+    ldr r0, =0x3F200000
+
+    mov r1, #1
+    lsl r1, r1, #27
+    str r1, [r0, #0x8]
+
+    mov r1, #1
+    lsl r1, r1, #29
+    str r1, [r0, #0x1C]
+
     final_:
     b final_
