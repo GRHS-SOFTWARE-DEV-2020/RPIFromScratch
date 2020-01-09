@@ -6,7 +6,7 @@
 
 / {
 
-    compatible = "rpi,rpi3bplus";
+    compatible = "rpi,rpi3bplus","brcm,bmc2837","brcm,bcm2837b0";
     #address-cells = <1>;
     #size-cells = <1>;
     
