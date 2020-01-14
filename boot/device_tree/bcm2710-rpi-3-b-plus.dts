@@ -99,7 +99,7 @@
     spi@3F204000 {
         compatible="zmelo,0k1000";
         reg = < 0x3F204000 0x100 >;
-    }
+    };
 
     bsc@3F205000 {
         compatible="zmelo,0b1000";
@@ -116,7 +116,7 @@
     aux@3F215000 {
         compatible="zmelo,0l1000";
         reg< 0x3F215000 0xD8 >;
-    }
+    };
 
     emmc@3F300000 {
         compatible="zmelo,0d1000";
