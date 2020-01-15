@@ -16,25 +16,25 @@
         #size-cells = <0>;
 
         cpu@0 {
-            compatible="arm,cortex-a53";
+            compatible = "arm,cortex-a53";
             reg = <0>;  // reg value must match node-address value used in the node name
 
         };
 
         cpu@1 {
-            compatible="arm,cortex-a53";
+            compatible = "arm,cortex-a53";
             reg = <1>;
 
         };
 
         cpu@2 {
-            compatible="arm,cortex-a53";
+            compatible = "arm,cortex-a53";
             reg = <2>;
             
         };
 
         cpu@3 {
-            compatible="arm,cortex-a53";
+            compatible = "arm,cortex-a53";
             reg = <3>;
             
         };
@@ -42,90 +42,90 @@
     };
 
     mem@0 {
-        compatible="zmelo,0h1000";
+        compatible = "zmelo,0h1000";
         reg = < 0 >;
     };
 
     timer@3F003000 {
-        compatible="zmelo,0j1000";
-        reg = < 0x3F003000 0x1C >;
+        compatible = "zmelo,0j1000";
+        reg = < 3F003000 1C >;
     };
     
     dma@3F007000 {
-        compatible="zmelo,0c1000";
-        reg = < 0x3F007000 0x24
-                0x3F007100 0x24
-                0x3F007200 0x24
-                0x3F007300 0x24
-                0x3F007400 0x24
-                0x3F007500 0x24
-                0x3F007600 0x24
-                0x3F007700 0x24
-                0x3F007800 0x24
-                0x3F007900 0x24
-                0x3F007A00 0x24
-                0x3F007B00 0x24
-                0x3F007C00 0x24
-                0x3F007D00 0x24
-                0x3F007E00 0x24
-                0x3FE05000 0x24 >;
+        compatible = "zmelo,0c1000";
+        reg = < 3F007000 24
+                3F007100 24
+                3F007200 24
+                3F007300 24
+                3F007400 24
+                3F007500 24
+                3F007600 24
+                3F007700 24
+                3F007800 24
+                3F007900 24
+                3F007A00 24
+                3F007B00 24
+                3F007C00 24
+                3F007D00 24
+                3F007E00 24
+                3FE05000 24 >;
     };
 
     interrupt-controller@3F00B200 {
-        compatible="zmelo,0g1000";
-        reg = < 0x3F00B200 0x28 >;
+        compatible = "zmelo,0g1000";
+        reg = < 3F00B200 28 >;
     };
 
     timer@3F00B400 {
-        compatible="zmelo,0a1000";
-        reg = < 0x3F20B400 0x24 >;
+        compatible = "zmelo,0a1000";
+        reg = < 3F20B400 24 >;
     };
 
     gpio@3F20000 {
-        compatible="zmelo,0e1000";
-        reg< 0x3F200000 0xB4 >;
+        compatible = "zmelo,0e1000";
+        reg = < 3F200000 B4 >;
     };
 
     uart@3F201000 {
-        compatible="zmelo,0m1000";
-        reg = < 0x3F201000 0x90 >;
+        compatible = "zmelo,0m1000";
+        reg = < 3F201000 90 >;
     };
 
     pcm@3F203000 {
-        compatible="zmelo,0f1000";
-        reg = < 0x3F203000 0x24 >;
+        compatible = "zmelo,0f1000";
+        reg = < 3F203000 24 >;
     };
 
     spi@3F204000 {
-        compatible="zmelo,0k1000";
-        reg = < 0x3F204000 0x100 >;
+        compatible = "zmelo,0k1000";
+        reg = < 3F204000 100 >;
     };
 
     bsc@3F205000 {
-        compatible="zmelo,0b1000";
-        reg = < 0x3F205000 0x20
-                0x3F804000 0x20
-                0x3F805000 0x20 >;
+        compatible = "zmelo,0b1000";
+        reg = < 3F205000 20
+                3F804000 20
+                3F805000 20 >;
     };
 
     pwm@3F20C000 {
-        compatible="zmelo,0i1000";
-        reg< 0x3F20C000 0x28 >;
+        compatible = "zmelo,0i1000";
+        reg = < 3F20C000 28 >;
     };
 
     aux@3F215000 {
-        compatible="zmelo,0l1000";
-        reg< 0x3F215000 0xD8 >;
+        compatible = "zmelo,0l1000";
+        reg = < 3F215000 D8 >;
     };
 
     emmc@3F300000 {
-        compatible="zmelo,0d1000";
-        reg = < 0x3F300000 0x100 >;
+        compatible = "zmelo,0d1000";
+        reg = < 3F300000 100 >;
     };
 
     usb@3F980080 {
-        compatible="zmelo,0n1000";
-        reg = < 0x3F980080 0x1C >;
+        compatible = "zmelo,0n1000";
+        reg = < 3F980080 1C >;
     };
 
 };
