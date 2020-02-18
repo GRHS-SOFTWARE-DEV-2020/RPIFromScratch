@@ -1,0 +1,82 @@
+
+0p1000-32-irq.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <D_IRQ_ID>:
+   0:	00101000 	.word	0x00101000
+
+00000004 <D_IRQ_API_0>:
+   4:	00000000 	.word	0x00000000
+
+00000008 <INTERUPT_TABLE>:
+   8:	00000004 	.word	0x00000004
+	...
+
+00000014 <DEFFERED_QUEUE>:
+	...
+
+00000038 <END_OF_DEFFERED_QUEUE>:
+  38:	0000003c 	.word	0x0000003c
+	...
+
+0000013c <D_IRQ_INTERUPT_HANDLER>:
+ 13c:	e10f0000 	mrs	r0, CPSR
+ 140:	e3800080 	orr	r0, r0, #128	; 0x80
+ 144:	e129f000 	msr	CPSR_fc, r0
+ 148:	e10f0000 	mrs	r0, CPSR
+ 14c:	e3c00080 	bic	r0, r0, #128	; 0x80
+ 150:	e129f000 	msr	CPSR_fc, r0
+ 154:	e1a0f00e 	mov	pc, lr
+
+00000158 <D_IRQ_ENABLE_INTERUPTS>:
+ 158:	e10f0000 	mrs	r0, CPSR
+ 15c:	e3c00080 	bic	r0, r0, #128	; 0x80
+ 160:	e129f000 	msr	CPSR_fc, r0
+ 164:	e1a0f00e 	mov	pc, lr
+
+00000168 <D_IRQ_DISABLE_INTERUPTS>:
+ 168:	e10f0000 	mrs	r0, CPSR
+ 16c:	e3800080 	orr	r0, r0, #128	; 0x80
+ 170:	e129f000 	msr	CPSR_fc, r0
+ 174:	e1a0f00e 	mov	pc, lr
+
+00000178 <D_IRQ_ADD_INTERUPT>:
+ 178:	e59f0074 	ldr	r0, [pc, #116]	; 1f4 <D_IRQ_DRIVER_END>
+ 17c:	e51f117c 	ldr	r1, [pc, #-380]	; 8 <INTERUPT_TABLE>
+ 180:	e0800001 	add	r0, r0, r1
+ 184:	e2800010 	add	r0, r0, #16
+ 188:	e59f1068 	ldr	r1, [pc, #104]	; 1f8 <D_IRQ_DRIVER_END+0x4>
+ 18c:	e1510000 	cmp	r1, r0
+ 190:	43a08000 	movmi	r8, #0
+ 194:	41a0f00e 	movmi	pc, lr
+ 198:	e51f119c 	ldr	r1, [pc, #-412]	; 4 <D_IRQ_API_0>
+ 19c:	e2811001 	add	r1, r1, #1
+ 1a0:	e50f11a4 	str	r1, [pc, #-420]	; 4 <D_IRQ_API_0>
+ 1a4:	e2400010 	sub	r0, r0, #16
+ 1a8:	e4804004 	str	r4, [r0], #4
+ 1ac:	e51f11b0 	ldr	r1, [pc, #-432]	; 4 <D_IRQ_API_0>
+ 1b0:	e1a01781 	lsl	r1, r1, #15
+ 1b4:	e3c1100f 	bic	r1, r1, #15
+ 1b8:	e1a09001 	mov	r9, r1
+ 1bc:	e1a02007 	mov	r2, r7
+ 1c0:	e1a02822 	lsr	r2, r2, #16
+ 1c4:	e2022001 	and	r2, r2, #1
+ 1c8:	e1a02f82 	lsl	r2, r2, #31
+ 1cc:	e1811002 	orr	r1, r1, r2
+ 1d0:	e30f2fff 	movw	r2, #65535	; 0xffff
+ 1d4:	e0022007 	and	r2, r2, r7
+ 1d8:	e1811002 	orr	r1, r1, r2
+ 1dc:	e4801004 	str	r1, [r0], #4
+ 1e0:	e4805004 	str	r5, [r0], #4
+ 1e4:	e4806004 	str	r6, [r0], #4
+ 1e8:	e50f01e8 	str	r0, [pc, #-488]	; 8 <INTERUPT_TABLE>
+ 1ec:	e1a0f00e 	mov	pc, lr
+
+000001f0 <D_IRQ_REMOVE_INTERUPT>:
+ 1f0:	e1a0f00e 	mov	pc, lr
+
+000001f4 <D_IRQ_DRIVER_END>:
+ 1f4:	00000008 	.word	0x00000008
+ 1f8:	00000014 	.word	0x00000014

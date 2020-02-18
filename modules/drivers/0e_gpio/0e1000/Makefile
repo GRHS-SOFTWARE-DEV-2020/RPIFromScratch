@@ -4,7 +4,7 @@
 
 # Below settings should be checked between every individual driver's makefile
 
-OUTPUT_PATH = ../../../../build/drivers/gpio/
+OUTPUT_PATH = ../../../../build/drivers/0e_gpio/
 LINKER_SCRIPT_PATH = link.ld
 
 TOOLCHAIN = arm-none-eabi

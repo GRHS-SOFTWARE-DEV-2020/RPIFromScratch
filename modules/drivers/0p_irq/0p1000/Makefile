@@ -4,7 +4,7 @@
 
 # Below settings should be checked between every individual driver's makefile
 
-OUTPUT_PATH = ../../../../build/drivers/gpio/
+OUTPUT_PATH = ../../../../build/drivers/0p_irq/
 LINKER_SCRIPT_PATH = link.ld
 
 TOOLCHAIN = arm-none-eabi
@@ -14,8 +14,8 @@ LD_FLAGS = -T $(LINKER_SCRIPT_PATH)
 OBJCOPY_FLAGS = -O binary
 OBJDUMP_FLAGS = -d
 
-DRIVER_FAMILY = gpio
-DRIVER_NAME = 0e1000
+DRIVER_FAMILY = irq
+DRIVER_NAME = 0p1000
 DRIVER_WIDTH = 32
 
 
@@ -24,7 +24,7 @@ DRIVER_WIDTH = 32
 
 DRIVER = $(DRIVER_NAME)-$(DRIVER_WIDTH)-$(DRIVER_FAMILY)
 
-SOURCE_FILE = gpio_0e1000.s
+SOURCE_FILE = irq_0p1000.s
 OBJECT_FILE = $(DRIVER).o
 LINK_FILE = $(DRIVER).elf
 LIST_FILE = $(DRIVER).list
@@ -34,10 +34,7 @@ BUILD_FILE = $(OUTPUT_PATH)$(DRIVER).bin
 
 # Recipe for building this driver, do not touch! This should work across all platforms and just need the top section adjusted to function
 
-ALL: BUILD_LIST
-
-BUILD_LIST: $(LIST_FILE) $(BUILD_FILE)
-	-rm -f $(LINK_FILE)
+ALL: $(LIST_FILE) $(BUILD_FILE)
 
 $(LIST_FILE): $(LINK_FILE)
 	$(TOOLCHAIN)-objdump $(OBJDUMP_FLAGS) $(LINK_FILE) > $(LIST_FILE)
@@ -49,8 +46,6 @@ $(BUILD_FILE): $(LINK_FILE)
 $(LINK_FILE): $(OBJECT_FILE)
 	$(TOOLCHAIN)-ld $(LD_FLAGS) -o $(LINK_FILE) $(OBJECT_FILE)
 
-$(OBJECT_FILE): CLEAN
+$(OBJECT_FILE):
 	$(TOOLCHAIN)-as $(AS_FLAGS) -o $(OBJECT_FILE) $(SOURCE_FILE)
 
-CLEAN:
-	-rm -f $(LIST_FILE)

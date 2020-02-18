@@ -24,6 +24,19 @@ _fiq:                       b final_
 
 
 /*
+    On exception thrown jump table
+*/
+
+KERNEL_START_ADDRESS:                   .word 0x00000000
+KERNEL_UNDEFINED_INSTRUCTION_ADDRESS:   .word 0x00000000
+KERNEL_SOFTWARE_INTERRUPT_ADDRESS:      .word 0x00000000
+KERNEL_ABORT_PREFETCH_ADDRESS:          .word 0x00000000
+KERNEL_ABORT_DATA_ADDRESS:              .word 0x00000000
+KERNEL_IRQ_ADDRESS:                     .word 0x00000000
+KERNEL_FRQ_ADDRESS:                     .word 0x00000000
+
+
+/*
     A small set of variables used for the kernel's bootloader stage
 */
 DT_START:       .word 0x00000000    // start address of the DT block
@@ -67,7 +80,8 @@ startup_:
 
 
 
-
+    // Enter final wait for now
+    b final_;
 
 
 // Enter this function to go into busy wait mode forever. This is no beauno for general usage but
@@ -84,7 +98,7 @@ final_:
 
 
 
-.incbin 
+.incbin "../../"
 
 
 

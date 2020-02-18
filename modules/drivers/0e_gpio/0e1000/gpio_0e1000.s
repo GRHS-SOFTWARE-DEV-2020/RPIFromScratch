@@ -39,7 +39,7 @@
 // API Subroutine Jump Table
 .org 0x0
 D_GPIO_ID:  .word 0x00051000
-D_GPIO_END: .word D_GPIO_END
+D_GPIO_END: .word END_OF_GPIO_DRIVER
 D_GPIO_BASE_ADDRESS: .word 0x00000000
 
 D_GPIO_API_0: .word D_GPIO_set_pin
@@ -761,4 +761,4 @@ D_GPIO_reserve_pin:
     mov pc, lr
 
 # End label for storing the size of the driver
-D_GPIO_END:
+END_OF_GPIO_DRIVER:

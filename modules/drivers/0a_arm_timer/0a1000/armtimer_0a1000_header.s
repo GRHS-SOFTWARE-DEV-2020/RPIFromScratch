@@ -94,7 +94,6 @@ D_ARMTIMER_stop_timer:
     mov pc, lr
 .endm
 
-
 .macro _D_ARMTIMER_set_timer_prescale_1_
 D_ARMTIMER_set_timer_prescale:
     ldr r0, =0x3F00B000
