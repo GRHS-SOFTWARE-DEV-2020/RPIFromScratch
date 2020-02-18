@@ -102,7 +102,7 @@ D_GPIO_set_pin:
  */
 D_GPIO_clear_pin:
 
-    ldr r0, =0x3F200000
+    ldr r0, D_GPIO_BASE_ADDRESS
     mov r1, #1
 
     and r2, r5, #0x3F
@@ -121,7 +121,7 @@ D_GPIO_clear_pin:
  */
 D_GPIO_get_pin_value:
 
-    ldr r0, =0x3F200000
+    ldr r0, D_GPIO_BASE_ADDRESS
     mov r1, #1
 
     and r2, r5, #0x3F
@@ -151,7 +151,7 @@ D_GPIO_get_pin_value:
  */
 D_GPIO_enable_event_detect:
 
-    ldr r0, =0x3F200000     // set address offset if this is an upper level pin
+    ldr r0, D_GPIO_BASE_ADDRESS     // set address offset if this is an upper level pin
     mov r1, #1
     and r2, r5, #0x3F
     cmp r2, #32
@@ -204,7 +204,7 @@ D_GPIO_enable_event_detect:
  */
 D_GPIO_disable_event_detect:
 
-    ldr r0, =0x3F200000     // set address offset if this is an upper level pin
+    ldr r0, D_GPIO_BASE_ADDRESS     // set address offset if this is an upper level pin
     mvn r1, #1
     and r2, r5, #0x3F
     cmp r2, #32
@@ -257,7 +257,7 @@ D_GPIO_disable_event_detect:
  */
 D_GPIO_pin_event_status:
 
-    ldr r0, =0x3F200000     // set address offset if this is an upper level pin
+    ldr r0, D_GPIO_BASE_ADDRESS     // set address offset if this is an upper level pin
     mvn r1, #1
     and r2, r5, #0x3F
     cmp r2, #31
@@ -277,7 +277,7 @@ D_GPIO_pin_event_status:
  */
 D_GPIO_get_event_status_masks:
 
-    ldr r0, =0x3F200000
+    ldr r0, D_GPIO_BASE_ADDRESS
     ldr r8, [r0, #0x40]
     ldr r8, [r0, #0x44]
     mov pc, lr
@@ -289,7 +289,7 @@ D_GPIO_get_event_status_masks:
  */
 D_GPIO_get_pin_function:    // r7[first 6 bits] = pin number
 
-    ldr r0, =0x3F200000
+    ldr r0, D_GPIO_BASE_ADDRESS
     and r2, r5, #0x3F      
 
     cmp r2, #50             // handling for pins 50+
@@ -333,7 +333,7 @@ D_GPIO_get_pin_function:    // r7[first 6 bits] = pin number
  */
 D_GPIO_set_pin_function_input:
 
-    ldr r0, =0x3F200000
+    ldr r0, D_GPIO_BASE_ADDRESS
     and r1, r5, #0x3F      
 
     cmp r1, #50             // handling for pins 50+
@@ -384,7 +384,7 @@ D_GPIO_set_pin_function_input:
  */
 D_GPIO_set_pin_function_output:
 
-    ldr r0, =0x3F200000
+    ldr r0, D_GPIO_BASE_ADDRESS
     and r1, r5, #0x3F      
 
     cmp r1, #50             // handling for pins 50+
@@ -435,7 +435,7 @@ D_GPIO_set_pin_function_output:
  */
 D_GPIO_set_pin_function_0:
 
-    ldr r0, =0x3F200000
+    ldr r0, D_GPIO_BASE_ADDRESS
     and r1, r5, #0x3F      
 
     cmp r1, #50             // handling for pins 50+
@@ -486,7 +486,7 @@ D_GPIO_set_pin_function_0:
  */
 D_GPIO_set_pin_function_1:
 
-    ldr r0, =0x3F200000
+    ldr r0, D_GPIO_BASE_ADDRESS
     and r1, r5, #0x3F      
 
     cmp r1, #50             // handling for pins 50+
@@ -537,7 +537,7 @@ D_GPIO_set_pin_function_1:
  */
 D_GPIO_set_pin_function_2:
 
-    ldr r0, =0x3F200000
+    ldr r0, D_GPIO_BASE_ADDRESS
     and r1, r5, #0x3F      
 
     cmp r1, #50             // handling for pins 50+
@@ -588,7 +588,7 @@ D_GPIO_set_pin_function_2:
  */
 D_GPIO_set_pin_function_3:
 
-    ldr r0, =0x3F200000
+    ldr r0, D_GPIO_BASE_ADDRESS
     and r1, r5, #0x3F      
 
     cmp r1, #50             // handling for pins 50+
@@ -639,7 +639,7 @@ D_GPIO_set_pin_function_3:
  */
 D_GPIO_set_pin_function_4:
 
-    ldr r0, =0x3F200000
+    ldr r0, D_GPIO_BASE_ADDRESS
     and r1, r5, #0x3F      
 
     cmp r1, #50             // handling for pins 50+
@@ -690,7 +690,7 @@ D_GPIO_set_pin_function_4:
  */
 D_GPIO_set_pin_function_5:
 
-    ldr r0, =0x3F200000
+    ldr r0, D_GPIO_BASE_ADDRESS
     and r1, r5, #0x3F      
 
     cmp r1, #50             // handling for pins 50+
