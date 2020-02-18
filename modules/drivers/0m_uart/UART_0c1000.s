@@ -1,31 +1,3 @@
-/* Jump table stuff */
-.org 0x0
-D_UART_ID:  .word 0x000d1000
-D_UART_END: .word D_UART_END
-D_UART_BASE_ADDRESS: .word 0x3F20100
-
-
-/* 
-API 0 - Enables UART (After flushing FIFO to rid errors) with send and receive with no current inputs or outputs, handles settings
-API 1 - Disables UART main but not the actual function (still cant do anything) no inputs or outputs, Then flushes FIFO to rid erros
-API 2 - Handles Receiving - Outputs to r8 - 8 bits
-API 3 - Handles Sending - Input is r4 - 8 bits
-API 4 - Used for checking if Uart, Send, And/Or Receive is enabled, outputs to r7, 3 bits with 1 meaning enabled 0 disabled, bit 0 - receive bit 1 - send bit 2 - UART
- */
-
-D_UART_API_0: .word D_UART_ENABLE
-D_UART_API_1: .word D_UART_DISABLE
-D_UART_API_2: .word D_UART_RECEIVE
-D_UART_API_3: .word D_UART_SEND
-D_UART_API_4: .word D_UART_CHECKENABLED
-
-/* Reserved DWORDs for memory */
-D_UART_RESERVED_LOWER: .word 0x00000000
-D_UART_RESERVED_UPPER: .word 0x00000000
-
-
-
-
 /*
 	IBRD + FBRD = Hz/(16 * baud rate) i think
 	Need to set baud rate, frame rate, enable transmit/receive, set interrupt
@@ -52,6 +24,35 @@ D_UART_RESERVED_UPPER: .word 0x00000000
 	
 	No inputs or outputs yet
 */
+
+
+/* Jump table stuff */
+.org 0x0
+D_UART_ID:  .word 0x000d1000
+D_UART_END: .word D_UART_END
+D_UART_BASE_ADDRESS: .word 0x3F20100
+
+
+/* 
+API 0 - Enables UART (After flushing FIFO to rid errors) with send and receive with no current inputs or outputs, handles settings
+API 1 - Disables UART main but not the actual function (still cant do anything) no inputs or outputs, Then flushes FIFO to rid erros
+API 2 - Handles Receiving - Outputs to r8 - 8 bits
+API 3 - Handles Sending - Input is r4 - 8 bits
+API 4 - Used for checking if Uart, Send, And/Or Receive is enabled, outputs to r7, 3 bits with 1 meaning enabled 0 disabled, bit 0 - receive bit 1 - send bit 2 - UART
+ */
+
+D_UART_API_0: .word D_UART_ENABLE
+D_UART_API_1: .word D_UART_DISABLE
+D_UART_API_2: .word D_UART_RECEIVE
+D_UART_API_3: .word D_UART_SEND
+D_UART_API_4: .word D_UART_CHECKENABLED
+
+/* Reserved DWORDs for memory */
+D_UART_RESERVED_LOWER: .word 0x00000000
+D_UART_RESERVED_UPPER: .word 0x00000000
+
+
+// Enables UART
 D_UART_ENABLE:
 	/* UART base address */
 	
