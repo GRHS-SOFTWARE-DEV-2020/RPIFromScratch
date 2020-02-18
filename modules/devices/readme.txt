@@ -1,0 +1,1 @@
+This folder is for device driver source code. These provide an additional layer of obsfuscation between the hardware and software.
