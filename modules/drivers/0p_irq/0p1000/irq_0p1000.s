@@ -50,7 +50,7 @@ INTERUPT_TABLE: .word 0x0000004
     sizeof(Interupt_Table_Entry) = 16 Bytes = 4 Words = 2 Dwords
 
  */
-.org . + 0x08
+.org . + 0x100
 END_OF_INTERUPT_TABLE:
 
 
@@ -65,14 +65,13 @@ DEFFERED_QUEUE:    .word 0x00000000
 
     struct Deffered_Interupt_Entry
     {
-
-
-
+        uint16_t entry_ID;
     };
+    sizoef(Deffered_Interupt_Entry) = 2 Bytes = 1 Word
 
 */
 
-.org . + 0x20
+.org . + 0x10
 END_OF_DEFFERED_QUEUE:
 
 
@@ -83,58 +82,19 @@ IRQ_STACK: .word . + 0x4
 .org . + 0x100
 IRQ_STACK_END:
 
-// Inputs:
-//      r4 - size of desired space in bytes, set to 0 to just check if it is currently in bounds
-// Ouputs:
-//      r8 - (bool) true if there is enough space, false if not
-.macro __IRQ_STACK_CHECK_BOUNDS__
-
-    // Grab the current stack pointer and stack end address
-    ldr r8, IRQ_STACK
-    ldr r0, =IRQ_STACK_END
-
-    // Add addition space
-    add r8, r8, r4
-    
-    // Check for OOB; clear r8 and set to 1 if not OOB
-    cmp r0, r8
-    mov r8, #0x0
-    movpl r8, #0x1
-
-.endm
 
 // Inputs:
-//      r4 - dword of data to push onto the stack
+//      r0 - dword of data to push onto the stack
 // Ouputs: none
-.macro __IRQ_STACK_PUSH_REG_
-
-    // Check for bounds, escape early if OOB
-    mov r1, r4
-    mov r4, #0x4
-    __IRQ_STACK_CHECK_BOUNDS__
-    mov r4, r1                      // set r4 back to original to uphold code conventions
-    tst r8, #0x1
-    bne _IRQ_STACK_PUSH_EXIT_
-
-    // As we are inbounds, store and post increment stack pointer by dword width
-    ldr r1, =IRQ_STACK
-    str r4, [r1], #0x4
-
-    // Early exit label
-    _IRQ_STACK_PUSH_EXIT_:
-
+.macro __PUSH_REG__
+    str r0, [sp], #0x4
 .endm
 
 // Inputs: none
 // Outputs:
-//      r8 = popped value
-.macro __IRQ_STACK_POP_REG_
-
-    // Grab value and post-deincrement. Reload stack pointer
-    ldr r0, IRQ_STACK
-    ldr r8, [r0, #-0x4]!
-    str r0, =IRQ_STACK
-
+//      r0 = popped value
+.macro __POP_REG__
+    ldr r0, [sp, #-0x4]!
 .endm
 
 
@@ -156,24 +116,56 @@ IRQ_STACK_END:
 */
 D_IRQ_INTERUPT_HANDLER:
 
-    // Disable interupts for now
-    mrs r0, cpsr
-    orr r0, r0, #0x80
-    msr cpsr, r0
+    // Load the IRQ stack pointer value
+    ldr sp, IRQ_STACK
+
+    // Sub 4 from the LR to adjust properly for return to interuptted code
+    sub lr, lr, #0x4
+    
+    // PUSH r0:r4 so that we have some room to work
+    __PUSH_REG__
+    mov r0, r1
+    __PUSH_REG__
+    mov r0, r2
+    __PUSH_REG__
+    mov r0, r3
+    __PUSH_REG__
+    mov r0, r4
+    __PUSH_REG__
 
 
 
+    /*
+        Interupt handling goes here!
+    */
+
+    // 1. Loop through interupt entry table
+        // a. Grab status flag register and mask to see if any are set
+    
+    // 2a. If the interupt cannot be found, this is bad news and should have some sort of error thrown. Exit.
+    // 2b. If the interupt is found, grab the deffered_handling bit and check
+    
+    // 3b. If the bit is set to 1, add the event to the deffered_handling queue
+    // 3b. If the bit is set to 0, run the subroutine given immediatly
 
 
 
+    // POP r4:r8 back off the stack
+    __POP_REG__
+    mov r4, r0
+    __POP_REG__
+    mov r3, r0
+    __POP_REG__
+    mov r2, r0
+    __POP_REG__
+    mov r1, r0
+    __POP_REG__
 
-    // Renable interupts
-    mrs r0, cpsr
-    bic r0, r0, #0x80
-    msr cpsr, r0
+    // Store the IRQ stack pointer value before returning
+    str sp, IRQ_STACK
 
     // Return to the interupted code
-    mov pc, lr
+    movs pc, lr
 
 
 /*
