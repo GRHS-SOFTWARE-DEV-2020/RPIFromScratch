@@ -56,21 +56,21 @@ D_UART_RESERVED_UPPER: .word 0x00000000
 D_UART_ENABLE:
 	/* UART base address */
 	
-	clr r0
-	mov r0, D_UART_BASE_ADDRESS
+	mov r0, #0x0
+	mov r0, =D_UART_BASE_ADDRESS
 	
 	/* clear FIFo transmitter to avoid errors, LCRH pin 4 FEN */
-	clr r1
+	mov r1, #0x0
 	mov r1, #0x3F
 	and r1, r1, [r0, #0x2c]
 	str r1, [r0, #0x2c]
 	
 
 	/* set FBRD then IBRD */
-	clr r1
+	mov r1, #0x0
 	mov r1, #0x3
 	str r1, [r0, #0x28]
-	clr r1
+	mov r1, #0x0
 	str r1, [r0, #0x24]
 	
 	/* setting interrupt stuff all as one where it can be for now, */
@@ -78,15 +78,15 @@ D_UART_ENABLE:
 	str r1, [r0, #0x38]
 	
 	/*setting LCRH stuff from way above */
-	clr r1
+	mov r1, #0x0
 	mov r1, #0x68
 	str r1, [r0, #0x2c]
 	
 	/*enable UART, transmit, receive - bit 1, 8, 9 are set to 1 rest 0 */
-	clr r1
+	mov r1, #0x0
 	mov r1, #0x301
 	str r1, [r0, #0x30]
-	clr r1
+	mov r1, #0x0
 	
 	
 	mov pc, lr
@@ -99,17 +99,17 @@ D_UART_ENABLE:
 D_UART_DISABLE:
 	/* base address for UART */
 	
-	clr r0
-	mov r0, D_UART_BASE_ADDRESS
+	mov r0, #0x0
+	mov r0, =D_UART_BASE_ADDRESS
 	
 	/* disable UART */
-	clr r1
+	mov r1, #0x0
 	mov r1, #0xCB80
 	and r1, r1, [r0, #0x30]
 	str r1, [r0, #0x30]
 	
 	/* clear FIFo transmitter to avoid errors, LCRH pin 4 FEN */
-	clr r1
+	mov r1, #0x0
 	mov r1, #0x3F
 	and r1, r1, [r0, #0x2c]
 	str r1, [r0, #0x2c]
@@ -128,15 +128,17 @@ offset is 0x0
 D_UART_RECEIVE:
 	/* UART base address */
 	
-	clr r0
-	mov r0, D_UART_BASE_ADDRESS
+	mov r0, #0x0
+	mov r0, =D_UART_BASE_ADDRESS
 	
 	/* Grab received data in register, and AND it with something to get only the data bits
 	Data Register offeset 0x0*/
-	clr r1
+	mov r1, #0x0
 	mov r1, #0xFF
-	clr r8
-	and r8, r1, r0
+	mov r8, #0x0
+	mov r2, #0x0
+	mov r2, [r0, #0x0]
+	and r8, r1, r2
 	
 	
 	mov pc, lr
@@ -150,17 +152,18 @@ offset is 0x0
 D_UART_SEND:
 	/* UART base address */
 	
-	clr r0
-	mov r0, D_UART_BASE_ADDRESS
+	mov r0, #0x0
+	mov r0, =D_UART_BASE_ADDRESS
 	
 	/* AND to remove the data bits then add result with our input and push to Data Register */
-	clr r1
+	mov r1, #0x0
 	mov r1, #0xF00
-	clr r2
+	mov r2, #0x0
 	and r2, r1, r0
-	clr r1
+	mov r1, #0x0
 	mov r1, r4
 	add r2, r2, r1
+	str r2, [r0, #0x0]
 	
 	
 	mov pc, lr
@@ -180,30 +183,30 @@ bit 2 - UART
 D_UART_CHECKENABLED:
 	/* UART base address */
 	
-	clr r0
-	mov r0, D_UART_BASE_ADDRESS
+	mov r0, #0x0
+	mov r0, =D_UART_BASE_ADDRESS
 	
 	/* clear output reg for use later */
-	clr r7
+	mov r7, #0x0
 	
 	/* grab UART Control Registry */
-	clr r1
+	mov r1, #0x0
 	mov r1, [r0, #0x30]
 	
 	/* Check UART - AND with 1 and compare to see relation to zero, then push to output */
-	clr r2
+	mov r2, #0x0
 	and r2, r1, #0x1
 	cmp r2, #0x0
 	orrne r7, r7, #0x4
 	
 	/* Check Send - Same as above */
-	clr r2
+	mov r2, #0x0
 	and r2, r1, #0x100
 	cmp r2, #0x0
 	orrne r7, r7 #0x2
 	
 	/* Check receive - same as above */
-	clr r2
+	mov r2, #0x0
 	and r2, r1, #0x200
 	cmp r2, #0x0
 	orrne r7, r7 #0x1
