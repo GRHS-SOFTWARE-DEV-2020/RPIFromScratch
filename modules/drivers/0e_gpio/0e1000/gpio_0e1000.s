@@ -8,7 +8,6 @@
         D_GPIO_clear_pin (r5[value6]) : ()
         D_GPIO_get_pin_value (r5[value6]) : (r8[=0:LOW;>0:HIGH])
 
-
             EVENTS: Interrupts from pins are handled as shown below. R5 is the pin number, R6 is a bit mask. Bit controls shown below:
                 0 - HIGH DETECT
                 1 - LOW DETECT
@@ -22,7 +21,6 @@
         D_GPIO_pin_event_status (r5[value6], r6[value6]) : (r8[=0:LOW;>0:HIGH (bits correspond to bits in r8)])
 
         D_GPIO_get_event_status_masks (r5[event bit mask]) : (r8[0:31],r9[32:65])
-
 
         D_GPIO_get_pin_function (r5[value6]) : (r8[=0:LOW;>0:HIGH])
         D_GPIO_set_pin_function_input (r5[value6]) : ()
@@ -40,7 +38,7 @@
 
 // API Subroutine Jump Table
 .org 0x0
-D_GPIO_ID:  .word 0x000e1000
+D_GPIO_ID:  .word 0x00051000
 D_GPIO_END: .word D_GPIO_END
 D_GPIO_BASE_ADDRESS: .word 0x00000000
 
@@ -71,6 +69,7 @@ D_GPIO_API_15: .word D_GPIO_reserve_pin
 
 D_GPIO_RESERVED_LOWER: .word 0x00000000
 D_GPIO_RESERVED_UPPER: .word 0x00000000
+
 
 /*
     API implementation options (if any)
