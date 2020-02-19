@@ -150,10 +150,11 @@ D_UART_SEND:
 	
 	/* AND to remove the data bits then add result with our input and push to Data Register */
 	mov r1, #0xF00
-	and r2, r1, r0
+	ldr r3, [r0]
+	and r2, r1, r3
 	mov r1, r4
 	add r2, r2, r1
-	str r2, [r0]
+	str r4, [r0]
 	
 	mov pc, lr
 

@@ -98,18 +98,17 @@ K_UART_ADDRESS: .word UART_DRIVER
 // Code enters here, run the boot load stage
 startup_:
 
-    // Register the drivers
-
-    ldr r0, =GPIO_DRIVER        // Register GPIO driver
+    // Register GPIO driver
+    ldr r0, =GPIO_DRIVER        
     str r0, K_GPIO_ADDRESS
     ldr r1, =0x3F200000
     str r1, [r0, #8]
 
-    ldr r0, =UART_DRIVER        // Register UART driver
+    // Register UART driver
+    ldr r0, =UART_DRIVER        
     str r0, K_UART_ADDRESS
     ldr r1, =0x3F201000
     str r1, [r0, #8]
-
 
     // Set ACT led to output mode
     ldr r0, K_GPIO_ADDRESS
@@ -129,6 +128,14 @@ startup_:
     mov r5, #15
     __D_CALL__ 9, 12
 
+    // Enable the UART driver
+    ldr r0, K_UART_ADDRESS
+    __D_CALL__ 0, 12
+
+    // Try and send across a single byte = (0x4C)
+    ldr r0, K_UART_ADDRESS
+    mov r4, #0x4C
+    __D_CALL__ 3, 12
 
     // Enter final wait for now
     b final_;

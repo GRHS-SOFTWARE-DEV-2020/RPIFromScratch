@@ -2,8 +2,9 @@
 cannon pierce
  */
 
- .org 0x2c, 0x00
- D_SYSTIMER_BASE_ADDRESS: .word 0x3F003000
+.org 0x0
+.org . + 0x2c
+D_SYSTIMER_BASE_ADDRESS: .word 0x3F003000
 
  /*
  jump table
@@ -18,23 +19,23 @@ r2 used for left shifting to get to bit number, then contains true/false based o
 r3 used to store number for left shifting
 r8 output if it worked - 1
   */
- D_SYSTIMER_API_0: .word D_START_TIMERS
- D_SYSTIMER_API_1: .word D_CHECK_TIMERS
+D_SYSTIMER_API_0: .word D_START_TIMERS
+D_SYSTIMER_API_1: .word D_CHECK_TIMERS
 
 
 /*
 reserved addresses for timers and stuff
  */
-D_SYSTIMER_TIMER_0: .word 0x00000000
-D_SYSTIMER_TIMER_1: .word 0x00000000
-D_SYSTIMER_TIMER_2: .word 0x00000000
-D_SYSTIMER_TIMER_3: .word 0x00000000
-D_SYSTIMER_QTIMER_0: .word 0x00000000
-D_SYSTIMER_QTIMER_1: .word 0x00000000
-D_SYSTIMER_QTIMER_2: .word 0x00000000
-D_SYSTIMER_QTIMER_3: .word 0x00000000
-D_SYSTIMER_FLAGS: .word 0x00000000
-D_SYSTIMER_STORE_LR: .word 0x00000000
+D_SYSTIMER_TIMER_0:     .word 0x00000000
+D_SYSTIMER_TIMER_1:     .word 0x00000000
+D_SYSTIMER_TIMER_2:     .word 0x00000000
+D_SYSTIMER_TIMER_3:     .word 0x00000000
+D_SYSTIMER_QTIMER_0:    .word 0x00000000
+D_SYSTIMER_QTIMER_1:    .word 0x00000000
+D_SYSTIMER_QTIMER_2:    .word 0x00000000
+D_SYSTIMER_QTIMER_3:    .word 0x00000000
+D_SYSTIMER_FLAGS:       .word 0x00000000
+D_SYSTIMER_STORE_LR:    .word 0x00000000
 
 /*
 D_SYSTIMER_FLAGS
@@ -54,7 +55,6 @@ r9 is output of open timer address
 .macro CHECK_TIMER_STORAGE
 
 mov r0, #0x0
-mov r1, #0x0
 mov r2, #0x0
 
 ldr r1, D_SYSTIMER_TIMER_0
@@ -135,31 +135,35 @@ Clears QTIMERS
 offset is 0xc, 0x10, 0x14, 0x18 for timers 0-3 respectively
  */
 .macro PUSH_TMR_CPU
-ldr r0, D_SYSTIMER_TIMER_0
+
+ldr r0, D_SYSTIMER_BASE_ADDRESS
+
+ldr r1, D_SYSTIMER_TIMER_0
+str r1, [r0, #0xc]
+ldr r1, D_SYSTIMER_QTIMER_0
+str r1, D_SYSTIMER_TIMER_0
+
 ldr r1, D_SYSTIMER_TIMER_1
-ldr r2, D_SYSTIMER_TIMER_2
-ldr r3, D_SYSTIMER_TIMER_3
-
-str r0, [D_SYSTIMER_BASE_ADDRESS, #0xc]
-str r1, [D_SYSTIMER_BASE_ADDRESS, #0x10]
-str r2, [D_SYSTIMER_BASE_ADDRESS, #0x14]
-str r3, [D_SYSTIMER_BASE_ADDRESS, #0x18]
-
-ldr r0, D_SYSTIMER_QTIMER_0
+str r1, [r0, #0x10]
 ldr r1, D_SYSTIMER_QTIMER_1
-ldr r2, D_SYSTIMER_QTIMER_2
-ldr r3, D_SYSTIMER_QTIMER_3
-
-str r0, D_SYSTIMER_TIMER_0
 str r1, D_SYSTIMER_TIMER_1
-str r2, D_SYSTIMER_TIMER_2
-str r3, D_SYSTIMER_TIMER_3
+
+ldr r1, D_SYSTIMER_TIMER_2
+str r1, [r0, #0x14]
+ldr r1, D_SYSTIMER_QTIMER_2
+str r1, D_SYSTIMER_TIMER_2
+
+ldr r1, D_SYSTIMER_TIMER_3
+str r1, [r0, #0x18]
+ldr r1, D_SYSTIMER_QTIMER_3
+str r1, D_SYSTIMER_TIMER_3
 
 mov r0, #0x0
 str r0, D_SYSTIMER_QTIMER_0
 str r0, D_SYSTIMER_QTIMER_1
 str r0, D_SYSTIMER_QTIMER_2
 str r0, D_SYSTIMER_QTIMER_3
+
 .endm
 
 /*
@@ -170,6 +174,7 @@ Will not set a timer if address (r9) is invalid
 
 */
  D_START_TIMERS:
+
     mov r8, r4
     CHECK_TIMER_STORAGE
     PREP_TIMER
@@ -185,7 +190,7 @@ Will not set a timer if address (r9) is invalid
 
     PUSH_TMR_CPU
     
-    mov pc, ldr
+    mov pc, lr
 
 
 
@@ -209,10 +214,8 @@ D_CHECK_TIMERS:
    
    movpl pc, lr
 
-   
-
-
-   mul r3, r0, #0x1
+   mov r1, #0x1
+   mul r3, r0, r1
    mov r2, #0x1
    lsl r2, r2, r3
 
@@ -223,7 +226,7 @@ D_CHECK_TIMERS:
    and r3, r3, r2
    cmp r3, #0x0
 
-   /* if equal then set lr and branch to subroutine */
+   /* if equal then set lr and branch to subroutine */         // SYNTAX ISSUE ON FOLLOWING LINE
    streq D_SYSTIMER_STORE_LR, lr
    beq r4
    streq lr, D_SYSTIMER_STORE_LR
@@ -231,15 +234,9 @@ D_CHECK_TIMERS:
    /*sets output to one so it can be checked if it worked */
    moveq r8, #0x1
 
-   /*clears the timer match */
+   /*clears the timer match */                                 // ISSUE WITH CODE BLOCK, OVERRIDES BASE ADDRESS VALUE
    orreq r1, r1, r2
    streq r1, D_SYSTIMER_BASE_ADDRESS
 
-
    mov pc, lr
-
-    
-
-    
-
     
