@@ -9,25 +9,27 @@
 .arm
 .align
 
+
 /*
     Major func jump address table
 */
+
 .org 0x0
-_start:                     b startup_          // code actually enters from 0x8000, this is handled in the linker script
-_undefined_instruction:     b final_
-_software_interrupt:        b final_
-_abort_prefetch:            b final_
-_abort_data:                b final_
+_start:                     b KR_KERNEL_START
+_undefined_instruction:     b KR_KERNEL_UNDEFINED_INSTRUCTION
+_software_interrupt:        b KR_KERNEL_SOFTWARE_INTERRUPT
+_abort_prefetch:            b KR_KERNEL_ABORT_PREFETCH
+_abort_data:                b KR_KERNEL_ABORT_DATA
 .org 0x18
-_irq:                       b final_
-_fiq:                       b final_
+_irq:                       b KR_KERNEL_IRQ
+_fiq:                       b KR_KERNEL_FRQ
 
 
 /*
     On exception thrown jump table
 */
 
-KERNEL_START_ADDRESS:                   .word 0x00000000
+KERNEL_START_ADDRESS:                   .word startup_
 KERNEL_UNDEFINED_INSTRUCTION_ADDRESS:   .word 0x00000000
 KERNEL_SOFTWARE_INTERRUPT_ADDRESS:      .word 0x00000000
 KERNEL_ABORT_PREFETCH_ADDRESS:          .word 0x00000000
@@ -37,22 +39,30 @@ KERNEL_FRQ_ADDRESS:                     .word 0x00000000
 
 
 /*
-    A small set of variables used for the kernel's bootloader stage
+    Major routines happen here
 */
-DT_START:       .word 0x00000000    // start address of the DT block
-DRIVER_STATE:   .word 0x00000000    // bit high when loaded, 0 when not. bit # corresponds to position in below table:
-D_ARM_TIMER:    .word 0x00000000    // 0
-D_BSC_START:    .word 0x00000000    // 1
-D_DMA_START:    .word 0x00000000    // 2
-D_EMMC_START:   .word 0x00000000    // .....
-D_GPIO_START:   .word 0x00000000
-D_PCM_START:    .word 0x00000000
-D_MEM_START:    .word 0x00000000
-D_PWM_START:    .word 0x00000000
-D_SYS_TIMER:    .word 0x00000000
-D_SPI_START:    .word 0x00000000
-D_UART_START:   .word 0x00000000
-D_USB_START:    .word 0x00000000
+
+KR_KERNEL_START:
+    ldr r0, KERNEL_START_ADDRESS
+    mov pc, r0
+KR_KERNEL_UNDEFINED_INSTRUCTION:
+    ldr r0, KERNEL_UNDEFINED_INSTRUCTION_ADDRESS
+    mov pc, r0
+KR_KERNEL_SOFTWARE_INTERRUPT:
+    ldr r0, KERNEL_SOFTWARE_INTERRUPT_ADDRESS
+    mov pc, r0
+KR_KERNEL_ABORT_PREFETCH:
+    ldr r0, KERNEL_ABORT_PREFETCH_ADDRESS
+    mov pc, r0
+KR_KERNEL_ABORT_DATA:
+    ldr r0, KERNEL_ABORT_DATA_ADDRESS
+    mov pc, r0
+KR_KERNEL_IRQ:
+    ldr r0, KERNEL_IRQ_ADDRESS
+    mov pc, r0
+KR_KERNEL_FRQ:
+    ldr r0, KERNEL_FRQ_ADDRESS
+    mov pc, r0
 
     /*
 
@@ -73,12 +83,33 @@ D_USB_START:    .word 0x00000000
         add r3, r3, #0x8
     */
 
+// Macro for calling a driver subroutine, r0 should be the driver start address
+.macro __D_CALL__ sub_offset:req, offset:req
+    add r0, r0, #( ( \sub_offset\() * 4 ) + \offset\() )
+    ldr r1, [r0]
+    add r0, r0, r1
+    add lr, pc, #0x8
+    mov pc, r0
+.endm
+
 // Code enters here, run the boot load stage
 startup_:
-  
 
+    // Set the GPIO base address
+    ldr r0, =0x3F200000
+    ldr r1, =GPIO_DRIVER
+    add r1, r1, #0x8
+    str r0, [r1]
 
+    // Set GPIO pin 29 to output
+    ldr r0, =GPIO_DRIVER
+    mov r5, #29
+    __D_CALL__ 8, 12
 
+    // Set GPIO pin 29 to output a 1
+    ldr r0, =GPIO_DRIVER
+    mov r5, #29
+    __D_CALL__ 0, 12
 
     // Enter final wait for now
     b final_;
@@ -90,15 +121,6 @@ final_:
     b final_
 
 
-
-
 // Registers drivers subroutine
-
-
-
-
-
-.incbin "../../"
-
-
-
+GPIO_DRIVER:
+.incbin "../../../build/drivers/0e_gpio/0e1000-32-gpio.bin"

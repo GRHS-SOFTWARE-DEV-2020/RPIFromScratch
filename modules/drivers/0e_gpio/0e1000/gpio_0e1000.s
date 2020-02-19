@@ -65,7 +65,7 @@ D_GPIO_API_15: .word D_GPIO_reserve_pin
 
 /*
     DWORD reserved for tracking which pins are currently 'checked out'
- */
+*/
 
 D_GPIO_RESERVED_LOWER: .word 0x00000000
 D_GPIO_RESERVED_UPPER: .word 0x00000000
