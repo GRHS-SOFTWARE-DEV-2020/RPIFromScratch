@@ -52,68 +52,63 @@ r2 is address of timer we will set
 r9 is output of open timer address
  */
 .macro CHECK_TIMER_STORAGE
+
 mov r0, #0x0
 mov r1, #0x0
 mov r2, #0x0
+
 ldr r1, D_SYSTIMER_TIMER_0
 orr r1, r1, r0
 cmp r1, #0x0
 ldreq r2, =D_SYSTIMER_TIMER_0
 moveq r0, #0x1
 
-mov r1, #0x0
 ldr r1, D_SYSTIMER_TIMER_1
 orr r1, r1, r0
 cmp r1, #0x0
 ldreq r2, =D_SYSTIMER_TIMER_1
 moveq r0, #0x1
 
-mov r1, #0x0
 ldr r1, D_SYSTIMER_TIMER_2
 orr r1, r1, r0
 cmp r1, #0x0
 ldreq r2, =D_SYSTIMER_TIMER_2
 moveq r0, #0x1
 
-mov r1, #0x0
 ldr r1, D_SYSTIMER_TIMER_3
 orr r1, r1, r0
 cmp r1, #0x0
 ldreq r2, =D_SYSTIMER_TIMER_3
 moveq r0, #0x1
 
-mov r1, #0x0
 ldr r1, D_SYSTIMER_QTIMER_0
 orr r1, r1, r0
 cmp r1, #0x0
 ldreq r2, =D_SYSTIMER_QTIMER_0
 moveq r0, #0x1
 
-mov r1, #0x0
-str r1, D_SYSTIMER_QTIMER_1
+ldr r1, D_SYSTIMER_QTIMER_1
 orr r1, r1, r0
 cmp r1, #0x0
 ldreq r2, =D_SYSTIMER_QTIMER_1
 moveq r0, #0x1
 
-mov r1, #0x0
 ldr r1, D_SYSTIMER_QTIMER_2
 orr r1, r1, r0
 cmp r1, #0x0
 ldreq r2, =D_SYSTIMER_QTIMER_2
 moveq r0, #0x1
 
-mov r1, #0x0
 ldr r1, D_SYSTIMER_QTIMER_3
 orr r1, r1, r0
 cmp r1, #0x0
 ldreq r2, =D_SYSTIMER_QTIMER_3
 moveq r0, #0x1
 
-mov r9, #0x0
 cmp r2, #0x0
 movne r9, r2
-/* update error flahs */
+
+/* update error flags */
 ldreq r0, D_SYSTIMER_FLAGS
 orreq r0, r0, #0x1
 streq r0, D_SYSTIMER_FLAGS
@@ -175,7 +170,6 @@ Will not set a timer if address (r9) is invalid
 
 */
  D_START_TIMERS:
-    mov r8, #0x0
     mov r8, r4
     CHECK_TIMER_STORAGE
     PREP_TIMER
@@ -191,7 +185,6 @@ Will not set a timer if address (r9) is invalid
 
     PUSH_TMR_CPU
     
-
     mov pc, ldr
 
 

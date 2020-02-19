@@ -1,0 +1,97 @@
+
+0m1000-32-uart.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <D_UART_ID>:
+   0:	000d1000 	.word	0x000d1000
+
+00000004 <D_UART_END>:
+   4:	000000f8 	.word	0x000000f8
+
+00000008 <D_UART_BASE_ADDRESS>:
+   8:	00000000 	.word	0x00000000
+
+0000000c <D_UART_API_0>:
+   c:	00000028 	.word	0x00000028
+
+00000010 <D_UART_API_1>:
+  10:	0000006c 	.word	0x0000006c
+
+00000014 <D_UART_API_2>:
+  14:	00000094 	.word	0x00000094
+
+00000018 <D_UART_API_3>:
+  18:	000000a8 	.word	0x000000a8
+
+0000001c <D_UART_API_4>:
+  1c:	000000c4 	.word	0x000000c4
+
+00000020 <D_UART_RESERVED_LOWER>:
+  20:	00000000 	.word	0x00000000
+
+00000024 <D_UART_RESERVED_UPPER>:
+  24:	00000000 	.word	0x00000000
+
+00000028 <D_UART_ENABLE>:
+  28:	e51f0028 	ldr	r0, [pc, #-40]	; 8 <D_UART_BASE_ADDRESS>
+  2c:	e3a0103f 	mov	r1, #63	; 0x3f
+  30:	e590202c 	ldr	r2, [r0, #44]	; 0x2c
+  34:	e0011002 	and	r1, r1, r2
+  38:	e580102c 	str	r1, [r0, #44]	; 0x2c
+  3c:	e3a01003 	mov	r1, #3
+  40:	e5801028 	str	r1, [r0, #40]	; 0x28
+  44:	e3a01000 	mov	r1, #0
+  48:	e5801024 	str	r1, [r0, #36]	; 0x24
+  4c:	e3a01e3f 	mov	r1, #1008	; 0x3f0
+  50:	e5801038 	str	r1, [r0, #56]	; 0x38
+  54:	e3a01000 	mov	r1, #0
+  58:	e3a01068 	mov	r1, #104	; 0x68
+  5c:	e580102c 	str	r1, [r0, #44]	; 0x2c
+  60:	e3001301 	movw	r1, #769	; 0x301
+  64:	e5801030 	str	r1, [r0, #48]	; 0x30
+  68:	e1a0f00e 	mov	pc, lr
+
+0000006c <D_UART_DISABLE>:
+  6c:	e51f006c 	ldr	r0, [pc, #-108]	; 8 <D_UART_BASE_ADDRESS>
+  70:	e30c1b80 	movw	r1, #52096	; 0xcb80
+  74:	e5902030 	ldr	r2, [r0, #48]	; 0x30
+  78:	e0011002 	and	r1, r1, r2
+  7c:	e5801030 	str	r1, [r0, #48]	; 0x30
+  80:	e3a0103f 	mov	r1, #63	; 0x3f
+  84:	e590202c 	ldr	r2, [r0, #44]	; 0x2c
+  88:	e0011002 	and	r1, r1, r2
+  8c:	e580102c 	str	r1, [r0, #44]	; 0x2c
+  90:	e1a0f00e 	mov	pc, lr
+
+00000094 <D_UART_RECEIVE>:
+  94:	e51f0094 	ldr	r0, [pc, #-148]	; 8 <D_UART_BASE_ADDRESS>
+  98:	e5902000 	ldr	r2, [r0]
+  9c:	e3a010ff 	mov	r1, #255	; 0xff
+  a0:	e0018002 	and	r8, r1, r2
+  a4:	e1a0f00e 	mov	pc, lr
+
+000000a8 <D_UART_SEND>:
+  a8:	e51f00a8 	ldr	r0, [pc, #-168]	; 8 <D_UART_BASE_ADDRESS>
+  ac:	e3a01c0f 	mov	r1, #3840	; 0xf00
+  b0:	e0012000 	and	r2, r1, r0
+  b4:	e1a01004 	mov	r1, r4
+  b8:	e0822001 	add	r2, r2, r1
+  bc:	e5802000 	str	r2, [r0]
+  c0:	e1a0f00e 	mov	pc, lr
+
+000000c4 <D_UART_CHECKENABLED>:
+  c4:	e51f00c4 	ldr	r0, [pc, #-196]	; 8 <D_UART_BASE_ADDRESS>
+  c8:	e3a08000 	mov	r8, #0
+  cc:	e5901030 	ldr	r1, [r0, #48]	; 0x30
+  d0:	e2012001 	and	r2, r1, #1
+  d4:	e3520000 	cmp	r2, #0
+  d8:	13888004 	orrne	r8, r8, #4
+  dc:	e2012c01 	and	r2, r1, #256	; 0x100
+  e0:	e3520000 	cmp	r2, #0
+  e4:	13888002 	orrne	r8, r8, #2
+  e8:	e2012c02 	and	r2, r1, #512	; 0x200
+  ec:	e3520000 	cmp	r2, #0
+  f0:	13888001 	orrne	r8, r8, #1
+  f4:	e1a0f00e 	mov	pc, lr

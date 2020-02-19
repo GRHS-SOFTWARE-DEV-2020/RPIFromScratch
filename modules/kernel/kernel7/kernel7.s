@@ -119,9 +119,17 @@ final_:
     b final_
 
 
-// Registers drivers subroutine
+// GPIO driver temp direct include
 GPIO_DRIVER:
 .align
 .incbin "../../../build/drivers/0e_gpio/0e1000-32-gpio.bin"
 .align
 GPIO_DRIVER_END:
+
+// UART driver temp direct include
+UART_DRIVER:
+.align
+.incbin "../../../build/drivers/0m_uart/0m1000-32-uart.bin"
+.align
+UART_DRIVER_END:
+

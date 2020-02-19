@@ -1,11 +1,6 @@
-
 /*
-Cannon Pierce
- */
-
-
-
-
+	Cannon Pierce
+*/
 
 /*
 	IBRD + FBRD = Hz/(16 * baud rate) i think
@@ -39,7 +34,7 @@ Cannon Pierce
 .org 0x0
 D_UART_ID:  .word 0x000d1000
 D_UART_END: .word END_OF_UART_DRIVER
-D_UART_BASE_ADDRESS: .word 0x3F20100
+D_UART_BASE_ADDRESS: .word 0x00000000
 
 
 /* 
@@ -63,20 +58,18 @@ D_UART_RESERVED_UPPER: .word 0x00000000
 
 // Enables UART
 D_UART_ENABLE:
+
 	/* UART base address */
-	
-	mov r0, #0x0
-	mov r0, =D_UART_BASE_ADDRESS
+	ldr r0, D_UART_BASE_ADDRESS
 	
 	/* clear FIFo transmitter to avoid errors, LCRH pin 4 FEN */
-	mov r1, #0x0
 	mov r1, #0x3F
-	and r1, r1, [r0, #0x2c]
+	ldr r2, [r0, #0x2C]
+	and r1, r1, r2
 	str r1, [r0, #0x2c]
 	
 
 	/* set FBRD then IBRD */
-	mov r1, #0x0
 	mov r1, #0x3
 	str r1, [r0, #0x28]
 	mov r1, #0x0
@@ -92,11 +85,8 @@ D_UART_ENABLE:
 	str r1, [r0, #0x2c]
 	
 	/*enable UART, transmit, receive - bit 1, 8, 9 are set to 1 rest 0 */
-	mov r1, #0x0
 	mov r1, #0x301
 	str r1, [r0, #0x30]
-	mov r1, #0x0
-	
 	
 	mov pc, lr
 	
@@ -106,27 +96,25 @@ D_UART_ENABLE:
 	No inputs or outputs yet
 */
 D_UART_DISABLE:
+
 	/* base address for UART */
-	
-	mov r0, #0x0
-	mov r0, =D_UART_BASE_ADDRESS
+	ldr r0, D_UART_BASE_ADDRESS
 	
 	/* disable UART */
-	mov r1, #0x0
 	mov r1, #0xCB80
-	and r1, r1, [r0, #0x30]
+	ldr r2, [r0, #0x30]
+	and r1, r1, r2
 	str r1, [r0, #0x30]
 	
 	/* clear FIFo transmitter to avoid errors, LCRH pin 4 FEN */
-	mov r1, #0x0
 	mov r1, #0x3F
-	and r1, r1, [r0, #0x2c]
+	ldr r2, [r0, #0x2c]
+	and r1, r1, r2
 	str r1, [r0, #0x2c]
-	
-	
 	
 	mov pc, lr
 	
+
 /* 
 Subroutine for received data
 Doc says send/receive are same bits, not sure if it auto sends/receives
@@ -135,23 +123,19 @@ No inputs yet
 offset is 0x0
 */
 D_UART_RECEIVE:
+
 	/* UART base address */
-	
-	mov r0, #0x0
-	mov r0, =D_UART_BASE_ADDRESS
+	ldr r0, D_UART_BASE_ADDRESS
 	
 	/* Grab received data in register, and AND it with something to get only the data bits
 	Data Register offeset 0x0*/
-	mov r1, #0x0
+	ldr r2, [r0]
 	mov r1, #0xFF
-	mov r8, #0x0
-	mov r2, #0x0
-	mov r2, [r0, #0x0]
 	and r8, r1, r2
-	
 	
 	mov pc, lr
 	
+
 /*
 Sends data to uart device
 No outputs yet
@@ -159,67 +143,55 @@ Input is r4
 offset is 0x0
 */
 D_UART_SEND:
+
 	/* UART base address */
-	
-	mov r0, #0x0
-	mov r0, =D_UART_BASE_ADDRESS
+	ldr r0, D_UART_BASE_ADDRESS
 	
 	/* AND to remove the data bits then add result with our input and push to Data Register */
-	mov r1, #0x0
 	mov r1, #0xF00
-	mov r2, #0x0
 	and r2, r1, r0
-	mov r1, #0x0
 	mov r1, r4
 	add r2, r2, r1
-	str r2, [r0, #0x0]
-	
+	str r2, [r0]
 	
 	mov pc, lr
 
-	
 	
 /*
 Checks to see if UART, send, and receive(in that order) are enabled
 0 = disabled
 1 = enabled
 No input
-Output - 3 bits - r7
+Output - 3 bits - r8
 bit 0 - receive
 bit 1 - send
 bit 2 - UART
 */
 D_UART_CHECKENABLED:
+
 	/* UART base address */
-	
-	mov r0, #0x0
-	mov r0, =D_UART_BASE_ADDRESS
+	ldr r0, D_UART_BASE_ADDRESS
 	
 	/* clear output reg for use later */
-	mov r7, #0x0
+	mov r8, #0x0
 	
 	/* grab UART Control Registry */
-	mov r1, #0x0
-	mov r1, [r0, #0x30]
+	ldr r1, [r0, #0x30]
 	
 	/* Check UART - AND with 1 and compare to see relation to zero, then push to output */
-	mov r2, #0x0
 	and r2, r1, #0x1
 	cmp r2, #0x0
-	orrne r7, r7, #0x4
+	orrne r8, r8, #0x4
 	
 	/* Check Send - Same as above */
-	mov r2, #0x0
 	and r2, r1, #0x100
 	cmp r2, #0x0
-	orrne r7, r7 #0x2
+	orrne r8, r8, #0x2
 	
 	/* Check receive - same as above */
-	mov r2, #0x0
 	and r2, r1, #0x200
 	cmp r2, #0x0
-	orrne r7, r7 #0x1
-	
+	orrne r8, r8, #0x1
 	
 	mov pc, lr
 
