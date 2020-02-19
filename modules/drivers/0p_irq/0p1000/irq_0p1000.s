@@ -28,6 +28,18 @@ D_IRQ_API_3: .word =D_IRQ_ADD_INTERUPT
 D_IRQ_API_4: .word =D_IRQ_REMOVE_INTERUPT
 
 
+
+// Include the assembly utils file
+
+.include "../../../asm_utils.s"
+
+// Some simple testing of the new utilities
+
+__HEAP__ "test_heap", 100
+__STACK__ "test_stack", 50
+
+
+
 /*
     Interupt entry table for adding interupts from outside sources. First label also stores the current size
 */
@@ -52,6 +64,8 @@ INTERUPT_TABLE: .word 0x0000004
  */
 .org . + 0x100
 END_OF_INTERUPT_TABLE:
+
+
 
 
 
