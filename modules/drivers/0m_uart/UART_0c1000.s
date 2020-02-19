@@ -1,3 +1,12 @@
+
+/*
+Cannon Pierce
+ */
+
+
+
+
+
 /*
 	IBRD + FBRD = Hz/(16 * baud rate) i think
 	Need to set baud rate, frame rate, enable transmit/receive, set interrupt
