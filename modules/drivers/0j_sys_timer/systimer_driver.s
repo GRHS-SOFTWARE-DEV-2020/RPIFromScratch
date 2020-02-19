@@ -1,15 +1,25 @@
 /*
-First take inputs for the timer values which go into C0,1,2,3 register
-Then check for timer matches in a loop
-
-
-
-
+cannon pierce
  */
 
-
- .org 0x24, 0x00
+ .org 0x2c, 0x00
  D_SYSTIMER_BASE_ADDRESS: .word 0x3F003000
+
+ /*
+ jump table
+ API 0 - Input r4-7 - sys timer value 32 bits
+Set to zero if not wanted
+Sets timer, if not full.
+Will not set a timer if address (r9) is invalid
+API 1 - input r4 (address of subroutine) - What to run if timer n is matched
+input r5 timer number (0,1,2,3), will be set to r0 for working with
+store lr, just before branch, into allocated memory slot above
+r2 used for left shifting to get to bit number, then contains true/false based on = or not = to zero
+r3 used to store number for left shifting
+r8 output if it worked - 1
+  */
+ D_SYSTIMER_API_0: .word D_START_TIMERS
+ D_SYSTIMER_API_1: .word D_CHECK_TIMERS
 
 
 /*
@@ -23,7 +33,16 @@ D_SYSTIMER_QTIMER_0: .word 0x00000000
 D_SYSTIMER_QTIMER_1: .word 0x00000000
 D_SYSTIMER_QTIMER_2: .word 0x00000000
 D_SYSTIMER_QTIMER_3: .word 0x00000000
-D_SYSTIMER_STORAGE: .word 0x00000000
+D_SYSTIMER_FLAGS: .word 0x00000000
+D_SYSTIMER_STORE_LR: .word 0x00000000
+
+/*
+D_SYSTIMER_FLAGS
+bit 0      1 = full storage  0 - not full dont worry
+bit 1      1 = Input not in range 0 = in range dont worry
+
+
+ */
 
 
 /*
@@ -94,7 +113,11 @@ moveq r0, #0x1
 mov r9, #0x0
 cmp r2, #0x0
 movne r9, r2
-moveq r9, #0x0
+/* update error flahs */
+ldreq r0, D_SYSTIMER_FLAGS
+orreq r0, r0, #0x1
+streq r0, D_SYSTIMER_FLAGS
+
 /* SET SOMETHING IN STORAGE FOR ERROR AND ADJUST HERE */
 
 .endm
@@ -135,11 +158,12 @@ str #0x0, D_SYSTIMER_QTIMER_3
 
 /*
 Input r4-7 - sys timer value 32 bits
+Set to zero if not wanted
 Sets timer, if not full.
 Will not set a timer if address (r9) is invalid
 
 */
- D_PREPARE_TIMERS:
+ D_START_TIMERS:
     mov r8, #0x0
     mov r8, r4
     CHECK_TIMER_STORAGE
@@ -156,6 +180,54 @@ Will not set a timer if address (r9) is invalid
 
     PUSH_TMR_CPU
     
+
+    mov pc, ldr
+
+
+
+/*
+input r4 (address of subroutine) - What to run if timer n is matched
+input r5 timer number (0,1,2,3), will be set to r0 for working with
+store lr, just before branch, into allocated memory slot above
+r2 used for left shifting to get to bit number, then contains true/false based on = or not = to zero
+r3 used to store number for left shifting
+r8 output if it worked - 1
+ */
+
+D_CHECK_TIMERS:
+   mov r0, r5
+   cmp r0, #0x4
+   /*updates the error flags, sets bit 1 to 1 */
+   ldrpl r0, D_SYSTIMER_FLAGS
+   orrpl r0, r0, #0x2
+   strpl r0, D_SYSTIMER_FLAGS
+   
+   movpl pc, lr
+
+   
+
+
+   mul r3, r0, #0x1
+   mov r2, #0x1
+   lsl r2, r2, r3
+
+   /*grab match register (base address) */
+   ldr r3, D_SYSTIMER_BASE_ADDRESS
+
+   /* and r3 with r2 to find if matched */
+   and r3, r3, r2
+   cmp r3, #0x0
+
+   /* if equal then set lr and branch to subroutine */
+   streq D_SYSTIMER_STORE_LR, lr
+   beq r4
+   streq lr, D_SYSTIMER_STORE_LR
+
+   /*sets output to one so it can be checked if it worked */
+   mov r8, #0x1
+
+
+   mov pc, lr
 
     
 
