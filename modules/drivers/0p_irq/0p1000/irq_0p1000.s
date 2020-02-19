@@ -271,7 +271,7 @@ D_IRQ_ADD_INTERUPT:
     and r2, r2, r7                  // toss the bool, only grab the offset from the dword
     orr r1, r1, r2                  // OR r2 in to add the offset value
 
-    // Add the finalized dword into the entry
+    // Add the finalized word into the entry
     str r1, [r0], #0x4
 
     // Add the status register mask
@@ -285,6 +285,7 @@ D_IRQ_ADD_INTERUPT:
 
     // Return to caller
     mov pc, lr
+
 
 /*
     Removes an interupt entry from the table with the provided ID (r4)
