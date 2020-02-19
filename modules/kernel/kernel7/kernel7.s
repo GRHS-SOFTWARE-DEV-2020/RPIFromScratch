@@ -84,12 +84,10 @@ KR_KERNEL_FRQ:
     */
 
 // Macro for calling a driver subroutine, r0 should be the driver start address
-.macro __D_CALL__ sub_offset:req, offset:req
-    add r0, r0, #( ( \sub_offset * 4 ) + \offset )
-    ldr r1, [r0]
+.macro __D_CALL__ subroutine:req, offset:req
+    ldr r1, [r0, #( ( \subroutine * 4 ) + \offset )]
     add r0, r0, r1
-    mov r1, pc
-    add lr, r1, #0xC
+    mov lr, pc
     mov pc, r0
 .endm
 
@@ -101,26 +99,15 @@ startup_:
     ldr r1, =GPIO_DRIVER
     str r0, [r1, #8]
 
+    // set ACT led to output mode
+    ldr r0, =GPIO_DRIVER
+    mov r5, #29
+    __D_CALL__ 8, 12
 
-    // call set pin function output subroutine
-    ldr r1, =GPIO_DRIVER
-    ldr r0, [r1, #0x2C]
-    add r0, r0, r1
-    add lr, pc, #0x8
-    ldr pc, =0x83f4
-
-    ldr r0, =0x3F200000
-    mov r1, #1
-    lsl r1, r1, #27
-    str r1, [r0, #0x8]
-
-    // call set pin subroutine
-    ldr r1, =GPIO_DRIVER
-    ldr r0, [r1, #0xC]
-    add r0, r0, r1
-    add lr, pc, #0x8
-    mov pc, r0
-
+    // set ACT led to high
+    ldr r0, =GPIO_DRIVER
+    mov r5, #29
+    __D_CALL__ 0, 12
 
     // Enter final wait for now
     b final_;
