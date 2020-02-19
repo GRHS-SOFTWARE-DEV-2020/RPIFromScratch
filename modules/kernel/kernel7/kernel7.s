@@ -83,6 +83,10 @@ KR_KERNEL_FRQ:
         add r3, r3, #0x8
     */
 
+K_GPIO_ADDRESS: .word GPIO_DRIVER
+K_UART_ADDRESS: .word UART_DRIVER
+
+
 // Macro for calling a driver subroutine, r0 should be the driver start address
 .macro __D_CALL__ subroutine:req, offset:req
     ldr r1, [r0, #( ( \subroutine * 4 ) + \offset )]
@@ -94,20 +98,37 @@ KR_KERNEL_FRQ:
 // Code enters here, run the boot load stage
 startup_:
 
-    // Set the GPIO base address
-    ldr r0, =0x3F200000
-    ldr r1, =GPIO_DRIVER
-    str r0, [r1, #8]
+    // Register the drivers
 
-    // set ACT led to output mode
-    ldr r0, =GPIO_DRIVER
+    ldr r0, =GPIO_DRIVER        // Register GPIO driver
+    str r0, K_GPIO_ADDRESS
+    ldr r1, =0x3F200000
+    str r1, [r0, #8]
+
+    ldr r0, =UART_DRIVER        // Register UART driver
+    str r0, K_UART_ADDRESS
+    ldr r1, =0x3F201000
+    str r1, [r0, #8]
+
+
+    // Set ACT led to output mode
+    ldr r0, K_GPIO_ADDRESS
     mov r5, #29
     __D_CALL__ 8, 12
 
-    // set ACT led to high
-    ldr r0, =GPIO_DRIVER
+    // Set ACT led to high to turn on the indicator LED
+    ldr r0, K_GPIO_ADDRESS
     mov r5, #29
     __D_CALL__ 0, 12
+
+    // Set pin 14 and pin 15 to mode alternate function 0 (enables UART on those pins)
+    ldr r0, K_GPIO_ADDRESS
+    mov r5, #14
+    __D_CALL__ 9, 12
+    ldr r0, K_GPIO_ADDRESS
+    mov r5, #15
+    __D_CALL__ 9, 12
+
 
     // Enter final wait for now
     b final_;
@@ -123,13 +144,14 @@ final_:
 GPIO_DRIVER:
 .align
 .incbin "../../../build/drivers/0e_gpio/0e1000-32-gpio.bin"
-.align
-GPIO_DRIVER_END:
 
 // UART driver temp direct include
 UART_DRIVER:
 .align
 .incbin "../../../build/drivers/0m_uart/0m1000-32-uart.bin"
-.align
-UART_DRIVER_END:
 
+
+
+
+DRIVER_INCLUDES_END:
+.align

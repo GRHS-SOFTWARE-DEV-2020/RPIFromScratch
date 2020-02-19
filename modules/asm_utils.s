@@ -25,7 +25,7 @@
 //      none
 .global __STACK_PUSH__
 .macro __STACK_PUSH__ stack_name:req
-    str r5, [\stack_name\()_SP]
+    str r4, [\stack_name\()_SP]
     .set \stack_name\()_SP, \stack_name\()_SP + 0x4
 .endm
 
