@@ -88,7 +88,8 @@ KR_KERNEL_FRQ:
     add r0, r0, #( ( \sub_offset\() * 4 ) + \offset\() )
     ldr r1, [r0]
     add r0, r0, r1
-    add lr, pc, #0x8
+    mov r1, pc
+    add lr, r1, #0xC
     mov pc, r0
 .endm
 
@@ -124,3 +125,4 @@ final_:
 // Registers drivers subroutine
 GPIO_DRIVER:
 .incbin "../../../build/drivers/0e_gpio/0e1000-32-gpio.bin"
+GPIO_DRIVER_END:

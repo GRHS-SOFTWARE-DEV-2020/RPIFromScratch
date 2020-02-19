@@ -128,9 +128,9 @@ loads r8 into r9
  */
 .macro PREP_TIMER
 cmp r9, #0x0
-beq STOP_PREP
+beq STOP_PREP\@
 strne r9, r8
-STOP_PREP:
+STOP_PREP\@:
 .endm
 
 /*

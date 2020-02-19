@@ -398,17 +398,17 @@ D_GPIO_set_pin_function_output:
 
     cmp r1, #30             // handling for pins 30:39
     subpl r1, r1, #30
-    addpl r0, r0, #0x0C
+    addpl r0, r0, #0xC
     bpl D_GPIO_set_pin_function_output_processing
 
     cmp r1, #20             // handling for pins 20:29
     subpl r1, r1, #20
-    addpl r0, r0, #0x08
+    addpl r0, r0, #0x8
     bpl D_GPIO_set_pin_function_output_processing
 
     cmp r1, #10             // handling for pins 10:19 (0:9 is done implicitly!)
     subpl r1, r1, #10
-    addpl r0, r0, #0x04
+    addpl r0, r0, #0x4
 
     D_GPIO_set_pin_function_output_processing: 
 
