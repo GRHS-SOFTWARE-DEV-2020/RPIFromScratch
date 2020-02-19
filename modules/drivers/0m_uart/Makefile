@@ -1,69 +1,51 @@
 
-GNU_TOOL = arm-none-eabi
+# Makefile that has been generalized to use as an individual driver builder from a cluster's root
+# Makefile will use the name of the assembly file within its directory to determine the output name
 
-NAME = D_UART
+# Below settings should be checked between every individual driver's makefile
 
-MCPU = cortex-a53
-MARCH = armv8-a
-AS_FLAGS = -mcpu=$(MCPU) -march=$(MARCH)
+OUTPUT_PATH = ../../../../build/drivers/0p_irq/
+LINKER_SCRIPT_PATH = link.ld
 
-OBJECT_FILE = $(NAME).out
+TOOLCHAIN = arm-none-eabi
 
+AS_FLAGS = --statistics
+LD_FLAGS = -T $(LINKER_SCRIPT_PATH)
+OBJCOPY_FLAGS = -O binary
+OBJDUMP_FLAGS = -d
 
-
-LINKER_SCRIPT = $(NAME).ld
-MAP_FILE = $(NAME).map
-LD_FLAGS = -Map=$(MAP_FILE) -T $(LINKER_SCRIPT) 
-
-LINKED_FILE = $(NAME).elf
-
-
-
-OCPY_OUT_FORMAT = binary
-OCPY_FLAGS = -O $(OCPY_OUT_FORMAT)
-
-IMAGE_FILE = $(NAME).bin
+DRIVER_FAMILY = irq
+DRIVER_NAME = 0p1000
+DRIVER_WIDTH = 32
 
 
 
-ODMP_FLAGS = -d
+# DO NOT CHANGE THESE OR IT BREAKS THE SCRIPT!
 
-LIST_FILE = $(NAME).list
+DRIVER = $(DRIVER_NAME)-$(DRIVER_WIDTH)-$(DRIVER_FAMILY)
 
-ASM_SOURCES := $(wildcard *.s)
+SOURCE_FILE = irq_0p1000.s
+OBJECT_FILE = $(DRIVER).o
+LINK_FILE = $(DRIVER).elf
+LIST_FILE = $(DRIVER).list
+BUILD_FILE = $(OUTPUT_PATH)$(DRIVER).bin
 
 
 
-# just about done for now.
-all: $(IMAGE_FILE) $(LIST_FILE)
+# Recipe for building this driver, do not touch! This should work across all platforms and just need the top section adjusted to function
 
+ALL: $(LIST_FILE) $(BUILD_FILE)
 
-# put together the list file for debugging purposes and to check output
-$(LIST_FILE) : $(LINKED_FILE)
-	$(GNU_TOOL)-objdump $(ODMP_FLAGS) $(LINKED_FILE) > $(LIST_FILE)
+$(LIST_FILE): $(LINK_FILE)
+	$(TOOLCHAIN)-objdump $(OBJDUMP_FLAGS) $(LINK_FILE) > $(LIST_FILE)
 	-rm -f $(OBJECT_FILE)
-	-rm -f $(LINKED_FILE)
-	-rm -f $(MAP_FILE)
 
+$(BUILD_FILE): $(LINK_FILE)
+	$(TOOLCHAIN)-objcopy $(OBJCOPY_FLAGS) $(LINK_FILE) $(BUILD_FILE)
 
-# run the objcopy to move the output file into a .img from the .elf format
-$(IMAGE_FILE) : $(LINKED_FILE)
-	$(GNU_TOOL)-objcopy $(OCPY_FLAGS) $(LINKED_FILE) $(IMAGE_FILE)
+$(LINK_FILE): $(OBJECT_FILE)
+	$(TOOLCHAIN)-ld $(LD_FLAGS) -o $(LINK_FILE) $(OBJECT_FILE)
 
+$(OBJECT_FILE):
+	$(TOOLCHAIN)-as $(AS_FLAGS) -o $(OBJECT_FILE) $(SOURCE_FILE)
 
-# run the linker to make our .elf file
-$(LINKED_FILE) : $(OBJECT_FILE)
-	$(GNU_TOOL)-ld $(LD_FLAGS) -o $(LINKED_FILE) $(OBJECT_FILE)
-
-
-# smash the assembly files into a single object file, very simple for now
-$(OBJECT_FILE) : CLEAN
-	$(GNU_TOOL)-as $(AS_FLAGS) -o $(OBJECT_FILE) $(ASM_SOURCES)
-
-
-CLEAN:
-	-rm -f $(OBJECT_FILE)
-	-rm -f $(LINKED_FILE)
-	-rm -f $(MAP_FILE)
-	-rm -f $(IMAGE_FILE)
-	-rm -f $(LIST_FILE)

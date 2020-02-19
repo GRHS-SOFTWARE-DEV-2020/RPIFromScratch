@@ -15,29 +15,17 @@
     IRQ Driver data block
 */
 D_IRQ_ID: .word 0x00101000
-D_IRQ_END: .word =D_IRQ_DRIVER_END
+D_IRQ_END: .word D_IRQ_DRIVER_END
 
 
 /*  
     IRQ driver subroutine jump table
 */
-D_IRQ_API_0: .word =D_IRQ_INTERUPT_HANDLER
-D_IRQ_API_1: .word =D_IRQ_ENABLE_INTERUPTS
-D_IRQ_API_2: .word =D_IRQ_DISABLE_INTERUPTS
-D_IRQ_API_3: .word =D_IRQ_ADD_INTERUPT
-D_IRQ_API_4: .word =D_IRQ_REMOVE_INTERUPT
-
-
-
-// Include the assembly utils file
-
-.include "../../../asm_utils.s"
-
-// Some simple testing of the new utilities
-
-__HEAP__ "test_heap", 100
-__STACK__ "test_stack", 50
-
+D_IRQ_API_0: .word D_IRQ_INTERUPT_HANDLER
+D_IRQ_API_1: .word D_IRQ_ENABLE_INTERUPTS
+D_IRQ_API_2: .word D_IRQ_DISABLE_INTERUPTS
+D_IRQ_API_3: .word D_IRQ_ADD_INTERUPT
+D_IRQ_API_4: .word D_IRQ_REMOVE_INTERUPT
 
 
 /*
@@ -66,9 +54,6 @@ INTERUPT_TABLE: .word 0x0000004
 END_OF_INTERUPT_TABLE:
 
 
-
-
-
 /*
     Deffered handling queue. First label holds the current size of the table.
 */
@@ -85,13 +70,14 @@ DEFFERED_QUEUE:    .word 0x00000000
 
 */
 
+
 .org . + 0x10
 END_OF_DEFFERED_QUEUE:
-
 
 /*
     Interupt stack. First label holds the stack pointer
 */
+
 IRQ_STACK: .word . + 0x4
 .org . + 0x100
 IRQ_STACK_END:
@@ -161,6 +147,12 @@ D_IRQ_INTERUPT_HANDLER:
     
     // 3b. If the bit is set to 1, add the event to the deffered_handling queue
     // 3b. If the bit is set to 0, run the subroutine given immediatly
+
+
+    
+    
+
+
 
 
 
