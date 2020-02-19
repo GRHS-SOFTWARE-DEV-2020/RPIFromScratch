@@ -7,8 +7,9 @@
 	Need to set baud rate, frame rate, enable transmit/receive, set interrupt
 	UART base address 0x3F20100
 	Offset 0x24 0x28 IBRD, FBRD
-	FBRD = 0.052083 * (2^6)
-	IBRD = 0
+	651.04167
+	FBRD = 0.04167 * (2^6)
+	IBRD = 651
 	IMSC - interruptset all to high except is specified zero(not sure about any of this) bit 10-4 = 1, 0x38
 	Clear transmit FIFO, repogram Control register before re enabling
 	
@@ -70,9 +71,9 @@ D_UART_ENABLE:
 	
 
 	/* set FBRD then IBRD */
-	mov r1, #0x3
+	mov r1, #0x2
 	str r1, [r0, #0x28]
-	mov r1, #0x0
+	mov r1, #0x28B
 	str r1, [r0, #0x24]
 	
 	/* setting interrupt stuff all as one where it can be for now, */
