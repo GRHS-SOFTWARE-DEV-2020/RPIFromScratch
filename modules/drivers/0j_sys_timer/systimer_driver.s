@@ -225,7 +225,7 @@ D_CHECK_TIMERS:
 
    /*grab match register (base address) */
    ldr r3, D_SYSTIMER_BASE_ADDRESS
-
+   mov r1, r3
    /* and r3 with r2 to find if matched */
    and r3, r3, r2
    cmp r3, #0x0
@@ -236,7 +236,11 @@ D_CHECK_TIMERS:
    streq lr, D_SYSTIMER_STORE_LR
 
    /*sets output to one so it can be checked if it worked */
-   mov r8, #0x1
+   moveq r8, #0x1
+
+   /*clears the timer match */
+   orreq r1, r1, r2
+   streq r1, D_SYSTIMER_BASE_ADDRESS
 
 
    mov pc, lr
