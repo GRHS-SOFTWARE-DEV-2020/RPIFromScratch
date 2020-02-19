@@ -8,7 +8,7 @@ Disassembly of section .text:
    0:	00051000 	.word	0x00051000
 
 00000004 <D_GPIO_END>:
-   4:	000006fc 	.word	0x000006fc
+   4:	00000724 	.word	0x00000724
 
 00000008 <D_GPIO_BASE_ADDRESS>:
    8:	00000000 	.word	0x00000000
@@ -17,49 +17,49 @@ Disassembly of section .text:
    c:	00000054 	.word	0x00000054
 
 00000010 <D_GPIO_API_1>:
-  10:	00000078 	.word	0x00000078
+  10:	0000008c 	.word	0x0000008c
 
 00000014 <D_GPIO_API_2>:
-  14:	000000c4 	.word	0x000000c4
+  14:	000000d8 	.word	0x000000d8
 
 00000018 <D_GPIO_API_3>:
-  18:	0000015c 	.word	0x0000015c
+  18:	00000170 	.word	0x00000170
 
 0000001c <D_GPIO_API_4>:
-  1c:	000001f4 	.word	0x000001f4
+  1c:	00000208 	.word	0x00000208
 
 00000020 <D_GPIO_API_5>:
-  20:	0000021c 	.word	0x0000021c
+  20:	00000230 	.word	0x00000230
 
 00000024 <D_GPIO_API_6>:
-  24:	0000022c 	.word	0x0000022c
+  24:	00000240 	.word	0x00000240
 
 00000028 <D_GPIO_API_7>:
-  28:	0000029c 	.word	0x0000029c
+  28:	000002b0 	.word	0x000002b0
 
 0000002c <D_GPIO_API_8>:
-  2c:	00000320 	.word	0x00000320
+  2c:	00000334 	.word	0x00000334
 
 00000030 <D_GPIO_API_9>:
-  30:	000003a4 	.word	0x000003a4
+  30:	000003cc 	.word	0x000003cc
 
 00000034 <D_GPIO_API_10>:
-  34:	00000428 	.word	0x00000428
+  34:	00000450 	.word	0x00000450
 
 00000038 <D_GPIO_API_11>:
-  38:	000004ac 	.word	0x000004ac
+  38:	000004d4 	.word	0x000004d4
 
 0000003c <D_GPIO_API_12>:
-  3c:	00000530 	.word	0x00000530
+  3c:	00000558 	.word	0x00000558
 
 00000040 <D_GPIO_API_13>:
-  40:	000005b4 	.word	0x000005b4
+  40:	000005dc 	.word	0x000005dc
 
 00000044 <D_GPIO_API_14>:
-  44:	00000638 	.word	0x00000638
+  44:	00000660 	.word	0x00000660
 
 00000048 <D_GPIO_API_15>:
-  48:	000006bc 	.word	0x000006bc
+  48:	000006e4 	.word	0x000006e4
 
 0000004c <D_GPIO_RESERVED_LOWER>:
   4c:	00000000 	.word	0x00000000
@@ -69,478 +69,488 @@ Disassembly of section .text:
 
 00000054 <D_GPIO_set_pin>:
   54:	e51f0054 	ldr	r0, [pc, #-84]	; 8 <D_GPIO_BASE_ADDRESS>
-  58:	e205203f 	and	r2, r5, #63	; 0x3f
-  5c:	e3520020 	cmp	r2, #32
-  60:	52422020 	subpl	r2, r2, #32
-  64:	52800004 	addpl	r0, r0, #4
-  68:	e3a01001 	mov	r1, #1
-  6c:	e1a01211 	lsl	r1, r1, r2
-  70:	e580101c 	str	r1, [r0, #28]
-  74:	e1a0f00e 	mov	pc, lr
-
-00000078 <D_GPIO_clear_pin>:
-  78:	e51f0078 	ldr	r0, [pc, #-120]	; 8 <D_GPIO_BASE_ADDRESS>
+  58:	e51f0058 	ldr	r0, [pc, #-88]	; 8 <D_GPIO_BASE_ADDRESS>
+  5c:	e3a01001 	mov	r1, #1
+  60:	e1a01e81 	lsl	r1, r1, #29
+  64:	e580101c 	str	r1, [r0, #28]
+  68:	e1a0f00e 	mov	pc, lr
+  6c:	e205203f 	and	r2, r5, #63	; 0x3f
+  70:	e3520020 	cmp	r2, #32
+  74:	52422020 	subpl	r2, r2, #32
+  78:	52800004 	addpl	r0, r0, #4
   7c:	e3a01001 	mov	r1, #1
-  80:	e205203f 	and	r2, r5, #63	; 0x3f
-  84:	e3520020 	cmp	r2, #32
-  88:	52422020 	subpl	r2, r2, #32
-  8c:	52800004 	addpl	r0, r0, #4
-  90:	e1a01211 	lsl	r1, r1, r2
-  94:	e5801028 	str	r1, [r0, #40]	; 0x28
-  98:	e1a0f00e 	mov	pc, lr
+  80:	e1a01211 	lsl	r1, r1, r2
+  84:	e580101c 	str	r1, [r0, #28]
+  88:	e1a0f00e 	mov	pc, lr
 
-0000009c <D_GPIO_get_pin_value>:
-  9c:	e51f009c 	ldr	r0, [pc, #-156]	; 8 <D_GPIO_BASE_ADDRESS>
-  a0:	e3a01001 	mov	r1, #1
-  a4:	e205203f 	and	r2, r5, #63	; 0x3f
-  a8:	e3520020 	cmp	r2, #32
-  ac:	52422020 	subpl	r2, r2, #32
-  b0:	52800004 	addpl	r0, r0, #4
-  b4:	e1a01211 	lsl	r1, r1, r2
-  b8:	e5902034 	ldr	r2, [r0, #52]	; 0x34
-  bc:	e0028001 	and	r8, r2, r1
-  c0:	e1a0f00e 	mov	pc, lr
+0000008c <D_GPIO_clear_pin>:
+  8c:	e51f008c 	ldr	r0, [pc, #-140]	; 8 <D_GPIO_BASE_ADDRESS>
+  90:	e3a01001 	mov	r1, #1
+  94:	e205203f 	and	r2, r5, #63	; 0x3f
+  98:	e3520020 	cmp	r2, #32
+  9c:	52422020 	subpl	r2, r2, #32
+  a0:	52800004 	addpl	r0, r0, #4
+  a4:	e1a01211 	lsl	r1, r1, r2
+  a8:	e5801028 	str	r1, [r0, #40]	; 0x28
+  ac:	e1a0f00e 	mov	pc, lr
 
-000000c4 <D_GPIO_enable_event_detect>:
-  c4:	e51f00c4 	ldr	r0, [pc, #-196]	; 8 <D_GPIO_BASE_ADDRESS>
-  c8:	e3a01001 	mov	r1, #1
-  cc:	e205203f 	and	r2, r5, #63	; 0x3f
-  d0:	e3520020 	cmp	r2, #32
-  d4:	52800004 	addpl	r0, r0, #4
-  d8:	52422020 	subpl	r2, r2, #32
-  dc:	e1a01211 	lsl	r1, r1, r2
-  e0:	e5903064 	ldr	r3, [r0, #100]	; 0x64
-  e4:	e1813003 	orr	r3, r1, r3
-  e8:	e2062001 	and	r2, r6, #1
-  ec:	e3520000 	cmp	r2, #0
-  f0:	15803064 	strne	r3, [r0, #100]	; 0x64
-  f4:	e5903070 	ldr	r3, [r0, #112]	; 0x70
+000000b0 <D_GPIO_get_pin_value>:
+  b0:	e51f00b0 	ldr	r0, [pc, #-176]	; 8 <D_GPIO_BASE_ADDRESS>
+  b4:	e3a01001 	mov	r1, #1
+  b8:	e205203f 	and	r2, r5, #63	; 0x3f
+  bc:	e3520020 	cmp	r2, #32
+  c0:	52422020 	subpl	r2, r2, #32
+  c4:	52800004 	addpl	r0, r0, #4
+  c8:	e1a01211 	lsl	r1, r1, r2
+  cc:	e5902034 	ldr	r2, [r0, #52]	; 0x34
+  d0:	e0028001 	and	r8, r2, r1
+  d4:	e1a0f00e 	mov	pc, lr
+
+000000d8 <D_GPIO_enable_event_detect>:
+  d8:	e51f00d8 	ldr	r0, [pc, #-216]	; 8 <D_GPIO_BASE_ADDRESS>
+  dc:	e3a01001 	mov	r1, #1
+  e0:	e205203f 	and	r2, r5, #63	; 0x3f
+  e4:	e3520020 	cmp	r2, #32
+  e8:	52800004 	addpl	r0, r0, #4
+  ec:	52422020 	subpl	r2, r2, #32
+  f0:	e1a01211 	lsl	r1, r1, r2
+  f4:	e5903064 	ldr	r3, [r0, #100]	; 0x64
   f8:	e1813003 	orr	r3, r1, r3
-  fc:	e2062002 	and	r2, r6, #2
+  fc:	e2062001 	and	r2, r6, #1
  100:	e3520000 	cmp	r2, #0
- 104:	15803070 	strne	r3, [r0, #112]	; 0x70
- 108:	e590304c 	ldr	r3, [r0, #76]	; 0x4c
+ 104:	15803064 	strne	r3, [r0, #100]	; 0x64
+ 108:	e5903070 	ldr	r3, [r0, #112]	; 0x70
  10c:	e1813003 	orr	r3, r1, r3
- 110:	e2062004 	and	r2, r6, #4
+ 110:	e2062002 	and	r2, r6, #2
  114:	e3520000 	cmp	r2, #0
- 118:	1580304c 	strne	r3, [r0, #76]	; 0x4c
- 11c:	e5903058 	ldr	r3, [r0, #88]	; 0x58
+ 118:	15803070 	strne	r3, [r0, #112]	; 0x70
+ 11c:	e590304c 	ldr	r3, [r0, #76]	; 0x4c
  120:	e1813003 	orr	r3, r1, r3
- 124:	e2062008 	and	r2, r6, #8
+ 124:	e2062004 	and	r2, r6, #4
  128:	e3520000 	cmp	r2, #0
- 12c:	15803058 	strne	r3, [r0, #88]	; 0x58
- 130:	e590307c 	ldr	r3, [r0, #124]	; 0x7c
+ 12c:	1580304c 	strne	r3, [r0, #76]	; 0x4c
+ 130:	e5903058 	ldr	r3, [r0, #88]	; 0x58
  134:	e1813003 	orr	r3, r1, r3
- 138:	e2062010 	and	r2, r6, #16
+ 138:	e2062008 	and	r2, r6, #8
  13c:	e3520000 	cmp	r2, #0
- 140:	1580307c 	strne	r3, [r0, #124]	; 0x7c
- 144:	e5903080 	ldr	r3, [r0, #128]	; 0x80
+ 140:	15803058 	strne	r3, [r0, #88]	; 0x58
+ 144:	e590307c 	ldr	r3, [r0, #124]	; 0x7c
  148:	e1813003 	orr	r3, r1, r3
- 14c:	e2062020 	and	r2, r6, #32
+ 14c:	e2062010 	and	r2, r6, #16
  150:	e3520000 	cmp	r2, #0
- 154:	15803080 	strne	r3, [r0, #128]	; 0x80
- 158:	e1a0f00e 	mov	pc, lr
+ 154:	1580307c 	strne	r3, [r0, #124]	; 0x7c
+ 158:	e5903080 	ldr	r3, [r0, #128]	; 0x80
+ 15c:	e1813003 	orr	r3, r1, r3
+ 160:	e2062020 	and	r2, r6, #32
+ 164:	e3520000 	cmp	r2, #0
+ 168:	15803080 	strne	r3, [r0, #128]	; 0x80
+ 16c:	e1a0f00e 	mov	pc, lr
 
-0000015c <D_GPIO_disable_event_detect>:
- 15c:	e51f015c 	ldr	r0, [pc, #-348]	; 8 <D_GPIO_BASE_ADDRESS>
- 160:	e3e01001 	mvn	r1, #1
- 164:	e205203f 	and	r2, r5, #63	; 0x3f
- 168:	e3520020 	cmp	r2, #32
- 16c:	52800004 	addpl	r0, r0, #4
- 170:	52422020 	subpl	r2, r2, #32
- 174:	e1a01211 	lsl	r1, r1, r2
- 178:	e5903064 	ldr	r3, [r0, #100]	; 0x64
- 17c:	e0013003 	and	r3, r1, r3
- 180:	e2062001 	and	r2, r6, #1
- 184:	e3520000 	cmp	r2, #0
- 188:	15803064 	strne	r3, [r0, #100]	; 0x64
- 18c:	e5903070 	ldr	r3, [r0, #112]	; 0x70
+00000170 <D_GPIO_disable_event_detect>:
+ 170:	e51f0170 	ldr	r0, [pc, #-368]	; 8 <D_GPIO_BASE_ADDRESS>
+ 174:	e3e01001 	mvn	r1, #1
+ 178:	e205203f 	and	r2, r5, #63	; 0x3f
+ 17c:	e3520020 	cmp	r2, #32
+ 180:	52800004 	addpl	r0, r0, #4
+ 184:	52422020 	subpl	r2, r2, #32
+ 188:	e1a01211 	lsl	r1, r1, r2
+ 18c:	e5903064 	ldr	r3, [r0, #100]	; 0x64
  190:	e0013003 	and	r3, r1, r3
- 194:	e2062002 	and	r2, r6, #2
+ 194:	e2062001 	and	r2, r6, #1
  198:	e3520000 	cmp	r2, #0
- 19c:	15803070 	strne	r3, [r0, #112]	; 0x70
- 1a0:	e590304c 	ldr	r3, [r0, #76]	; 0x4c
+ 19c:	15803064 	strne	r3, [r0, #100]	; 0x64
+ 1a0:	e5903070 	ldr	r3, [r0, #112]	; 0x70
  1a4:	e0013003 	and	r3, r1, r3
- 1a8:	e2062004 	and	r2, r6, #4
+ 1a8:	e2062002 	and	r2, r6, #2
  1ac:	e3520000 	cmp	r2, #0
- 1b0:	1580304c 	strne	r3, [r0, #76]	; 0x4c
- 1b4:	e5903058 	ldr	r3, [r0, #88]	; 0x58
+ 1b0:	15803070 	strne	r3, [r0, #112]	; 0x70
+ 1b4:	e590304c 	ldr	r3, [r0, #76]	; 0x4c
  1b8:	e0013003 	and	r3, r1, r3
- 1bc:	e2062008 	and	r2, r6, #8
+ 1bc:	e2062004 	and	r2, r6, #4
  1c0:	e3520000 	cmp	r2, #0
- 1c4:	15803058 	strne	r3, [r0, #88]	; 0x58
- 1c8:	e590307c 	ldr	r3, [r0, #124]	; 0x7c
+ 1c4:	1580304c 	strne	r3, [r0, #76]	; 0x4c
+ 1c8:	e5903058 	ldr	r3, [r0, #88]	; 0x58
  1cc:	e0013003 	and	r3, r1, r3
- 1d0:	e2062010 	and	r2, r6, #16
+ 1d0:	e2062008 	and	r2, r6, #8
  1d4:	e3520000 	cmp	r2, #0
- 1d8:	1580307c 	strne	r3, [r0, #124]	; 0x7c
- 1dc:	e5903080 	ldr	r3, [r0, #128]	; 0x80
+ 1d8:	15803058 	strne	r3, [r0, #88]	; 0x58
+ 1dc:	e590307c 	ldr	r3, [r0, #124]	; 0x7c
  1e0:	e0013003 	and	r3, r1, r3
- 1e4:	e2062020 	and	r2, r6, #32
+ 1e4:	e2062010 	and	r2, r6, #16
  1e8:	e3520000 	cmp	r2, #0
- 1ec:	15803080 	strne	r3, [r0, #128]	; 0x80
- 1f0:	e1a0f00e 	mov	pc, lr
+ 1ec:	1580307c 	strne	r3, [r0, #124]	; 0x7c
+ 1f0:	e5903080 	ldr	r3, [r0, #128]	; 0x80
+ 1f4:	e0013003 	and	r3, r1, r3
+ 1f8:	e2062020 	and	r2, r6, #32
+ 1fc:	e3520000 	cmp	r2, #0
+ 200:	15803080 	strne	r3, [r0, #128]	; 0x80
+ 204:	e1a0f00e 	mov	pc, lr
 
-000001f4 <D_GPIO_pin_event_status>:
- 1f4:	e51f01f4 	ldr	r0, [pc, #-500]	; 8 <D_GPIO_BASE_ADDRESS>
- 1f8:	e3e01001 	mvn	r1, #1
- 1fc:	e205203f 	and	r2, r5, #63	; 0x3f
- 200:	e352001f 	cmp	r2, #31
- 204:	52800004 	addpl	r0, r0, #4
- 208:	52422020 	subpl	r2, r2, #32
- 20c:	e1a01211 	lsl	r1, r1, r2
- 210:	e5908040 	ldr	r8, [r0, #64]	; 0x40
- 214:	e0088001 	and	r8, r8, r1
- 218:	e1a0f00e 	mov	pc, lr
+00000208 <D_GPIO_pin_event_status>:
+ 208:	e51f0208 	ldr	r0, [pc, #-520]	; 8 <D_GPIO_BASE_ADDRESS>
+ 20c:	e3e01001 	mvn	r1, #1
+ 210:	e205203f 	and	r2, r5, #63	; 0x3f
+ 214:	e352001f 	cmp	r2, #31
+ 218:	52800004 	addpl	r0, r0, #4
+ 21c:	52422020 	subpl	r2, r2, #32
+ 220:	e1a01211 	lsl	r1, r1, r2
+ 224:	e5908040 	ldr	r8, [r0, #64]	; 0x40
+ 228:	e0088001 	and	r8, r8, r1
+ 22c:	e1a0f00e 	mov	pc, lr
 
-0000021c <D_GPIO_get_event_status_masks>:
- 21c:	e51f021c 	ldr	r0, [pc, #-540]	; 8 <D_GPIO_BASE_ADDRESS>
- 220:	e5908040 	ldr	r8, [r0, #64]	; 0x40
- 224:	e5908044 	ldr	r8, [r0, #68]	; 0x44
- 228:	e1a0f00e 	mov	pc, lr
+00000230 <D_GPIO_get_event_status_masks>:
+ 230:	e51f0230 	ldr	r0, [pc, #-560]	; 8 <D_GPIO_BASE_ADDRESS>
+ 234:	e5908040 	ldr	r8, [r0, #64]	; 0x40
+ 238:	e5908044 	ldr	r8, [r0, #68]	; 0x44
+ 23c:	e1a0f00e 	mov	pc, lr
 
-0000022c <D_GPIO_get_pin_function>:
- 22c:	e51f022c 	ldr	r0, [pc, #-556]	; 8 <D_GPIO_BASE_ADDRESS>
- 230:	e205203f 	and	r2, r5, #63	; 0x3f
- 234:	e3520032 	cmp	r2, #50	; 0x32
- 238:	52422032 	subpl	r2, r2, #50	; 0x32
- 23c:	52800014 	addpl	r0, r0, #20
- 240:	5a00000e 	bpl	280 <D_GPIO_get_pin_function_processing>
- 244:	e3520028 	cmp	r2, #40	; 0x28
- 248:	52422028 	subpl	r2, r2, #40	; 0x28
- 24c:	52800010 	addpl	r0, r0, #16
- 250:	5a00000a 	bpl	280 <D_GPIO_get_pin_function_processing>
- 254:	e352001e 	cmp	r2, #30
- 258:	5242201e 	subpl	r2, r2, #30
- 25c:	5280000c 	addpl	r0, r0, #12
- 260:	5a000006 	bpl	280 <D_GPIO_get_pin_function_processing>
- 264:	e3520014 	cmp	r2, #20
- 268:	52422014 	subpl	r2, r2, #20
- 26c:	52800008 	addpl	r0, r0, #8
- 270:	5a000002 	bpl	280 <D_GPIO_get_pin_function_processing>
- 274:	e352000a 	cmp	r2, #10
- 278:	5242200a 	subpl	r2, r2, #10
- 27c:	52800004 	addpl	r0, r0, #4
+00000240 <D_GPIO_get_pin_function>:
+ 240:	e51f0240 	ldr	r0, [pc, #-576]	; 8 <D_GPIO_BASE_ADDRESS>
+ 244:	e205203f 	and	r2, r5, #63	; 0x3f
+ 248:	e3520032 	cmp	r2, #50	; 0x32
+ 24c:	52422032 	subpl	r2, r2, #50	; 0x32
+ 250:	52800014 	addpl	r0, r0, #20
+ 254:	5a00000e 	bpl	294 <D_GPIO_get_pin_function_processing>
+ 258:	e3520028 	cmp	r2, #40	; 0x28
+ 25c:	52422028 	subpl	r2, r2, #40	; 0x28
+ 260:	52800010 	addpl	r0, r0, #16
+ 264:	5a00000a 	bpl	294 <D_GPIO_get_pin_function_processing>
+ 268:	e352001e 	cmp	r2, #30
+ 26c:	5242201e 	subpl	r2, r2, #30
+ 270:	5280000c 	addpl	r0, r0, #12
+ 274:	5a000006 	bpl	294 <D_GPIO_get_pin_function_processing>
+ 278:	e3520014 	cmp	r2, #20
+ 27c:	52422014 	subpl	r2, r2, #20
+ 280:	52800008 	addpl	r0, r0, #8
+ 284:	5a000002 	bpl	294 <D_GPIO_get_pin_function_processing>
+ 288:	e352000a 	cmp	r2, #10
+ 28c:	5242200a 	subpl	r2, r2, #10
+ 290:	52800004 	addpl	r0, r0, #4
 
-00000280 <D_GPIO_get_pin_function_processing>:
- 280:	e1a01082 	lsl	r1, r2, #1
- 284:	e0811002 	add	r1, r1, r2
- 288:	e3a02007 	mov	r2, #7
- 28c:	e1a02112 	lsl	r2, r2, r1
- 290:	e5908000 	ldr	r8, [r0]
- 294:	e0088002 	and	r8, r8, r2
- 298:	e1a0f00e 	mov	pc, lr
+00000294 <D_GPIO_get_pin_function_processing>:
+ 294:	e1a01082 	lsl	r1, r2, #1
+ 298:	e0811002 	add	r1, r1, r2
+ 29c:	e3a02007 	mov	r2, #7
+ 2a0:	e1a02112 	lsl	r2, r2, r1
+ 2a4:	e5908000 	ldr	r8, [r0]
+ 2a8:	e0088002 	and	r8, r8, r2
+ 2ac:	e1a0f00e 	mov	pc, lr
 
-0000029c <D_GPIO_set_pin_function_input>:
- 29c:	e51f029c 	ldr	r0, [pc, #-668]	; 8 <D_GPIO_BASE_ADDRESS>
- 2a0:	e205103f 	and	r1, r5, #63	; 0x3f
- 2a4:	e3510032 	cmp	r1, #50	; 0x32
- 2a8:	52411032 	subpl	r1, r1, #50	; 0x32
- 2ac:	52800014 	addpl	r0, r0, #20
- 2b0:	5a00000e 	bpl	2f0 <D_GPIO_set_pin_function_input_processing>
- 2b4:	e3510028 	cmp	r1, #40	; 0x28
- 2b8:	52411028 	subpl	r1, r1, #40	; 0x28
- 2bc:	52800010 	addpl	r0, r0, #16
- 2c0:	5a00000a 	bpl	2f0 <D_GPIO_set_pin_function_input_processing>
- 2c4:	e351001e 	cmp	r1, #30
- 2c8:	5241101e 	subpl	r1, r1, #30
- 2cc:	5280000c 	addpl	r0, r0, #12
- 2d0:	5a000006 	bpl	2f0 <D_GPIO_set_pin_function_input_processing>
- 2d4:	e3510014 	cmp	r1, #20
- 2d8:	52411014 	subpl	r1, r1, #20
- 2dc:	52800008 	addpl	r0, r0, #8
- 2e0:	5a000002 	bpl	2f0 <D_GPIO_set_pin_function_input_processing>
- 2e4:	e351000a 	cmp	r1, #10
- 2e8:	5241100a 	subpl	r1, r1, #10
- 2ec:	52800004 	addpl	r0, r0, #4
+000002b0 <D_GPIO_set_pin_function_input>:
+ 2b0:	e51f02b0 	ldr	r0, [pc, #-688]	; 8 <D_GPIO_BASE_ADDRESS>
+ 2b4:	e205103f 	and	r1, r5, #63	; 0x3f
+ 2b8:	e3510032 	cmp	r1, #50	; 0x32
+ 2bc:	52411032 	subpl	r1, r1, #50	; 0x32
+ 2c0:	52800014 	addpl	r0, r0, #20
+ 2c4:	5a00000e 	bpl	304 <D_GPIO_set_pin_function_input_processing>
+ 2c8:	e3510028 	cmp	r1, #40	; 0x28
+ 2cc:	52411028 	subpl	r1, r1, #40	; 0x28
+ 2d0:	52800010 	addpl	r0, r0, #16
+ 2d4:	5a00000a 	bpl	304 <D_GPIO_set_pin_function_input_processing>
+ 2d8:	e351001e 	cmp	r1, #30
+ 2dc:	5241101e 	subpl	r1, r1, #30
+ 2e0:	5280000c 	addpl	r0, r0, #12
+ 2e4:	5a000006 	bpl	304 <D_GPIO_set_pin_function_input_processing>
+ 2e8:	e3510014 	cmp	r1, #20
+ 2ec:	52411014 	subpl	r1, r1, #20
+ 2f0:	52800008 	addpl	r0, r0, #8
+ 2f4:	5a000002 	bpl	304 <D_GPIO_set_pin_function_input_processing>
+ 2f8:	e351000a 	cmp	r1, #10
+ 2fc:	5241100a 	subpl	r1, r1, #10
+ 300:	52800004 	addpl	r0, r0, #4
 
-000002f0 <D_GPIO_set_pin_function_input_processing>:
- 2f0:	e1a02081 	lsl	r2, r1, #1
- 2f4:	e0822001 	add	r2, r2, r1
- 2f8:	e3a01007 	mov	r1, #7
- 2fc:	e3a03007 	mov	r3, #7
- 300:	e1a03213 	lsl	r3, r3, r2
- 304:	e1a01211 	lsl	r1, r1, r2
- 308:	e1e01001 	mvn	r1, r1
- 30c:	e5902000 	ldr	r2, [r0]
- 310:	e1822003 	orr	r2, r2, r3
- 314:	e0022001 	and	r2, r2, r1
- 318:	e5802000 	str	r2, [r0]
- 31c:	e1a0f00e 	mov	pc, lr
+00000304 <D_GPIO_set_pin_function_input_processing>:
+ 304:	e1a02081 	lsl	r2, r1, #1
+ 308:	e0822001 	add	r2, r2, r1
+ 30c:	e3a01007 	mov	r1, #7
+ 310:	e3a03007 	mov	r3, #7
+ 314:	e1a03213 	lsl	r3, r3, r2
+ 318:	e1a01211 	lsl	r1, r1, r2
+ 31c:	e1e01001 	mvn	r1, r1
+ 320:	e5902000 	ldr	r2, [r0]
+ 324:	e1822003 	orr	r2, r2, r3
+ 328:	e0022001 	and	r2, r2, r1
+ 32c:	e5802000 	str	r2, [r0]
+ 330:	e1a0f00e 	mov	pc, lr
 
-00000320 <D_GPIO_set_pin_function_output>:
- 320:	e51f0320 	ldr	r0, [pc, #-800]	; 8 <D_GPIO_BASE_ADDRESS>
- 324:	e205103f 	and	r1, r5, #63	; 0x3f
- 328:	e3510032 	cmp	r1, #50	; 0x32
- 32c:	52411032 	subpl	r1, r1, #50	; 0x32
- 330:	52800014 	addpl	r0, r0, #20
- 334:	5a00000e 	bpl	374 <D_GPIO_set_pin_function_output_processing>
- 338:	e3510028 	cmp	r1, #40	; 0x28
- 33c:	52411028 	subpl	r1, r1, #40	; 0x28
- 340:	52800010 	addpl	r0, r0, #16
- 344:	5a00000a 	bpl	374 <D_GPIO_set_pin_function_output_processing>
- 348:	e351001e 	cmp	r1, #30
- 34c:	5241101e 	subpl	r1, r1, #30
- 350:	5280000c 	addpl	r0, r0, #12
- 354:	5a000006 	bpl	374 <D_GPIO_set_pin_function_output_processing>
- 358:	e3510014 	cmp	r1, #20
- 35c:	52411014 	subpl	r1, r1, #20
- 360:	52800008 	addpl	r0, r0, #8
- 364:	5a000002 	bpl	374 <D_GPIO_set_pin_function_output_processing>
- 368:	e351000a 	cmp	r1, #10
- 36c:	5241100a 	subpl	r1, r1, #10
- 370:	52800004 	addpl	r0, r0, #4
+00000334 <D_GPIO_set_pin_function_output>:
+ 334:	e51f0334 	ldr	r0, [pc, #-820]	; 8 <D_GPIO_BASE_ADDRESS>
+ 338:	e3a01001 	mov	r1, #1
+ 33c:	e1a01d81 	lsl	r1, r1, #27
+ 340:	e5801008 	str	r1, [r0, #8]
+ 344:	e1a0f00e 	mov	pc, lr
+ 348:	e51f0348 	ldr	r0, [pc, #-840]	; 8 <D_GPIO_BASE_ADDRESS>
+ 34c:	e205103f 	and	r1, r5, #63	; 0x3f
+ 350:	e3510032 	cmp	r1, #50	; 0x32
+ 354:	52411032 	subpl	r1, r1, #50	; 0x32
+ 358:	52800014 	addpl	r0, r0, #20
+ 35c:	5a00000e 	bpl	39c <D_GPIO_set_pin_function_output_processing>
+ 360:	e3510028 	cmp	r1, #40	; 0x28
+ 364:	52411028 	subpl	r1, r1, #40	; 0x28
+ 368:	52800010 	addpl	r0, r0, #16
+ 36c:	5a00000a 	bpl	39c <D_GPIO_set_pin_function_output_processing>
+ 370:	e351001e 	cmp	r1, #30
+ 374:	5241101e 	subpl	r1, r1, #30
+ 378:	5280000c 	addpl	r0, r0, #12
+ 37c:	5a000006 	bpl	39c <D_GPIO_set_pin_function_output_processing>
+ 380:	e3510014 	cmp	r1, #20
+ 384:	52411014 	subpl	r1, r1, #20
+ 388:	52800008 	addpl	r0, r0, #8
+ 38c:	5a000002 	bpl	39c <D_GPIO_set_pin_function_output_processing>
+ 390:	e351000a 	cmp	r1, #10
+ 394:	5241100a 	subpl	r1, r1, #10
+ 398:	52800004 	addpl	r0, r0, #4
 
-00000374 <D_GPIO_set_pin_function_output_processing>:
- 374:	e1a02081 	lsl	r2, r1, #1
- 378:	e0822001 	add	r2, r2, r1
- 37c:	e3a01006 	mov	r1, #6
- 380:	e3a03007 	mov	r3, #7
- 384:	e1a03213 	lsl	r3, r3, r2
- 388:	e1a01211 	lsl	r1, r1, r2
- 38c:	e1e01001 	mvn	r1, r1
- 390:	e5902000 	ldr	r2, [r0]
- 394:	e1822003 	orr	r2, r2, r3
- 398:	e0022001 	and	r2, r2, r1
- 39c:	e5802000 	str	r2, [r0]
- 3a0:	e1a0f00e 	mov	pc, lr
+0000039c <D_GPIO_set_pin_function_output_processing>:
+ 39c:	e1a02081 	lsl	r2, r1, #1
+ 3a0:	e0822001 	add	r2, r2, r1
+ 3a4:	e3a01006 	mov	r1, #6
+ 3a8:	e3a03007 	mov	r3, #7
+ 3ac:	e1a03213 	lsl	r3, r3, r2
+ 3b0:	e1a01211 	lsl	r1, r1, r2
+ 3b4:	e1e01001 	mvn	r1, r1
+ 3b8:	e5902000 	ldr	r2, [r0]
+ 3bc:	e1822003 	orr	r2, r2, r3
+ 3c0:	e0022001 	and	r2, r2, r1
+ 3c4:	e5802000 	str	r2, [r0]
+ 3c8:	e1a0f00e 	mov	pc, lr
 
-000003a4 <D_GPIO_set_pin_function_0>:
- 3a4:	e51f03a4 	ldr	r0, [pc, #-932]	; 8 <D_GPIO_BASE_ADDRESS>
- 3a8:	e205103f 	and	r1, r5, #63	; 0x3f
- 3ac:	e3510032 	cmp	r1, #50	; 0x32
- 3b0:	52411032 	subpl	r1, r1, #50	; 0x32
- 3b4:	52800014 	addpl	r0, r0, #20
- 3b8:	5a00000e 	bpl	3f8 <D_GPIO_set_pin_function_0_processing>
- 3bc:	e3510028 	cmp	r1, #40	; 0x28
- 3c0:	52411028 	subpl	r1, r1, #40	; 0x28
- 3c4:	52800010 	addpl	r0, r0, #16
- 3c8:	5a00000a 	bpl	3f8 <D_GPIO_set_pin_function_0_processing>
- 3cc:	e351001e 	cmp	r1, #30
- 3d0:	5241101e 	subpl	r1, r1, #30
- 3d4:	5280000c 	addpl	r0, r0, #12
- 3d8:	5a000006 	bpl	3f8 <D_GPIO_set_pin_function_0_processing>
- 3dc:	e3510014 	cmp	r1, #20
- 3e0:	52411014 	subpl	r1, r1, #20
- 3e4:	52800008 	addpl	r0, r0, #8
- 3e8:	5a000002 	bpl	3f8 <D_GPIO_set_pin_function_0_processing>
- 3ec:	e351000a 	cmp	r1, #10
- 3f0:	5241100a 	subpl	r1, r1, #10
- 3f4:	52800004 	addpl	r0, r0, #4
+000003cc <D_GPIO_set_pin_function_0>:
+ 3cc:	e51f03cc 	ldr	r0, [pc, #-972]	; 8 <D_GPIO_BASE_ADDRESS>
+ 3d0:	e205103f 	and	r1, r5, #63	; 0x3f
+ 3d4:	e3510032 	cmp	r1, #50	; 0x32
+ 3d8:	52411032 	subpl	r1, r1, #50	; 0x32
+ 3dc:	52800014 	addpl	r0, r0, #20
+ 3e0:	5a00000e 	bpl	420 <D_GPIO_set_pin_function_0_processing>
+ 3e4:	e3510028 	cmp	r1, #40	; 0x28
+ 3e8:	52411028 	subpl	r1, r1, #40	; 0x28
+ 3ec:	52800010 	addpl	r0, r0, #16
+ 3f0:	5a00000a 	bpl	420 <D_GPIO_set_pin_function_0_processing>
+ 3f4:	e351001e 	cmp	r1, #30
+ 3f8:	5241101e 	subpl	r1, r1, #30
+ 3fc:	5280000c 	addpl	r0, r0, #12
+ 400:	5a000006 	bpl	420 <D_GPIO_set_pin_function_0_processing>
+ 404:	e3510014 	cmp	r1, #20
+ 408:	52411014 	subpl	r1, r1, #20
+ 40c:	52800008 	addpl	r0, r0, #8
+ 410:	5a000002 	bpl	420 <D_GPIO_set_pin_function_0_processing>
+ 414:	e351000a 	cmp	r1, #10
+ 418:	5241100a 	subpl	r1, r1, #10
+ 41c:	52800004 	addpl	r0, r0, #4
 
-000003f8 <D_GPIO_set_pin_function_0_processing>:
- 3f8:	e1a02081 	lsl	r2, r1, #1
- 3fc:	e0822001 	add	r2, r2, r1
- 400:	e3a01003 	mov	r1, #3
- 404:	e3a03007 	mov	r3, #7
- 408:	e1a03213 	lsl	r3, r3, r2
- 40c:	e1a01211 	lsl	r1, r1, r2
- 410:	e1e01001 	mvn	r1, r1
- 414:	e5902000 	ldr	r2, [r0]
- 418:	e1822003 	orr	r2, r2, r3
- 41c:	e0022001 	and	r2, r2, r1
- 420:	e5802000 	str	r2, [r0]
- 424:	e1a0f00e 	mov	pc, lr
+00000420 <D_GPIO_set_pin_function_0_processing>:
+ 420:	e1a02081 	lsl	r2, r1, #1
+ 424:	e0822001 	add	r2, r2, r1
+ 428:	e3a01003 	mov	r1, #3
+ 42c:	e3a03007 	mov	r3, #7
+ 430:	e1a03213 	lsl	r3, r3, r2
+ 434:	e1a01211 	lsl	r1, r1, r2
+ 438:	e1e01001 	mvn	r1, r1
+ 43c:	e5902000 	ldr	r2, [r0]
+ 440:	e1822003 	orr	r2, r2, r3
+ 444:	e0022001 	and	r2, r2, r1
+ 448:	e5802000 	str	r2, [r0]
+ 44c:	e1a0f00e 	mov	pc, lr
 
-00000428 <D_GPIO_set_pin_function_1>:
- 428:	e51f0428 	ldr	r0, [pc, #-1064]	; 8 <D_GPIO_BASE_ADDRESS>
- 42c:	e205103f 	and	r1, r5, #63	; 0x3f
- 430:	e3510032 	cmp	r1, #50	; 0x32
- 434:	52411032 	subpl	r1, r1, #50	; 0x32
- 438:	52800014 	addpl	r0, r0, #20
- 43c:	5a00000e 	bpl	47c <D_GPIO_set_pin_function_1_processing>
- 440:	e3510028 	cmp	r1, #40	; 0x28
- 444:	52411028 	subpl	r1, r1, #40	; 0x28
- 448:	52800010 	addpl	r0, r0, #16
- 44c:	5a00000a 	bpl	47c <D_GPIO_set_pin_function_1_processing>
- 450:	e351001e 	cmp	r1, #30
- 454:	5241101e 	subpl	r1, r1, #30
- 458:	5280000c 	addpl	r0, r0, #12
- 45c:	5a000006 	bpl	47c <D_GPIO_set_pin_function_1_processing>
- 460:	e3510014 	cmp	r1, #20
- 464:	52411014 	subpl	r1, r1, #20
- 468:	52800008 	addpl	r0, r0, #8
- 46c:	5a000002 	bpl	47c <D_GPIO_set_pin_function_1_processing>
- 470:	e351000a 	cmp	r1, #10
- 474:	5241100a 	subpl	r1, r1, #10
- 478:	52800004 	addpl	r0, r0, #4
+00000450 <D_GPIO_set_pin_function_1>:
+ 450:	e51f0450 	ldr	r0, [pc, #-1104]	; 8 <D_GPIO_BASE_ADDRESS>
+ 454:	e205103f 	and	r1, r5, #63	; 0x3f
+ 458:	e3510032 	cmp	r1, #50	; 0x32
+ 45c:	52411032 	subpl	r1, r1, #50	; 0x32
+ 460:	52800014 	addpl	r0, r0, #20
+ 464:	5a00000e 	bpl	4a4 <D_GPIO_set_pin_function_1_processing>
+ 468:	e3510028 	cmp	r1, #40	; 0x28
+ 46c:	52411028 	subpl	r1, r1, #40	; 0x28
+ 470:	52800010 	addpl	r0, r0, #16
+ 474:	5a00000a 	bpl	4a4 <D_GPIO_set_pin_function_1_processing>
+ 478:	e351001e 	cmp	r1, #30
+ 47c:	5241101e 	subpl	r1, r1, #30
+ 480:	5280000c 	addpl	r0, r0, #12
+ 484:	5a000006 	bpl	4a4 <D_GPIO_set_pin_function_1_processing>
+ 488:	e3510014 	cmp	r1, #20
+ 48c:	52411014 	subpl	r1, r1, #20
+ 490:	52800008 	addpl	r0, r0, #8
+ 494:	5a000002 	bpl	4a4 <D_GPIO_set_pin_function_1_processing>
+ 498:	e351000a 	cmp	r1, #10
+ 49c:	5241100a 	subpl	r1, r1, #10
+ 4a0:	52800004 	addpl	r0, r0, #4
 
-0000047c <D_GPIO_set_pin_function_1_processing>:
- 47c:	e1a02081 	lsl	r2, r1, #1
- 480:	e0822001 	add	r2, r2, r1
- 484:	e3a01002 	mov	r1, #2
- 488:	e3a03007 	mov	r3, #7
- 48c:	e1a03213 	lsl	r3, r3, r2
- 490:	e1a01211 	lsl	r1, r1, r2
- 494:	e1e01001 	mvn	r1, r1
- 498:	e5902000 	ldr	r2, [r0]
- 49c:	e1822003 	orr	r2, r2, r3
- 4a0:	e0022001 	and	r2, r2, r1
- 4a4:	e5802000 	str	r2, [r0]
- 4a8:	e1a0f00e 	mov	pc, lr
+000004a4 <D_GPIO_set_pin_function_1_processing>:
+ 4a4:	e1a02081 	lsl	r2, r1, #1
+ 4a8:	e0822001 	add	r2, r2, r1
+ 4ac:	e3a01002 	mov	r1, #2
+ 4b0:	e3a03007 	mov	r3, #7
+ 4b4:	e1a03213 	lsl	r3, r3, r2
+ 4b8:	e1a01211 	lsl	r1, r1, r2
+ 4bc:	e1e01001 	mvn	r1, r1
+ 4c0:	e5902000 	ldr	r2, [r0]
+ 4c4:	e1822003 	orr	r2, r2, r3
+ 4c8:	e0022001 	and	r2, r2, r1
+ 4cc:	e5802000 	str	r2, [r0]
+ 4d0:	e1a0f00e 	mov	pc, lr
 
-000004ac <D_GPIO_set_pin_function_2>:
- 4ac:	e51f04ac 	ldr	r0, [pc, #-1196]	; 8 <D_GPIO_BASE_ADDRESS>
- 4b0:	e205103f 	and	r1, r5, #63	; 0x3f
- 4b4:	e3510032 	cmp	r1, #50	; 0x32
- 4b8:	52411032 	subpl	r1, r1, #50	; 0x32
- 4bc:	52800014 	addpl	r0, r0, #20
- 4c0:	5a00000e 	bpl	500 <D_GPIO_set_pin_function_2_processing>
- 4c4:	e3510028 	cmp	r1, #40	; 0x28
- 4c8:	52411028 	subpl	r1, r1, #40	; 0x28
- 4cc:	52800010 	addpl	r0, r0, #16
- 4d0:	5a00000a 	bpl	500 <D_GPIO_set_pin_function_2_processing>
- 4d4:	e351001e 	cmp	r1, #30
- 4d8:	5241101e 	subpl	r1, r1, #30
- 4dc:	5280000c 	addpl	r0, r0, #12
- 4e0:	5a000006 	bpl	500 <D_GPIO_set_pin_function_2_processing>
- 4e4:	e3510014 	cmp	r1, #20
- 4e8:	52411014 	subpl	r1, r1, #20
- 4ec:	52800008 	addpl	r0, r0, #8
- 4f0:	5a000002 	bpl	500 <D_GPIO_set_pin_function_2_processing>
- 4f4:	e351000a 	cmp	r1, #10
- 4f8:	5241100a 	subpl	r1, r1, #10
- 4fc:	52800004 	addpl	r0, r0, #4
+000004d4 <D_GPIO_set_pin_function_2>:
+ 4d4:	e51f04d4 	ldr	r0, [pc, #-1236]	; 8 <D_GPIO_BASE_ADDRESS>
+ 4d8:	e205103f 	and	r1, r5, #63	; 0x3f
+ 4dc:	e3510032 	cmp	r1, #50	; 0x32
+ 4e0:	52411032 	subpl	r1, r1, #50	; 0x32
+ 4e4:	52800014 	addpl	r0, r0, #20
+ 4e8:	5a00000e 	bpl	528 <D_GPIO_set_pin_function_2_processing>
+ 4ec:	e3510028 	cmp	r1, #40	; 0x28
+ 4f0:	52411028 	subpl	r1, r1, #40	; 0x28
+ 4f4:	52800010 	addpl	r0, r0, #16
+ 4f8:	5a00000a 	bpl	528 <D_GPIO_set_pin_function_2_processing>
+ 4fc:	e351001e 	cmp	r1, #30
+ 500:	5241101e 	subpl	r1, r1, #30
+ 504:	5280000c 	addpl	r0, r0, #12
+ 508:	5a000006 	bpl	528 <D_GPIO_set_pin_function_2_processing>
+ 50c:	e3510014 	cmp	r1, #20
+ 510:	52411014 	subpl	r1, r1, #20
+ 514:	52800008 	addpl	r0, r0, #8
+ 518:	5a000002 	bpl	528 <D_GPIO_set_pin_function_2_processing>
+ 51c:	e351000a 	cmp	r1, #10
+ 520:	5241100a 	subpl	r1, r1, #10
+ 524:	52800004 	addpl	r0, r0, #4
 
-00000500 <D_GPIO_set_pin_function_2_processing>:
- 500:	e1a02081 	lsl	r2, r1, #1
- 504:	e0822001 	add	r2, r2, r1
- 508:	e3a01001 	mov	r1, #1
- 50c:	e3a03007 	mov	r3, #7
- 510:	e1a03213 	lsl	r3, r3, r2
- 514:	e1a01211 	lsl	r1, r1, r2
- 518:	e1e01001 	mvn	r1, r1
- 51c:	e5902000 	ldr	r2, [r0]
- 520:	e1822003 	orr	r2, r2, r3
- 524:	e0022001 	and	r2, r2, r1
- 528:	e5802000 	str	r2, [r0]
- 52c:	e1a0f00e 	mov	pc, lr
+00000528 <D_GPIO_set_pin_function_2_processing>:
+ 528:	e1a02081 	lsl	r2, r1, #1
+ 52c:	e0822001 	add	r2, r2, r1
+ 530:	e3a01001 	mov	r1, #1
+ 534:	e3a03007 	mov	r3, #7
+ 538:	e1a03213 	lsl	r3, r3, r2
+ 53c:	e1a01211 	lsl	r1, r1, r2
+ 540:	e1e01001 	mvn	r1, r1
+ 544:	e5902000 	ldr	r2, [r0]
+ 548:	e1822003 	orr	r2, r2, r3
+ 54c:	e0022001 	and	r2, r2, r1
+ 550:	e5802000 	str	r2, [r0]
+ 554:	e1a0f00e 	mov	pc, lr
 
-00000530 <D_GPIO_set_pin_function_3>:
- 530:	e51f0530 	ldr	r0, [pc, #-1328]	; 8 <D_GPIO_BASE_ADDRESS>
- 534:	e205103f 	and	r1, r5, #63	; 0x3f
- 538:	e3510032 	cmp	r1, #50	; 0x32
- 53c:	52411032 	subpl	r1, r1, #50	; 0x32
- 540:	52800014 	addpl	r0, r0, #20
- 544:	5a00000e 	bpl	584 <D_GPIO_set_pin_function_3_processing>
- 548:	e3510028 	cmp	r1, #40	; 0x28
- 54c:	52411028 	subpl	r1, r1, #40	; 0x28
- 550:	52800010 	addpl	r0, r0, #16
- 554:	5a00000a 	bpl	584 <D_GPIO_set_pin_function_3_processing>
- 558:	e351001e 	cmp	r1, #30
- 55c:	5241101e 	subpl	r1, r1, #30
- 560:	5280000c 	addpl	r0, r0, #12
- 564:	5a000006 	bpl	584 <D_GPIO_set_pin_function_3_processing>
- 568:	e3510014 	cmp	r1, #20
- 56c:	52411014 	subpl	r1, r1, #20
- 570:	52800008 	addpl	r0, r0, #8
- 574:	5a000002 	bpl	584 <D_GPIO_set_pin_function_3_processing>
- 578:	e351000a 	cmp	r1, #10
- 57c:	5241100a 	subpl	r1, r1, #10
- 580:	52800004 	addpl	r0, r0, #4
+00000558 <D_GPIO_set_pin_function_3>:
+ 558:	e51f0558 	ldr	r0, [pc, #-1368]	; 8 <D_GPIO_BASE_ADDRESS>
+ 55c:	e205103f 	and	r1, r5, #63	; 0x3f
+ 560:	e3510032 	cmp	r1, #50	; 0x32
+ 564:	52411032 	subpl	r1, r1, #50	; 0x32
+ 568:	52800014 	addpl	r0, r0, #20
+ 56c:	5a00000e 	bpl	5ac <D_GPIO_set_pin_function_3_processing>
+ 570:	e3510028 	cmp	r1, #40	; 0x28
+ 574:	52411028 	subpl	r1, r1, #40	; 0x28
+ 578:	52800010 	addpl	r0, r0, #16
+ 57c:	5a00000a 	bpl	5ac <D_GPIO_set_pin_function_3_processing>
+ 580:	e351001e 	cmp	r1, #30
+ 584:	5241101e 	subpl	r1, r1, #30
+ 588:	5280000c 	addpl	r0, r0, #12
+ 58c:	5a000006 	bpl	5ac <D_GPIO_set_pin_function_3_processing>
+ 590:	e3510014 	cmp	r1, #20
+ 594:	52411014 	subpl	r1, r1, #20
+ 598:	52800008 	addpl	r0, r0, #8
+ 59c:	5a000002 	bpl	5ac <D_GPIO_set_pin_function_3_processing>
+ 5a0:	e351000a 	cmp	r1, #10
+ 5a4:	5241100a 	subpl	r1, r1, #10
+ 5a8:	52800004 	addpl	r0, r0, #4
 
-00000584 <D_GPIO_set_pin_function_3_processing>:
- 584:	e1a02081 	lsl	r2, r1, #1
- 588:	e0822001 	add	r2, r2, r1
- 58c:	e3a01000 	mov	r1, #0
- 590:	e3a03007 	mov	r3, #7
- 594:	e1a03213 	lsl	r3, r3, r2
- 598:	e1a01211 	lsl	r1, r1, r2
- 59c:	e1e01001 	mvn	r1, r1
- 5a0:	e5902000 	ldr	r2, [r0]
- 5a4:	e1822003 	orr	r2, r2, r3
- 5a8:	e0022001 	and	r2, r2, r1
- 5ac:	e5802000 	str	r2, [r0]
- 5b0:	e1a0f00e 	mov	pc, lr
+000005ac <D_GPIO_set_pin_function_3_processing>:
+ 5ac:	e1a02081 	lsl	r2, r1, #1
+ 5b0:	e0822001 	add	r2, r2, r1
+ 5b4:	e3a01000 	mov	r1, #0
+ 5b8:	e3a03007 	mov	r3, #7
+ 5bc:	e1a03213 	lsl	r3, r3, r2
+ 5c0:	e1a01211 	lsl	r1, r1, r2
+ 5c4:	e1e01001 	mvn	r1, r1
+ 5c8:	e5902000 	ldr	r2, [r0]
+ 5cc:	e1822003 	orr	r2, r2, r3
+ 5d0:	e0022001 	and	r2, r2, r1
+ 5d4:	e5802000 	str	r2, [r0]
+ 5d8:	e1a0f00e 	mov	pc, lr
 
-000005b4 <D_GPIO_set_pin_function_4>:
- 5b4:	e51f05b4 	ldr	r0, [pc, #-1460]	; 8 <D_GPIO_BASE_ADDRESS>
- 5b8:	e205103f 	and	r1, r5, #63	; 0x3f
- 5bc:	e3510032 	cmp	r1, #50	; 0x32
- 5c0:	52411032 	subpl	r1, r1, #50	; 0x32
- 5c4:	52800014 	addpl	r0, r0, #20
- 5c8:	5a00000e 	bpl	608 <D_GPIO_set_pin_function_4_processing>
- 5cc:	e3510028 	cmp	r1, #40	; 0x28
- 5d0:	52411028 	subpl	r1, r1, #40	; 0x28
- 5d4:	52800010 	addpl	r0, r0, #16
- 5d8:	5a00000a 	bpl	608 <D_GPIO_set_pin_function_4_processing>
- 5dc:	e351001e 	cmp	r1, #30
- 5e0:	5241101e 	subpl	r1, r1, #30
- 5e4:	5280000c 	addpl	r0, r0, #12
- 5e8:	5a000006 	bpl	608 <D_GPIO_set_pin_function_4_processing>
- 5ec:	e3510014 	cmp	r1, #20
- 5f0:	52411014 	subpl	r1, r1, #20
- 5f4:	52800008 	addpl	r0, r0, #8
- 5f8:	5a000002 	bpl	608 <D_GPIO_set_pin_function_4_processing>
- 5fc:	e351000a 	cmp	r1, #10
- 600:	5241100a 	subpl	r1, r1, #10
- 604:	52800004 	addpl	r0, r0, #4
+000005dc <D_GPIO_set_pin_function_4>:
+ 5dc:	e51f05dc 	ldr	r0, [pc, #-1500]	; 8 <D_GPIO_BASE_ADDRESS>
+ 5e0:	e205103f 	and	r1, r5, #63	; 0x3f
+ 5e4:	e3510032 	cmp	r1, #50	; 0x32
+ 5e8:	52411032 	subpl	r1, r1, #50	; 0x32
+ 5ec:	52800014 	addpl	r0, r0, #20
+ 5f0:	5a00000e 	bpl	630 <D_GPIO_set_pin_function_4_processing>
+ 5f4:	e3510028 	cmp	r1, #40	; 0x28
+ 5f8:	52411028 	subpl	r1, r1, #40	; 0x28
+ 5fc:	52800010 	addpl	r0, r0, #16
+ 600:	5a00000a 	bpl	630 <D_GPIO_set_pin_function_4_processing>
+ 604:	e351001e 	cmp	r1, #30
+ 608:	5241101e 	subpl	r1, r1, #30
+ 60c:	5280000c 	addpl	r0, r0, #12
+ 610:	5a000006 	bpl	630 <D_GPIO_set_pin_function_4_processing>
+ 614:	e3510014 	cmp	r1, #20
+ 618:	52411014 	subpl	r1, r1, #20
+ 61c:	52800008 	addpl	r0, r0, #8
+ 620:	5a000002 	bpl	630 <D_GPIO_set_pin_function_4_processing>
+ 624:	e351000a 	cmp	r1, #10
+ 628:	5241100a 	subpl	r1, r1, #10
+ 62c:	52800004 	addpl	r0, r0, #4
 
-00000608 <D_GPIO_set_pin_function_4_processing>:
- 608:	e1a02081 	lsl	r2, r1, #1
- 60c:	e0822001 	add	r2, r2, r1
- 610:	e3a01004 	mov	r1, #4
- 614:	e3a03007 	mov	r3, #7
- 618:	e1a03213 	lsl	r3, r3, r2
- 61c:	e1a01211 	lsl	r1, r1, r2
- 620:	e1e01001 	mvn	r1, r1
- 624:	e5902000 	ldr	r2, [r0]
- 628:	e1822003 	orr	r2, r2, r3
- 62c:	e0022001 	and	r2, r2, r1
- 630:	e5802000 	str	r2, [r0]
- 634:	e1a0f00e 	mov	pc, lr
+00000630 <D_GPIO_set_pin_function_4_processing>:
+ 630:	e1a02081 	lsl	r2, r1, #1
+ 634:	e0822001 	add	r2, r2, r1
+ 638:	e3a01004 	mov	r1, #4
+ 63c:	e3a03007 	mov	r3, #7
+ 640:	e1a03213 	lsl	r3, r3, r2
+ 644:	e1a01211 	lsl	r1, r1, r2
+ 648:	e1e01001 	mvn	r1, r1
+ 64c:	e5902000 	ldr	r2, [r0]
+ 650:	e1822003 	orr	r2, r2, r3
+ 654:	e0022001 	and	r2, r2, r1
+ 658:	e5802000 	str	r2, [r0]
+ 65c:	e1a0f00e 	mov	pc, lr
 
-00000638 <D_GPIO_set_pin_function_5>:
- 638:	e51f0638 	ldr	r0, [pc, #-1592]	; 8 <D_GPIO_BASE_ADDRESS>
- 63c:	e205103f 	and	r1, r5, #63	; 0x3f
- 640:	e3510032 	cmp	r1, #50	; 0x32
- 644:	52411032 	subpl	r1, r1, #50	; 0x32
- 648:	52800014 	addpl	r0, r0, #20
- 64c:	5a00000e 	bpl	68c <D_GPIO_set_pin_function_5_processing>
- 650:	e3510028 	cmp	r1, #40	; 0x28
- 654:	52411028 	subpl	r1, r1, #40	; 0x28
- 658:	52800010 	addpl	r0, r0, #16
- 65c:	5a00000a 	bpl	68c <D_GPIO_set_pin_function_5_processing>
- 660:	e351001e 	cmp	r1, #30
- 664:	5241101e 	subpl	r1, r1, #30
- 668:	5280000c 	addpl	r0, r0, #12
- 66c:	5a000006 	bpl	68c <D_GPIO_set_pin_function_5_processing>
- 670:	e3510014 	cmp	r1, #20
- 674:	52411014 	subpl	r1, r1, #20
- 678:	52800008 	addpl	r0, r0, #8
- 67c:	5a000002 	bpl	68c <D_GPIO_set_pin_function_5_processing>
- 680:	e351000a 	cmp	r1, #10
- 684:	5241100a 	subpl	r1, r1, #10
- 688:	52800004 	addpl	r0, r0, #4
+00000660 <D_GPIO_set_pin_function_5>:
+ 660:	e51f0660 	ldr	r0, [pc, #-1632]	; 8 <D_GPIO_BASE_ADDRESS>
+ 664:	e205103f 	and	r1, r5, #63	; 0x3f
+ 668:	e3510032 	cmp	r1, #50	; 0x32
+ 66c:	52411032 	subpl	r1, r1, #50	; 0x32
+ 670:	52800014 	addpl	r0, r0, #20
+ 674:	5a00000e 	bpl	6b4 <D_GPIO_set_pin_function_5_processing>
+ 678:	e3510028 	cmp	r1, #40	; 0x28
+ 67c:	52411028 	subpl	r1, r1, #40	; 0x28
+ 680:	52800010 	addpl	r0, r0, #16
+ 684:	5a00000a 	bpl	6b4 <D_GPIO_set_pin_function_5_processing>
+ 688:	e351001e 	cmp	r1, #30
+ 68c:	5241101e 	subpl	r1, r1, #30
+ 690:	5280000c 	addpl	r0, r0, #12
+ 694:	5a000006 	bpl	6b4 <D_GPIO_set_pin_function_5_processing>
+ 698:	e3510014 	cmp	r1, #20
+ 69c:	52411014 	subpl	r1, r1, #20
+ 6a0:	52800008 	addpl	r0, r0, #8
+ 6a4:	5a000002 	bpl	6b4 <D_GPIO_set_pin_function_5_processing>
+ 6a8:	e351000a 	cmp	r1, #10
+ 6ac:	5241100a 	subpl	r1, r1, #10
+ 6b0:	52800004 	addpl	r0, r0, #4
 
-0000068c <D_GPIO_set_pin_function_5_processing>:
- 68c:	e1a02081 	lsl	r2, r1, #1
- 690:	e0822001 	add	r2, r2, r1
- 694:	e3a01005 	mov	r1, #5
- 698:	e3a03007 	mov	r3, #7
- 69c:	e1a03213 	lsl	r3, r3, r2
- 6a0:	e1a01211 	lsl	r1, r1, r2
- 6a4:	e1e01001 	mvn	r1, r1
- 6a8:	e5902000 	ldr	r2, [r0]
- 6ac:	e1822003 	orr	r2, r2, r3
- 6b0:	e0022001 	and	r2, r2, r1
- 6b4:	e5802000 	str	r2, [r0]
- 6b8:	e1a0f00e 	mov	pc, lr
+000006b4 <D_GPIO_set_pin_function_5_processing>:
+ 6b4:	e1a02081 	lsl	r2, r1, #1
+ 6b8:	e0822001 	add	r2, r2, r1
+ 6bc:	e3a01005 	mov	r1, #5
+ 6c0:	e3a03007 	mov	r3, #7
+ 6c4:	e1a03213 	lsl	r3, r3, r2
+ 6c8:	e1a01211 	lsl	r1, r1, r2
+ 6cc:	e1e01001 	mvn	r1, r1
+ 6d0:	e5902000 	ldr	r2, [r0]
+ 6d4:	e1822003 	orr	r2, r2, r3
+ 6d8:	e0022001 	and	r2, r2, r1
+ 6dc:	e5802000 	str	r2, [r0]
+ 6e0:	e1a0f00e 	mov	pc, lr
 
-000006bc <D_GPIO_reserve_pin>:
- 6bc:	e205203f 	and	r2, r5, #63	; 0x3f
- 6c0:	e3520020 	cmp	r2, #32
- 6c4:	52424020 	subpl	r4, r2, #32
- 6c8:	551f0680 	ldrpl	r0, [pc, #-1664]	; 50 <D_GPIO_RESERVED_UPPER>
- 6cc:	451f0688 	ldrmi	r0, [pc, #-1672]	; 4c <D_GPIO_RESERVED_LOWER>
- 6d0:	e3a01001 	mov	r1, #1
- 6d4:	e1a01411 	lsl	r1, r1, r4
- 6d8:	e0008001 	and	r8, r0, r1
- 6dc:	e0288001 	eor	r8, r8, r1
- 6e0:	e3580000 	cmp	r8, #0
- 6e4:	01a0f00e 	moveq	pc, lr
- 6e8:	e1800008 	orr	r0, r0, r8
- 6ec:	e3520020 	cmp	r2, #32
- 6f0:	550f06a8 	strpl	r0, [pc, #-1704]	; 50 <D_GPIO_RESERVED_UPPER>
- 6f4:	450f06b0 	strmi	r0, [pc, #-1712]	; 4c <D_GPIO_RESERVED_LOWER>
- 6f8:	e1a0f00e 	mov	pc, lr
+000006e4 <D_GPIO_reserve_pin>:
+ 6e4:	e205203f 	and	r2, r5, #63	; 0x3f
+ 6e8:	e3520020 	cmp	r2, #32
+ 6ec:	52424020 	subpl	r4, r2, #32
+ 6f0:	551f06a8 	ldrpl	r0, [pc, #-1704]	; 50 <D_GPIO_RESERVED_UPPER>
+ 6f4:	451f06b0 	ldrmi	r0, [pc, #-1712]	; 4c <D_GPIO_RESERVED_LOWER>
+ 6f8:	e3a01001 	mov	r1, #1
+ 6fc:	e1a01411 	lsl	r1, r1, r4
+ 700:	e0008001 	and	r8, r0, r1
+ 704:	e0288001 	eor	r8, r8, r1
+ 708:	e3580000 	cmp	r8, #0
+ 70c:	01a0f00e 	moveq	pc, lr
+ 710:	e1800008 	orr	r0, r0, r8
+ 714:	e3520020 	cmp	r2, #32
+ 718:	550f06d0 	strpl	r0, [pc, #-1744]	; 50 <D_GPIO_RESERVED_UPPER>
+ 71c:	450f06d8 	strmi	r0, [pc, #-1752]	; 4c <D_GPIO_RESERVED_LOWER>
+ 720:	e1a0f00e 	mov	pc, lr

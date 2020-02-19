@@ -85,7 +85,7 @@ KR_KERNEL_FRQ:
 
 // Macro for calling a driver subroutine, r0 should be the driver start address
 .macro __D_CALL__ sub_offset:req, offset:req
-    add r0, r0, #( ( \sub_offset\() * 4 ) + \offset\() )
+    add r0, r0, #( ( \sub_offset * 4 ) + \offset )
     ldr r1, [r0]
     add r0, r0, r1
     mov r1, pc
@@ -99,18 +99,28 @@ startup_:
     // Set the GPIO base address
     ldr r0, =0x3F200000
     ldr r1, =GPIO_DRIVER
-    add r1, r1, #0x8
-    str r0, [r1]
+    str r0, [r1, #8]
 
-    // Set GPIO pin 29 to output
-    ldr r0, =GPIO_DRIVER
-    mov r5, #29
-    __D_CALL__ 8, 12
 
-    // Set GPIO pin 29 to output a 1
-    ldr r0, =GPIO_DRIVER
-    mov r5, #29
-    __D_CALL__ 0, 12
+    // call set pin function output subroutine
+    ldr r1, =GPIO_DRIVER
+    ldr r0, [r1, #0x2C]
+    add r0, r0, r1
+    add lr, pc, #0x8
+    ldr pc, =0x83f4
+
+    ldr r0, =0x3F200000
+    mov r1, #1
+    lsl r1, r1, #27
+    str r1, [r0, #0x8]
+
+    // call set pin subroutine
+    ldr r1, =GPIO_DRIVER
+    ldr r0, [r1, #0xC]
+    add r0, r0, r1
+    add lr, pc, #0x8
+    mov pc, r0
+
 
     // Enter final wait for now
     b final_;
@@ -124,5 +134,7 @@ final_:
 
 // Registers drivers subroutine
 GPIO_DRIVER:
+.align
 .incbin "../../../build/drivers/0e_gpio/0e1000-32-gpio.bin"
+.align
 GPIO_DRIVER_END:

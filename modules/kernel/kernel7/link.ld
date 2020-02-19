@@ -1,7 +1,7 @@
 
 SECTIONS {
 
-    .init 0x0 : {
+    .init 0x8000 : {
         *(.init)
     }
 

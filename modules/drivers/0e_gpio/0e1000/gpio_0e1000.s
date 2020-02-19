@@ -84,6 +84,12 @@ D_GPIO_set_pin:
 
     ldr r0, D_GPIO_BASE_ADDRESS
 
+    ldr r0, D_GPIO_BASE_ADDRESS
+    mov r1, #1
+    lsl r1, r1, #29
+    str r1, [r0, #0x1C]
+    mov pc, lr
+
     and r2, r5, #0x3F       // adjust if needed + make pin mask
     cmp r2, #32
     subpl r2, r2, #32
@@ -382,6 +388,12 @@ D_GPIO_set_pin_function_input:
     OUTPUTS:
  */
 D_GPIO_set_pin_function_output:
+
+    ldr r0, D_GPIO_BASE_ADDRESS
+    mov r1, #1
+    lsl r1, r1, #27
+    str r1, [r0, #0x8]
+    mov pc, lr
 
     ldr r0, D_GPIO_BASE_ADDRESS
     and r1, r5, #0x3F      
