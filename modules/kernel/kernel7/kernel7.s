@@ -95,8 +95,24 @@ K_UART_ADDRESS: .word UART_DRIVER
     mov pc, r0
 .endm
 
+.include "../../asm_utils.s"
+__TABLE__ "test_table", 12
+
 // Code enters here, run the boot load stage
 startup_:
+
+    // Try the __TABLE_AT__ macro using a runtime address evaluation
+    mov r4, #4
+    __TABLE_AT__ "test_table"
+    
+    // Try the __TABLE_AT__ macro using a constexpr address evaluation
+    __TABLE_AT__ "test_table", 4
+
+
+
+    // Test out the table
+    mov r4, #0
+    mov r5, #0x2C
 
     // Register GPIO driver
     ldr r0, =GPIO_DRIVER        

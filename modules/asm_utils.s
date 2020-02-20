@@ -12,9 +12,8 @@
 //      size = size of stack in DWORDS
 // Outputs:
 //      none
-.global __STACK__
 .macro __STACK__ stack_name:req, size:req
-    .set \stack_name\()_SP, ( . + 0x4 )
+    .equ __STACK_\stack_name\(), .
     .org . + (\size * 4)
 .endm
 
@@ -23,10 +22,7 @@
 //      r4 = data to push
 // Ouputs:
 //      none
-.global __STACK_PUSH__
 .macro __STACK_PUSH__ stack_name:req
-    str r4, [\stack_name\()_SP]
-    .set \stack_name\()_SP, \stack_name\()_SP + 0x4
 .endm
 
 // POPs a single DWORD off of the stack at the stack pointer given
@@ -34,10 +30,7 @@
 //      none
 // Ouputs:
 //      r8 = popped value
-.global __STACK_POP__
 .macro __STACK_POP__ stack_name:req
-    ldr r8, [\stack_name\()_SP]
-    .set \stack_name\()_SP, \stack_name\()_SP - 0x4
 .endm
 
 
@@ -45,23 +38,16 @@
     HEAP - allows for allocation of data only accesible using a direct index value
 */
 
-// Creates a new heap
+// Creates a new heap. This is for all intents and purposes a local heap, but could be used to create a global one.
 // Inputs:
-//      heap_name = name of this heap for accessing purposes
+//      (macro_arg) name = name of this heap for accessing purposes
 // Outputs:
-//      size = size of the heap in DWORDs
-.global __HEAP__
-.macro __HEAP__ heap_name:req, size:req
-    .set \heap_name\()_HP, ( . + 0x4 )
-    /*
-        Heap entries are formatted like this, size is given for easy heap search:
-        struct Heap_Entry 
-        {
-            uint32_t size_of_entry_;        // in bytes
-            // the rest is user defined 
-        }
-    */
+//      (macro_arg) size = size of the heap in blocks of 32  4 byte wide words. ie: size = 1 allocates 128 bytes of space
+.macro __HEAP__ name:req, size:req
+    .equ __HEAP_TABLE_\name\(), .   // data table to simplify scanning of heap for available space to allocate
     .org . + (\size * 4)
+    .equ __HEAP_\name\(), .         // actual heap starts here
+    .org . + (\size * 128)
 .endm
 
 // Allocates memory on the heap and returns pointer to start of range
@@ -69,60 +55,84 @@
 //      heap_name = name of the heap to allocate memory on
 // Outputs:
 //      r8 = address of start of newly allocated memory
-.global __HEAP_ALLOCATE__
 .macro __HEAP_ALLOCATE__ heap_name:req, dword_count:req
 
     // Grab heap start address and prepare for search
-    mov r8, #\heap_name\()_HEAP_START
-    mov r1, #0x0
 
-    // Loop until a suitable space is found
-    HEAP_ALLOCATE_SEARCH_LOOP_\@: 
-    add r8, r8, #0x4
-    ldr r0, [r8]
-
-    // Check if this is a size entry, skip to end of entry if it is
-    cmp r0, #0x0
-    addne r8, r8, r0
-    bne HEAP_ALLOCATE_SEARCH_LOOP_\@
-
-    // Add empty space to counter and see if we finally have enough space to allocate mem
-    addeq r1, r1, #0x4
-    cmp r1, #(\dword_count + 4)
-    bmi HEAP_ALLOCATE_SEARCH_LOOP_\@
-
-    // There is enough space, allocate now, r8 will hold the start of the entry data 
-    sub r8, r8, #(\dword_count * 4)
-    add r8, r8, #0x1
-    mov r0, #(\dword_count * 4)
-    ldr r0, [r8], #0x4
+    
 
 .endm
 
 
 /*
-    ARRAY - creates a region of memory with set size. no variables related to this container are held.
+    TABLE - creates a table inplace that can be accessed by outside functions. Allocated on the spot
 */
 
-// Creates an array inplace. Most simple container imaginable.
-// Inputs:
-//      count = number of elements to allocate space for
-//      element_width = width in DWORDS of each element
-// Outputs:
-//      r8 = array start address
-.macro __MAKE_ARRAY__ count:req, element_width:req
-    mov r8, pc
-    .org . + (\count * \element_width * 4)
+
+/*
+    Creates an inplace table that can be accessed using the first arguement (string)
+    INPUTS:
+        (macro_arg) name = name of the table, used to refer to this particular table
+        (macro_arg) size = size of the table in words (32 bits). IE: size = 4 creates a table 16 bytes wide
+    OUTPUTS:
+        none
+*/
+.macro __TABLE__ name:req, size:req
+.equ __TABLE_\name\(), .
+.org . + ( \size * 4 )
 .endm
 
+/*
+    Gets the address of the inplace table value at requested index
+    INPUTS: 
+        r4 = index value (first value in inplace table is index = 0, second is index = 1, etc...)
+        (macro_arg) name = name of the inplace table this is referencing
+        (macro_arg)[optional] index = same as r4. If this is specified, the address will be calculated on compile time.
+    OUTPUTS:
+        r8 = address of table value
+*/
+.macro __TABLE_AT__ name:req, index:vararg
+    .ifndef __TABLE_\name       // throws error on undefined table
+        .print "\n\n !!! '__TABLE_AT__' macro failed as requested table is undefined !!! \n\n"
+        .err
+        .exitm
+    .endif
+    .ifb \index                 // if index is blank, this is a run time computed address
+        lsl r8, r4, #2
+        add r8, r8, #__TABLE_\name
+    .else                       // if index value is given, this is a compile time computed address
+        mov r8, #(__TABLE_\name + (\index * 4))
+    .endif
+.endm
 
-// Adds an element to the array starting at address given offset and with
-// Inputs:
-//      r4 = the array start address
-//      r5 = the index
-// Outputs:
-//      r8 = element start address
-.macro __IP_ARRAY_AT__ element_width:req
-mul r8, r5, #\element_width
-add r8, r8, r4
+/*
+    Sets a value (word) in the requested inplace table to the provided value
+    INPUTS:
+        r4 = index value (same as __TABLE_IP_AT__)
+        r5 = set value to
+        (macro_arg) name = name of the inplace table this is referencing
+    OUTPUTS:
+        none
+*/
+.macro __TABLE_SET__ name:req, index:vararg
+    .ifb \index
+        __TABLE_AT__ \name
+        str r5, [r8]
+    .else
+        __TABLE_AT__ \name, \index
+        str r5, [r8]
+    .endif
+.endm
+
+/*
+    Gets a value (word) in the requested inplace table to the provided value
+    INPUTS:
+        r4 = index value (same as __TABLE_IP_AT__)
+        (macro_arg) name = name of the inplace table this is referencing
+    OUTPUTS:
+        r8 = inplace table value at index
+*/
+.macro __TABLE_GET__ name:req
+__TABLE_AT__ \name
+ldr r8, [r8]
 .endm

@@ -33,7 +33,7 @@
 
 /* Jump table stuff */
 .org 0x0
-D_UART_ID:  .word 0x000d1000
+D_UART_ID:  .word 0x00041000
 D_UART_END: .word END_OF_UART_DRIVER
 D_UART_BASE_ADDRESS: .word 0x00000000
 
