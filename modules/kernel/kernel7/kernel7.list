@@ -27,7 +27,7 @@ Disassembly of section .init:
   1c:	ea000012 	b	6c <KR_KERNEL_FRQ>
 
 00000020 <KERNEL_START_ADDRESS>:
-  20:	000000ac 	.word	0x000000ac
+  20:	000001fc 	.word	0x000001fc
 
 00000024 <KERNEL_UNDEFINED_INSTRUCTION_ADDRESS>:
   24:	00000000 	.word	0x00000000
@@ -75,584 +75,697 @@ Disassembly of section .init:
   6c:	e51f003c 	ldr	r0, [pc, #-60]	; 38 <KERNEL_FRQ_ADDRESS>
   70:	e1a0f000 	mov	pc, r0
 
-00000074 <K_GPIO_ADDRESS>:
-  74:	00000178 	.word	0x00000178
-
-00000078 <K_UART_ADDRESS>:
-  78:	00000874 	.word	0x00000874
-
-0000007c <__TABLE_test_table>:
+00000074 <__TABLE_drivers>:
 	...
 
-000000ac <startup_>:
-  ac:	e3a04004 	mov	r4, #4
-  b0:	e1a08104 	lsl	r8, r4, #2
-  b4:	e288807c 	add	r8, r8, #124	; 0x7c
-  b8:	e3a0808c 	mov	r8, #140	; 0x8c
-  bc:	e3a04000 	mov	r4, #0
-  c0:	e3a0502c 	mov	r5, #44	; 0x2c
-  c4:	e59f08a4 	ldr	r0, [pc, #2212]	; 970 <DRIVER_INCLUDES_END>
-  c8:	e50f005c 	str	r0, [pc, #-92]	; 74 <K_GPIO_ADDRESS>
-  cc:	e59f18a0 	ldr	r1, [pc, #2208]	; 974 <DRIVER_INCLUDES_END+0x4>
-  d0:	e5801008 	str	r1, [r0, #8]
-  d4:	e59f089c 	ldr	r0, [pc, #2204]	; 978 <DRIVER_INCLUDES_END+0x8>
-  d8:	e50f0068 	str	r0, [pc, #-104]	; 78 <K_UART_ADDRESS>
-  dc:	e59f1898 	ldr	r1, [pc, #2200]	; 97c <DRIVER_INCLUDES_END+0xc>
-  e0:	e5801008 	str	r1, [r0, #8]
-  e4:	e51f0078 	ldr	r0, [pc, #-120]	; 74 <K_GPIO_ADDRESS>
-  e8:	e3a0501d 	mov	r5, #29
-  ec:	e590102c 	ldr	r1, [r0, #44]	; 0x2c
-  f0:	e0800001 	add	r0, r0, r1
-  f4:	e1a0e00f 	mov	lr, pc
-  f8:	e1a0f000 	mov	pc, r0
-  fc:	e51f0090 	ldr	r0, [pc, #-144]	; 74 <K_GPIO_ADDRESS>
- 100:	e3a0501d 	mov	r5, #29
- 104:	e590100c 	ldr	r1, [r0, #12]
- 108:	e0800001 	add	r0, r0, r1
- 10c:	e1a0e00f 	mov	lr, pc
- 110:	e1a0f000 	mov	pc, r0
- 114:	e51f00a8 	ldr	r0, [pc, #-168]	; 74 <K_GPIO_ADDRESS>
- 118:	e3a0500e 	mov	r5, #14
- 11c:	e5901030 	ldr	r1, [r0, #48]	; 0x30
- 120:	e0800001 	add	r0, r0, r1
- 124:	e1a0e00f 	mov	lr, pc
- 128:	e1a0f000 	mov	pc, r0
- 12c:	e51f00c0 	ldr	r0, [pc, #-192]	; 74 <K_GPIO_ADDRESS>
- 130:	e3a0500f 	mov	r5, #15
- 134:	e5901030 	ldr	r1, [r0, #48]	; 0x30
- 138:	e0800001 	add	r0, r0, r1
- 13c:	e1a0e00f 	mov	lr, pc
- 140:	e1a0f000 	mov	pc, r0
- 144:	e51f00d4 	ldr	r0, [pc, #-212]	; 78 <K_UART_ADDRESS>
- 148:	e590100c 	ldr	r1, [r0, #12]
- 14c:	e0800001 	add	r0, r0, r1
- 150:	e1a0e00f 	mov	lr, pc
- 154:	e1a0f000 	mov	pc, r0
- 158:	e51f00e8 	ldr	r0, [pc, #-232]	; 78 <K_UART_ADDRESS>
- 15c:	e3a0404c 	mov	r4, #76	; 0x4c
- 160:	e5901018 	ldr	r1, [r0, #24]
- 164:	e0800001 	add	r0, r0, r1
- 168:	e1a0e00f 	mov	lr, pc
- 16c:	e1a0f000 	mov	pc, r0
- 170:	eaffffff 	b	174 <final_>
-
-00000174 <final_>:
- 174:	eafffffe 	b	174 <final_>
-
-00000178 <GPIO_DRIVER>:
- 178:	00051000 	.word	0x00051000
- 17c:	000006fc 	.word	0x000006fc
- 180:	00000000 	.word	0x00000000
- 184:	00000054 	.word	0x00000054
- 188:	00000078 	.word	0x00000078
- 18c:	000000c4 	.word	0x000000c4
- 190:	0000015c 	.word	0x0000015c
- 194:	000001f4 	.word	0x000001f4
- 198:	0000021c 	.word	0x0000021c
- 19c:	0000022c 	.word	0x0000022c
- 1a0:	0000029c 	.word	0x0000029c
- 1a4:	00000320 	.word	0x00000320
- 1a8:	000003a4 	.word	0x000003a4
- 1ac:	00000428 	.word	0x00000428
- 1b0:	000004ac 	.word	0x000004ac
- 1b4:	00000530 	.word	0x00000530
- 1b8:	000005b4 	.word	0x000005b4
- 1bc:	00000638 	.word	0x00000638
- 1c0:	000006bc 	.word	0x000006bc
+000000a4 <__TABLE_test_table>:
 	...
- 1cc:	e51f0054 	.word	0xe51f0054
- 1d0:	e205203f 	.word	0xe205203f
- 1d4:	e3520020 	.word	0xe3520020
- 1d8:	52422020 	.word	0x52422020
- 1dc:	52800004 	.word	0x52800004
- 1e0:	e3a01001 	.word	0xe3a01001
- 1e4:	e1a01211 	.word	0xe1a01211
- 1e8:	e580101c 	.word	0xe580101c
- 1ec:	e1a0f00e 	.word	0xe1a0f00e
- 1f0:	e51f0078 	.word	0xe51f0078
- 1f4:	e3a01001 	.word	0xe3a01001
- 1f8:	e205203f 	.word	0xe205203f
- 1fc:	e3520020 	.word	0xe3520020
- 200:	52422020 	.word	0x52422020
- 204:	52800004 	.word	0x52800004
- 208:	e1a01211 	.word	0xe1a01211
- 20c:	e5801028 	.word	0xe5801028
- 210:	e1a0f00e 	.word	0xe1a0f00e
- 214:	e51f009c 	.word	0xe51f009c
- 218:	e3a01001 	.word	0xe3a01001
- 21c:	e205203f 	.word	0xe205203f
- 220:	e3520020 	.word	0xe3520020
- 224:	52422020 	.word	0x52422020
- 228:	52800004 	.word	0x52800004
- 22c:	e1a01211 	.word	0xe1a01211
- 230:	e5902034 	.word	0xe5902034
- 234:	e0028001 	.word	0xe0028001
- 238:	e1a0f00e 	.word	0xe1a0f00e
- 23c:	e51f00c4 	.word	0xe51f00c4
- 240:	e3a01001 	.word	0xe3a01001
- 244:	e205203f 	.word	0xe205203f
- 248:	e3520020 	.word	0xe3520020
- 24c:	52800004 	.word	0x52800004
- 250:	52422020 	.word	0x52422020
- 254:	e1a01211 	.word	0xe1a01211
- 258:	e5903064 	.word	0xe5903064
- 25c:	e1813003 	.word	0xe1813003
- 260:	e2062001 	.word	0xe2062001
- 264:	e3520000 	.word	0xe3520000
- 268:	15803064 	.word	0x15803064
- 26c:	e5903070 	.word	0xe5903070
- 270:	e1813003 	.word	0xe1813003
- 274:	e2062002 	.word	0xe2062002
- 278:	e3520000 	.word	0xe3520000
- 27c:	15803070 	.word	0x15803070
- 280:	e590304c 	.word	0xe590304c
- 284:	e1813003 	.word	0xe1813003
- 288:	e2062004 	.word	0xe2062004
- 28c:	e3520000 	.word	0xe3520000
- 290:	1580304c 	.word	0x1580304c
- 294:	e5903058 	.word	0xe5903058
- 298:	e1813003 	.word	0xe1813003
- 29c:	e2062008 	.word	0xe2062008
- 2a0:	e3520000 	.word	0xe3520000
- 2a4:	15803058 	.word	0x15803058
- 2a8:	e590307c 	.word	0xe590307c
- 2ac:	e1813003 	.word	0xe1813003
- 2b0:	e2062010 	.word	0xe2062010
- 2b4:	e3520000 	.word	0xe3520000
- 2b8:	1580307c 	.word	0x1580307c
- 2bc:	e5903080 	.word	0xe5903080
- 2c0:	e1813003 	.word	0xe1813003
- 2c4:	e2062020 	.word	0xe2062020
- 2c8:	e3520000 	.word	0xe3520000
- 2cc:	15803080 	.word	0x15803080
- 2d0:	e1a0f00e 	.word	0xe1a0f00e
- 2d4:	e51f015c 	.word	0xe51f015c
- 2d8:	e3e01001 	.word	0xe3e01001
- 2dc:	e205203f 	.word	0xe205203f
- 2e0:	e3520020 	.word	0xe3520020
- 2e4:	52800004 	.word	0x52800004
- 2e8:	52422020 	.word	0x52422020
- 2ec:	e1a01211 	.word	0xe1a01211
- 2f0:	e5903064 	.word	0xe5903064
- 2f4:	e0013003 	.word	0xe0013003
- 2f8:	e2062001 	.word	0xe2062001
- 2fc:	e3520000 	.word	0xe3520000
- 300:	15803064 	.word	0x15803064
- 304:	e5903070 	.word	0xe5903070
- 308:	e0013003 	.word	0xe0013003
- 30c:	e2062002 	.word	0xe2062002
- 310:	e3520000 	.word	0xe3520000
- 314:	15803070 	.word	0x15803070
- 318:	e590304c 	.word	0xe590304c
- 31c:	e0013003 	.word	0xe0013003
- 320:	e2062004 	.word	0xe2062004
- 324:	e3520000 	.word	0xe3520000
- 328:	1580304c 	.word	0x1580304c
- 32c:	e5903058 	.word	0xe5903058
- 330:	e0013003 	.word	0xe0013003
- 334:	e2062008 	.word	0xe2062008
- 338:	e3520000 	.word	0xe3520000
- 33c:	15803058 	.word	0x15803058
- 340:	e590307c 	.word	0xe590307c
- 344:	e0013003 	.word	0xe0013003
- 348:	e2062010 	.word	0xe2062010
- 34c:	e3520000 	.word	0xe3520000
- 350:	1580307c 	.word	0x1580307c
- 354:	e5903080 	.word	0xe5903080
- 358:	e0013003 	.word	0xe0013003
- 35c:	e2062020 	.word	0xe2062020
- 360:	e3520000 	.word	0xe3520000
- 364:	15803080 	.word	0x15803080
- 368:	e1a0f00e 	.word	0xe1a0f00e
- 36c:	e51f01f4 	.word	0xe51f01f4
- 370:	e3e01001 	.word	0xe3e01001
- 374:	e205203f 	.word	0xe205203f
- 378:	e352001f 	.word	0xe352001f
- 37c:	52800004 	.word	0x52800004
- 380:	52422020 	.word	0x52422020
- 384:	e1a01211 	.word	0xe1a01211
- 388:	e5908040 	.word	0xe5908040
- 38c:	e0088001 	.word	0xe0088001
- 390:	e1a0f00e 	.word	0xe1a0f00e
- 394:	e51f021c 	.word	0xe51f021c
- 398:	e5908040 	.word	0xe5908040
- 39c:	e5908044 	.word	0xe5908044
- 3a0:	e1a0f00e 	.word	0xe1a0f00e
- 3a4:	e51f022c 	.word	0xe51f022c
- 3a8:	e205203f 	.word	0xe205203f
- 3ac:	e3520032 	.word	0xe3520032
- 3b0:	52422032 	.word	0x52422032
- 3b4:	52800014 	.word	0x52800014
- 3b8:	5a00000e 	.word	0x5a00000e
- 3bc:	e3520028 	.word	0xe3520028
- 3c0:	52422028 	.word	0x52422028
- 3c4:	52800010 	.word	0x52800010
- 3c8:	5a00000a 	.word	0x5a00000a
- 3cc:	e352001e 	.word	0xe352001e
- 3d0:	5242201e 	.word	0x5242201e
- 3d4:	5280000c 	.word	0x5280000c
- 3d8:	5a000006 	.word	0x5a000006
- 3dc:	e3520014 	.word	0xe3520014
- 3e0:	52422014 	.word	0x52422014
- 3e4:	52800008 	.word	0x52800008
- 3e8:	5a000002 	.word	0x5a000002
- 3ec:	e352000a 	.word	0xe352000a
- 3f0:	5242200a 	.word	0x5242200a
- 3f4:	52800004 	.word	0x52800004
- 3f8:	e1a01082 	.word	0xe1a01082
- 3fc:	e0811002 	.word	0xe0811002
- 400:	e3a02007 	.word	0xe3a02007
- 404:	e1a02112 	.word	0xe1a02112
- 408:	e5908000 	.word	0xe5908000
- 40c:	e0088002 	.word	0xe0088002
- 410:	e1a0f00e 	.word	0xe1a0f00e
- 414:	e51f029c 	.word	0xe51f029c
- 418:	e205103f 	.word	0xe205103f
- 41c:	e3510032 	.word	0xe3510032
- 420:	52411032 	.word	0x52411032
- 424:	52800014 	.word	0x52800014
- 428:	5a00000e 	.word	0x5a00000e
- 42c:	e3510028 	.word	0xe3510028
- 430:	52411028 	.word	0x52411028
- 434:	52800010 	.word	0x52800010
- 438:	5a00000a 	.word	0x5a00000a
- 43c:	e351001e 	.word	0xe351001e
- 440:	5241101e 	.word	0x5241101e
- 444:	5280000c 	.word	0x5280000c
- 448:	5a000006 	.word	0x5a000006
- 44c:	e3510014 	.word	0xe3510014
- 450:	52411014 	.word	0x52411014
- 454:	52800008 	.word	0x52800008
- 458:	5a000002 	.word	0x5a000002
- 45c:	e351000a 	.word	0xe351000a
- 460:	5241100a 	.word	0x5241100a
- 464:	52800004 	.word	0x52800004
- 468:	e1a02081 	.word	0xe1a02081
- 46c:	e0822001 	.word	0xe0822001
- 470:	e3a01007 	.word	0xe3a01007
- 474:	e3a03007 	.word	0xe3a03007
- 478:	e1a03213 	.word	0xe1a03213
- 47c:	e1a01211 	.word	0xe1a01211
- 480:	e1e01001 	.word	0xe1e01001
- 484:	e5902000 	.word	0xe5902000
- 488:	e1822003 	.word	0xe1822003
- 48c:	e0022001 	.word	0xe0022001
- 490:	e5802000 	.word	0xe5802000
- 494:	e1a0f00e 	.word	0xe1a0f00e
- 498:	e51f0320 	.word	0xe51f0320
- 49c:	e205103f 	.word	0xe205103f
- 4a0:	e3510032 	.word	0xe3510032
- 4a4:	52411032 	.word	0x52411032
- 4a8:	52800014 	.word	0x52800014
- 4ac:	5a00000e 	.word	0x5a00000e
- 4b0:	e3510028 	.word	0xe3510028
- 4b4:	52411028 	.word	0x52411028
- 4b8:	52800010 	.word	0x52800010
- 4bc:	5a00000a 	.word	0x5a00000a
- 4c0:	e351001e 	.word	0xe351001e
- 4c4:	5241101e 	.word	0x5241101e
- 4c8:	5280000c 	.word	0x5280000c
- 4cc:	5a000006 	.word	0x5a000006
- 4d0:	e3510014 	.word	0xe3510014
- 4d4:	52411014 	.word	0x52411014
- 4d8:	52800008 	.word	0x52800008
- 4dc:	5a000002 	.word	0x5a000002
- 4e0:	e351000a 	.word	0xe351000a
- 4e4:	5241100a 	.word	0x5241100a
- 4e8:	52800004 	.word	0x52800004
- 4ec:	e1a02081 	.word	0xe1a02081
- 4f0:	e0822001 	.word	0xe0822001
- 4f4:	e3a01006 	.word	0xe3a01006
- 4f8:	e3a03007 	.word	0xe3a03007
- 4fc:	e1a03213 	.word	0xe1a03213
- 500:	e1a01211 	.word	0xe1a01211
- 504:	e1e01001 	.word	0xe1e01001
- 508:	e5902000 	.word	0xe5902000
- 50c:	e1822003 	.word	0xe1822003
- 510:	e0022001 	.word	0xe0022001
- 514:	e5802000 	.word	0xe5802000
- 518:	e1a0f00e 	.word	0xe1a0f00e
- 51c:	e51f03a4 	.word	0xe51f03a4
- 520:	e205103f 	.word	0xe205103f
- 524:	e3510032 	.word	0xe3510032
- 528:	52411032 	.word	0x52411032
- 52c:	52800014 	.word	0x52800014
- 530:	5a00000e 	.word	0x5a00000e
- 534:	e3510028 	.word	0xe3510028
- 538:	52411028 	.word	0x52411028
- 53c:	52800010 	.word	0x52800010
- 540:	5a00000a 	.word	0x5a00000a
- 544:	e351001e 	.word	0xe351001e
- 548:	5241101e 	.word	0x5241101e
- 54c:	5280000c 	.word	0x5280000c
- 550:	5a000006 	.word	0x5a000006
- 554:	e3510014 	.word	0xe3510014
- 558:	52411014 	.word	0x52411014
- 55c:	52800008 	.word	0x52800008
- 560:	5a000002 	.word	0x5a000002
- 564:	e351000a 	.word	0xe351000a
- 568:	5241100a 	.word	0x5241100a
- 56c:	52800004 	.word	0x52800004
- 570:	e1a02081 	.word	0xe1a02081
- 574:	e0822001 	.word	0xe0822001
- 578:	e3a01003 	.word	0xe3a01003
- 57c:	e3a03007 	.word	0xe3a03007
- 580:	e1a03213 	.word	0xe1a03213
- 584:	e1a01211 	.word	0xe1a01211
- 588:	e1e01001 	.word	0xe1e01001
- 58c:	e5902000 	.word	0xe5902000
- 590:	e1822003 	.word	0xe1822003
- 594:	e0022001 	.word	0xe0022001
- 598:	e5802000 	.word	0xe5802000
- 59c:	e1a0f00e 	.word	0xe1a0f00e
- 5a0:	e51f0428 	.word	0xe51f0428
- 5a4:	e205103f 	.word	0xe205103f
- 5a8:	e3510032 	.word	0xe3510032
- 5ac:	52411032 	.word	0x52411032
- 5b0:	52800014 	.word	0x52800014
- 5b4:	5a00000e 	.word	0x5a00000e
- 5b8:	e3510028 	.word	0xe3510028
- 5bc:	52411028 	.word	0x52411028
- 5c0:	52800010 	.word	0x52800010
- 5c4:	5a00000a 	.word	0x5a00000a
- 5c8:	e351001e 	.word	0xe351001e
- 5cc:	5241101e 	.word	0x5241101e
- 5d0:	5280000c 	.word	0x5280000c
- 5d4:	5a000006 	.word	0x5a000006
- 5d8:	e3510014 	.word	0xe3510014
- 5dc:	52411014 	.word	0x52411014
- 5e0:	52800008 	.word	0x52800008
- 5e4:	5a000002 	.word	0x5a000002
- 5e8:	e351000a 	.word	0xe351000a
- 5ec:	5241100a 	.word	0x5241100a
- 5f0:	52800004 	.word	0x52800004
- 5f4:	e1a02081 	.word	0xe1a02081
- 5f8:	e0822001 	.word	0xe0822001
- 5fc:	e3a01002 	.word	0xe3a01002
- 600:	e3a03007 	.word	0xe3a03007
- 604:	e1a03213 	.word	0xe1a03213
- 608:	e1a01211 	.word	0xe1a01211
- 60c:	e1e01001 	.word	0xe1e01001
- 610:	e5902000 	.word	0xe5902000
- 614:	e1822003 	.word	0xe1822003
- 618:	e0022001 	.word	0xe0022001
- 61c:	e5802000 	.word	0xe5802000
- 620:	e1a0f00e 	.word	0xe1a0f00e
- 624:	e51f04ac 	.word	0xe51f04ac
- 628:	e205103f 	.word	0xe205103f
- 62c:	e3510032 	.word	0xe3510032
- 630:	52411032 	.word	0x52411032
- 634:	52800014 	.word	0x52800014
- 638:	5a00000e 	.word	0x5a00000e
- 63c:	e3510028 	.word	0xe3510028
- 640:	52411028 	.word	0x52411028
- 644:	52800010 	.word	0x52800010
- 648:	5a00000a 	.word	0x5a00000a
- 64c:	e351001e 	.word	0xe351001e
- 650:	5241101e 	.word	0x5241101e
- 654:	5280000c 	.word	0x5280000c
- 658:	5a000006 	.word	0x5a000006
- 65c:	e3510014 	.word	0xe3510014
- 660:	52411014 	.word	0x52411014
- 664:	52800008 	.word	0x52800008
- 668:	5a000002 	.word	0x5a000002
- 66c:	e351000a 	.word	0xe351000a
- 670:	5241100a 	.word	0x5241100a
- 674:	52800004 	.word	0x52800004
- 678:	e1a02081 	.word	0xe1a02081
- 67c:	e0822001 	.word	0xe0822001
- 680:	e3a01001 	.word	0xe3a01001
- 684:	e3a03007 	.word	0xe3a03007
- 688:	e1a03213 	.word	0xe1a03213
- 68c:	e1a01211 	.word	0xe1a01211
- 690:	e1e01001 	.word	0xe1e01001
- 694:	e5902000 	.word	0xe5902000
- 698:	e1822003 	.word	0xe1822003
- 69c:	e0022001 	.word	0xe0022001
- 6a0:	e5802000 	.word	0xe5802000
- 6a4:	e1a0f00e 	.word	0xe1a0f00e
- 6a8:	e51f0530 	.word	0xe51f0530
- 6ac:	e205103f 	.word	0xe205103f
- 6b0:	e3510032 	.word	0xe3510032
- 6b4:	52411032 	.word	0x52411032
- 6b8:	52800014 	.word	0x52800014
- 6bc:	5a00000e 	.word	0x5a00000e
- 6c0:	e3510028 	.word	0xe3510028
- 6c4:	52411028 	.word	0x52411028
- 6c8:	52800010 	.word	0x52800010
- 6cc:	5a00000a 	.word	0x5a00000a
- 6d0:	e351001e 	.word	0xe351001e
- 6d4:	5241101e 	.word	0x5241101e
- 6d8:	5280000c 	.word	0x5280000c
- 6dc:	5a000006 	.word	0x5a000006
- 6e0:	e3510014 	.word	0xe3510014
- 6e4:	52411014 	.word	0x52411014
- 6e8:	52800008 	.word	0x52800008
- 6ec:	5a000002 	.word	0x5a000002
- 6f0:	e351000a 	.word	0xe351000a
- 6f4:	5241100a 	.word	0x5241100a
- 6f8:	52800004 	.word	0x52800004
- 6fc:	e1a02081 	.word	0xe1a02081
- 700:	e0822001 	.word	0xe0822001
- 704:	e3a01000 	.word	0xe3a01000
- 708:	e3a03007 	.word	0xe3a03007
- 70c:	e1a03213 	.word	0xe1a03213
- 710:	e1a01211 	.word	0xe1a01211
- 714:	e1e01001 	.word	0xe1e01001
- 718:	e5902000 	.word	0xe5902000
- 71c:	e1822003 	.word	0xe1822003
- 720:	e0022001 	.word	0xe0022001
- 724:	e5802000 	.word	0xe5802000
- 728:	e1a0f00e 	.word	0xe1a0f00e
- 72c:	e51f05b4 	.word	0xe51f05b4
- 730:	e205103f 	.word	0xe205103f
- 734:	e3510032 	.word	0xe3510032
- 738:	52411032 	.word	0x52411032
- 73c:	52800014 	.word	0x52800014
- 740:	5a00000e 	.word	0x5a00000e
- 744:	e3510028 	.word	0xe3510028
- 748:	52411028 	.word	0x52411028
- 74c:	52800010 	.word	0x52800010
- 750:	5a00000a 	.word	0x5a00000a
- 754:	e351001e 	.word	0xe351001e
- 758:	5241101e 	.word	0x5241101e
- 75c:	5280000c 	.word	0x5280000c
- 760:	5a000006 	.word	0x5a000006
- 764:	e3510014 	.word	0xe3510014
- 768:	52411014 	.word	0x52411014
- 76c:	52800008 	.word	0x52800008
- 770:	5a000002 	.word	0x5a000002
- 774:	e351000a 	.word	0xe351000a
- 778:	5241100a 	.word	0x5241100a
- 77c:	52800004 	.word	0x52800004
- 780:	e1a02081 	.word	0xe1a02081
- 784:	e0822001 	.word	0xe0822001
- 788:	e3a01004 	.word	0xe3a01004
- 78c:	e3a03007 	.word	0xe3a03007
- 790:	e1a03213 	.word	0xe1a03213
- 794:	e1a01211 	.word	0xe1a01211
- 798:	e1e01001 	.word	0xe1e01001
- 79c:	e5902000 	.word	0xe5902000
- 7a0:	e1822003 	.word	0xe1822003
- 7a4:	e0022001 	.word	0xe0022001
- 7a8:	e5802000 	.word	0xe5802000
- 7ac:	e1a0f00e 	.word	0xe1a0f00e
- 7b0:	e51f0638 	.word	0xe51f0638
- 7b4:	e205103f 	.word	0xe205103f
- 7b8:	e3510032 	.word	0xe3510032
- 7bc:	52411032 	.word	0x52411032
- 7c0:	52800014 	.word	0x52800014
- 7c4:	5a00000e 	.word	0x5a00000e
- 7c8:	e3510028 	.word	0xe3510028
- 7cc:	52411028 	.word	0x52411028
- 7d0:	52800010 	.word	0x52800010
- 7d4:	5a00000a 	.word	0x5a00000a
- 7d8:	e351001e 	.word	0xe351001e
- 7dc:	5241101e 	.word	0x5241101e
- 7e0:	5280000c 	.word	0x5280000c
- 7e4:	5a000006 	.word	0x5a000006
- 7e8:	e3510014 	.word	0xe3510014
- 7ec:	52411014 	.word	0x52411014
- 7f0:	52800008 	.word	0x52800008
- 7f4:	5a000002 	.word	0x5a000002
- 7f8:	e351000a 	.word	0xe351000a
- 7fc:	5241100a 	.word	0x5241100a
- 800:	52800004 	.word	0x52800004
- 804:	e1a02081 	.word	0xe1a02081
- 808:	e0822001 	.word	0xe0822001
- 80c:	e3a01005 	.word	0xe3a01005
- 810:	e3a03007 	.word	0xe3a03007
- 814:	e1a03213 	.word	0xe1a03213
- 818:	e1a01211 	.word	0xe1a01211
- 81c:	e1e01001 	.word	0xe1e01001
- 820:	e5902000 	.word	0xe5902000
- 824:	e1822003 	.word	0xe1822003
- 828:	e0022001 	.word	0xe0022001
- 82c:	e5802000 	.word	0xe5802000
- 830:	e1a0f00e 	.word	0xe1a0f00e
- 834:	e205203f 	.word	0xe205203f
- 838:	e3520020 	.word	0xe3520020
- 83c:	52424020 	.word	0x52424020
- 840:	551f0680 	.word	0x551f0680
- 844:	451f0688 	.word	0x451f0688
- 848:	e3a01001 	.word	0xe3a01001
- 84c:	e1a01411 	.word	0xe1a01411
- 850:	e0008001 	.word	0xe0008001
- 854:	e0288001 	.word	0xe0288001
- 858:	e3580000 	.word	0xe3580000
- 85c:	01a0f00e 	.word	0x01a0f00e
- 860:	e1800008 	.word	0xe1800008
- 864:	e3520020 	.word	0xe3520020
- 868:	550f06a8 	.word	0x550f06a8
- 86c:	450f06b0 	.word	0x450f06b0
- 870:	e1a0f00e 	.word	0xe1a0f00e
 
-00000874 <UART_DRIVER>:
- 874:	000d1000 	.word	0x000d1000
- 878:	000000fc 	.word	0x000000fc
- 87c:	00000000 	.word	0x00000000
- 880:	00000028 	.word	0x00000028
- 884:	0000006c 	.word	0x0000006c
- 888:	00000094 	.word	0x00000094
- 88c:	000000a8 	.word	0x000000a8
- 890:	000000c8 	.word	0x000000c8
+000000d4 <__STACK_POINTER_test_stack>:
+  d4:	000000d8 	.word	0x000000d8
+
+000000d8 <__STACK_test_stack>:
 	...
- 89c:	e51f0028 	.word	0xe51f0028
- 8a0:	e3a0103f 	.word	0xe3a0103f
- 8a4:	e590202c 	.word	0xe590202c
- 8a8:	e0011002 	.word	0xe0011002
- 8ac:	e580102c 	.word	0xe580102c
- 8b0:	e3a01002 	.word	0xe3a01002
- 8b4:	e5801028 	.word	0xe5801028
- 8b8:	e300128b 	.word	0xe300128b
- 8bc:	e5801024 	.word	0xe5801024
- 8c0:	e3a01e3f 	.word	0xe3a01e3f
- 8c4:	e5801038 	.word	0xe5801038
- 8c8:	e3a01000 	.word	0xe3a01000
- 8cc:	e3a01068 	.word	0xe3a01068
- 8d0:	e580102c 	.word	0xe580102c
- 8d4:	e3001301 	.word	0xe3001301
- 8d8:	e5801030 	.word	0xe5801030
- 8dc:	e1a0f00e 	.word	0xe1a0f00e
- 8e0:	e51f006c 	.word	0xe51f006c
- 8e4:	e30c1b80 	.word	0xe30c1b80
- 8e8:	e5902030 	.word	0xe5902030
- 8ec:	e0011002 	.word	0xe0011002
- 8f0:	e5801030 	.word	0xe5801030
- 8f4:	e3a0103f 	.word	0xe3a0103f
- 8f8:	e590202c 	.word	0xe590202c
- 8fc:	e0011002 	.word	0xe0011002
- 900:	e580102c 	.word	0xe580102c
- 904:	e1a0f00e 	.word	0xe1a0f00e
- 908:	e51f0094 	.word	0xe51f0094
- 90c:	e5902000 	.word	0xe5902000
- 910:	e3a010ff 	.word	0xe3a010ff
- 914:	e0018002 	.word	0xe0018002
- 918:	e1a0f00e 	.word	0xe1a0f00e
- 91c:	e51f00a8 	.word	0xe51f00a8
- 920:	e3a01c0f 	.word	0xe3a01c0f
- 924:	e5903000 	.word	0xe5903000
- 928:	e0012003 	.word	0xe0012003
- 92c:	e1a01004 	.word	0xe1a01004
- 930:	e0822001 	.word	0xe0822001
- 934:	e5804000 	.word	0xe5804000
- 938:	e1a0f00e 	.word	0xe1a0f00e
- 93c:	e51f00c8 	.word	0xe51f00c8
- 940:	e3a08000 	.word	0xe3a08000
- 944:	e5901030 	.word	0xe5901030
- 948:	e2012001 	.word	0xe2012001
- 94c:	e3520000 	.word	0xe3520000
- 950:	13888004 	.word	0x13888004
- 954:	e2012c01 	.word	0xe2012c01
- 958:	e3520000 	.word	0xe3520000
- 95c:	13888002 	.word	0x13888002
- 960:	e2012c02 	.word	0xe2012c02
- 964:	e3520000 	.word	0xe3520000
- 968:	13888001 	.word	0x13888001
- 96c:	e1a0f00e 	.word	0xe1a0f00e
 
-00000970 <DRIVER_INCLUDES_END>:
- 970:	00000178 	.word	0x00000178
- 974:	3f200000 	.word	0x3f200000
- 978:	00000874 	.word	0x00000874
- 97c:	3f201000 	.word	0x3f201000
+000000f8 <__HEAP_test_heap>:
+  f8:	000000fc 	.word	0x000000fc
+	...
+
+000001fc <TABLE_SET_TEST>:
+ 1fc:	e3a04004 	mov	r4, #4
+ 200:	e3a0502c 	mov	r5, #44	; 0x2c
+ 204:	e1a08104 	lsl	r8, r4, #2
+ 208:	e28880a4 	add	r8, r8, #164	; 0xa4
+ 20c:	e5885000 	str	r5, [r8]
+
+00000210 <TABLE_CONSTEXPR_SET_TEST>:
+ 210:	e3a05059 	mov	r5, #89	; 0x59
+ 214:	e3a080b4 	mov	r8, #180	; 0xb4
+ 218:	e5885000 	str	r5, [r8]
+
+0000021c <STACK_SP_SWAP_TEST>:
+ 21c:	e1a0000d 	mov	r0, sp
+ 220:	e51fd154 	ldr	sp, [pc, #-340]	; d4 <__STACK_POINTER_test_stack>
+ 224:	e50f0158 	str	r0, [pc, #-344]	; d4 <__STACK_POINTER_test_stack>
+
+00000228 <STACK_QPUSH_TEST>:
+ 228:	e3a0000a 	mov	r0, #10
+ 22c:	e3a01005 	mov	r1, #5
+ 230:	e3007cb2 	movw	r7, #3250	; 0xcb2
+ 234:	e48d0004 	str	r0, [sp], #4
+ 238:	e48d1004 	str	r1, [sp], #4
+ 23c:	e48d7004 	str	r7, [sp], #4
+
+00000240 <STACK_QPOP_TEST>:
+ 240:	e53d4004 	ldr	r4, [sp, #-4]!
+ 244:	e53d5004 	ldr	r5, [sp, #-4]!
+ 248:	e53d6004 	ldr	r6, [sp, #-4]!
+
+0000024c <STACK_SP_UNSWAP_TEST>:
+ 24c:	e1a0000d 	mov	r0, sp
+ 250:	e51fd184 	ldr	sp, [pc, #-388]	; d4 <__STACK_POINTER_test_stack>
+ 254:	e50f0188 	str	r0, [pc, #-392]	; d4 <__STACK_POINTER_test_stack>
+
+00000258 <STACK_PUSH_TEST>:
+ 258:	e3a0000a 	mov	r0, #10
+ 25c:	e3a01005 	mov	r1, #5
+ 260:	e3007cb2 	movw	r7, #3250	; 0xcb2
+
+00000264 <__STACK_PUSH_SP_STORE_12>:
+ 264:	00000000 	.word	0x00000000
+ 268:	e50fd00c 	str	sp, [pc, #-12]	; 264 <__STACK_PUSH_SP_STORE_12>
+ 26c:	e51fd1a0 	ldr	sp, [pc, #-416]	; d4 <__STACK_POINTER_test_stack>
+ 270:	e48d0004 	str	r0, [sp], #4
+ 274:	e48d1004 	str	r1, [sp], #4
+ 278:	e48d7004 	str	r7, [sp], #4
+ 27c:	e50fd1b0 	str	sp, [pc, #-432]	; d4 <__STACK_POINTER_test_stack>
+ 280:	e51fd024 	ldr	sp, [pc, #-36]	; 264 <__STACK_PUSH_SP_STORE_12>
+
+00000284 <STACK_TO_HEAP_TEST>:
+ 284:	e1a0000d 	mov	r0, sp
+ 288:	e51fd1bc 	ldr	sp, [pc, #-444]	; d4 <__STACK_POINTER_test_stack>
+ 28c:	e50f01c0 	str	r0, [pc, #-448]	; d4 <__STACK_POINTER_test_stack>
+ 290:	e51f81a0 	ldr	r8, [pc, #-416]	; f8 <__HEAP_test_heap>
+ 294:	e3a00000 	mov	r0, #0
+
+00000298 <__HEAP_ALLOCATE_SEARCH_LOOPBACK_15>:
+ 298:	e5981000 	ldr	r1, [r8]
+ 29c:	e3510000 	cmp	r1, #0
+ 2a0:	13a00000 	movne	r0, #0
+ 2a4:	10888001 	addne	r8, r8, r1
+ 2a8:	1afffffa 	bne	298 <__HEAP_ALLOCATE_SEARCH_LOOPBACK_15>
+ 2ac:	e2800004 	add	r0, r0, #4
+ 2b0:	e2888004 	add	r8, r8, #4
+ 2b4:	e3500010 	cmp	r0, #16
+ 2b8:	4afffff6 	bmi	298 <__HEAP_ALLOCATE_SEARCH_LOOPBACK_15>
+ 2bc:	e0488000 	sub	r8, r8, r0
+ 2c0:	e3a0100c 	mov	r1, #12
+ 2c4:	e4881004 	str	r1, [r8], #4
+ 2c8:	e288800c 	add	r8, r8, #12
+ 2cc:	e53d0004 	ldr	r0, [sp, #-4]!
+ 2d0:	e53d1004 	ldr	r1, [sp, #-4]!
+ 2d4:	e53d2004 	ldr	r2, [sp, #-4]!
+ 2d8:	e9280007 	stmdb	r8!, {r0, r1, r2}
+ 2dc:	e1a0000d 	mov	r0, sp
+ 2e0:	e51fd214 	ldr	sp, [pc, #-532]	; d4 <__STACK_POINTER_test_stack>
+ 2e4:	e50f0218 	str	r0, [pc, #-536]	; d4 <__STACK_POINTER_test_stack>
+
+000002e8 <HEAP_TO_STACK_MOVE_TEST>:
+ 2e8:	e1a0000d 	mov	r0, sp
+ 2ec:	e51fd220 	ldr	sp, [pc, #-544]	; d4 <__STACK_POINTER_test_stack>
+ 2f0:	e50f0224 	str	r0, [pc, #-548]	; d4 <__STACK_POINTER_test_stack>
+ 2f4:	e1a00004 	mov	r0, r4
+ 2f8:	e8b0000e 	ldm	r0!, {r1, r2, r3}
+ 2fc:	e48d1004 	str	r1, [sp], #4
+ 300:	e48d2004 	str	r2, [sp], #4
+ 304:	e48d3004 	str	r3, [sp], #4
+ 308:	e1a0000d 	mov	r0, sp
+ 30c:	e51fd240 	ldr	sp, [pc, #-576]	; d4 <__STACK_POINTER_test_stack>
+ 310:	e50f0244 	str	r0, [pc, #-580]	; d4 <__STACK_POINTER_test_stack>
+ 314:	e1a00004 	mov	r0, r4
+ 318:	e3a01000 	mov	r1, #0
+ 31c:	e5001004 	str	r1, [r0, #-4]
+ 320:	e4801004 	str	r1, [r0], #4
+ 324:	e4801004 	str	r1, [r0], #4
+ 328:	e4801004 	str	r1, [r0], #4
+
+0000032c <END_OF_UTILS_TESTING>:
+ 32c:	e59f40e4 	ldr	r4, [pc, #228]	; 418 <GPIO_DRIVER>
+ 330:	e3a08074 	mov	r8, #116	; 0x74
+ 334:	e5885000 	str	r5, [r8]
+ 338:	e59f18d8 	ldr	r1, [pc, #2264]	; c18 <DRIVER_INCLUDES_END>
+ 33c:	e5841008 	str	r1, [r4, #8]
+ 340:	e59f47d0 	ldr	r4, [pc, #2000]	; b18 <UART_DRIVER>
+ 344:	e3a08078 	mov	r8, #120	; 0x78
+ 348:	e5885000 	str	r5, [r8]
+ 34c:	e59f18c8 	ldr	r1, [pc, #2248]	; c1c <DRIVER_INCLUDES_END+0x4>
+ 350:	e5841008 	str	r1, [r4, #8]
+ 354:	e3a08074 	mov	r8, #116	; 0x74
+ 358:	e5988000 	ldr	r8, [r8]
+ 35c:	e1a00004 	mov	r0, r4
+ 360:	e3a0501d 	mov	r5, #29
+ 364:	e590102c 	ldr	r1, [r0, #44]	; 0x2c
+ 368:	e0800001 	add	r0, r0, r1
+ 36c:	e1a0e00f 	mov	lr, pc
+ 370:	e1a0f000 	mov	pc, r0
+ 374:	e3a08074 	mov	r8, #116	; 0x74
+ 378:	e5988000 	ldr	r8, [r8]
+ 37c:	e1a00004 	mov	r0, r4
+ 380:	e3a0501d 	mov	r5, #29
+ 384:	e590100c 	ldr	r1, [r0, #12]
+ 388:	e0800001 	add	r0, r0, r1
+ 38c:	e1a0e00f 	mov	lr, pc
+ 390:	e1a0f000 	mov	pc, r0
+ 394:	e3a08074 	mov	r8, #116	; 0x74
+ 398:	e5988000 	ldr	r8, [r8]
+ 39c:	e1a00004 	mov	r0, r4
+ 3a0:	e3a0500e 	mov	r5, #14
+ 3a4:	e5901030 	ldr	r1, [r0, #48]	; 0x30
+ 3a8:	e0800001 	add	r0, r0, r1
+ 3ac:	e1a0e00f 	mov	lr, pc
+ 3b0:	e1a0f000 	mov	pc, r0
+ 3b4:	e3a08074 	mov	r8, #116	; 0x74
+ 3b8:	e5988000 	ldr	r8, [r8]
+ 3bc:	e1a00004 	mov	r0, r4
+ 3c0:	e3a0500f 	mov	r5, #15
+ 3c4:	e5901030 	ldr	r1, [r0, #48]	; 0x30
+ 3c8:	e0800001 	add	r0, r0, r1
+ 3cc:	e1a0e00f 	mov	lr, pc
+ 3d0:	e1a0f000 	mov	pc, r0
+ 3d4:	e3a08078 	mov	r8, #120	; 0x78
+ 3d8:	e5988000 	ldr	r8, [r8]
+ 3dc:	e1a00004 	mov	r0, r4
+ 3e0:	e590100c 	ldr	r1, [r0, #12]
+ 3e4:	e0800001 	add	r0, r0, r1
+ 3e8:	e1a0e00f 	mov	lr, pc
+ 3ec:	e1a0f000 	mov	pc, r0
+ 3f0:	e3a08078 	mov	r8, #120	; 0x78
+ 3f4:	e5988000 	ldr	r8, [r8]
+ 3f8:	e1a00004 	mov	r0, r4
+ 3fc:	e3a0404c 	mov	r4, #76	; 0x4c
+ 400:	e5901018 	ldr	r1, [r0, #24]
+ 404:	e0800001 	add	r0, r0, r1
+ 408:	e1a0e00f 	mov	lr, pc
+ 40c:	e1a0f000 	mov	pc, r0
+ 410:	eaffffff 	b	414 <final_>
+
+00000414 <final_>:
+ 414:	eafffffe 	b	414 <final_>
+
+00000418 <GPIO_DRIVER>:
+ 418:	00000418 	.word	0x00000418
+ 41c:	00051000 	.word	0x00051000
+ 420:	000006fc 	.word	0x000006fc
+ 424:	00000000 	.word	0x00000000
+ 428:	00000054 	.word	0x00000054
+ 42c:	00000078 	.word	0x00000078
+ 430:	000000c4 	.word	0x000000c4
+ 434:	0000015c 	.word	0x0000015c
+ 438:	000001f4 	.word	0x000001f4
+ 43c:	0000021c 	.word	0x0000021c
+ 440:	0000022c 	.word	0x0000022c
+ 444:	0000029c 	.word	0x0000029c
+ 448:	00000320 	.word	0x00000320
+ 44c:	000003a4 	.word	0x000003a4
+ 450:	00000428 	.word	0x00000428
+ 454:	000004ac 	.word	0x000004ac
+ 458:	00000530 	.word	0x00000530
+ 45c:	000005b4 	.word	0x000005b4
+ 460:	00000638 	.word	0x00000638
+ 464:	000006bc 	.word	0x000006bc
+	...
+ 470:	e51f0054 	.word	0xe51f0054
+ 474:	e205203f 	.word	0xe205203f
+ 478:	e3520020 	.word	0xe3520020
+ 47c:	52422020 	.word	0x52422020
+ 480:	52800004 	.word	0x52800004
+ 484:	e3a01001 	.word	0xe3a01001
+ 488:	e1a01211 	.word	0xe1a01211
+ 48c:	e580101c 	.word	0xe580101c
+ 490:	e1a0f00e 	.word	0xe1a0f00e
+ 494:	e51f0078 	.word	0xe51f0078
+ 498:	e3a01001 	.word	0xe3a01001
+ 49c:	e205203f 	.word	0xe205203f
+ 4a0:	e3520020 	.word	0xe3520020
+ 4a4:	52422020 	.word	0x52422020
+ 4a8:	52800004 	.word	0x52800004
+ 4ac:	e1a01211 	.word	0xe1a01211
+ 4b0:	e5801028 	.word	0xe5801028
+ 4b4:	e1a0f00e 	.word	0xe1a0f00e
+ 4b8:	e51f009c 	.word	0xe51f009c
+ 4bc:	e3a01001 	.word	0xe3a01001
+ 4c0:	e205203f 	.word	0xe205203f
+ 4c4:	e3520020 	.word	0xe3520020
+ 4c8:	52422020 	.word	0x52422020
+ 4cc:	52800004 	.word	0x52800004
+ 4d0:	e1a01211 	.word	0xe1a01211
+ 4d4:	e5902034 	.word	0xe5902034
+ 4d8:	e0028001 	.word	0xe0028001
+ 4dc:	e1a0f00e 	.word	0xe1a0f00e
+ 4e0:	e51f00c4 	.word	0xe51f00c4
+ 4e4:	e3a01001 	.word	0xe3a01001
+ 4e8:	e205203f 	.word	0xe205203f
+ 4ec:	e3520020 	.word	0xe3520020
+ 4f0:	52800004 	.word	0x52800004
+ 4f4:	52422020 	.word	0x52422020
+ 4f8:	e1a01211 	.word	0xe1a01211
+ 4fc:	e5903064 	.word	0xe5903064
+ 500:	e1813003 	.word	0xe1813003
+ 504:	e2062001 	.word	0xe2062001
+ 508:	e3520000 	.word	0xe3520000
+ 50c:	15803064 	.word	0x15803064
+ 510:	e5903070 	.word	0xe5903070
+ 514:	e1813003 	.word	0xe1813003
+ 518:	e2062002 	.word	0xe2062002
+ 51c:	e3520000 	.word	0xe3520000
+ 520:	15803070 	.word	0x15803070
+ 524:	e590304c 	.word	0xe590304c
+ 528:	e1813003 	.word	0xe1813003
+ 52c:	e2062004 	.word	0xe2062004
+ 530:	e3520000 	.word	0xe3520000
+ 534:	1580304c 	.word	0x1580304c
+ 538:	e5903058 	.word	0xe5903058
+ 53c:	e1813003 	.word	0xe1813003
+ 540:	e2062008 	.word	0xe2062008
+ 544:	e3520000 	.word	0xe3520000
+ 548:	15803058 	.word	0x15803058
+ 54c:	e590307c 	.word	0xe590307c
+ 550:	e1813003 	.word	0xe1813003
+ 554:	e2062010 	.word	0xe2062010
+ 558:	e3520000 	.word	0xe3520000
+ 55c:	1580307c 	.word	0x1580307c
+ 560:	e5903080 	.word	0xe5903080
+ 564:	e1813003 	.word	0xe1813003
+ 568:	e2062020 	.word	0xe2062020
+ 56c:	e3520000 	.word	0xe3520000
+ 570:	15803080 	.word	0x15803080
+ 574:	e1a0f00e 	.word	0xe1a0f00e
+ 578:	e51f015c 	.word	0xe51f015c
+ 57c:	e3e01001 	.word	0xe3e01001
+ 580:	e205203f 	.word	0xe205203f
+ 584:	e3520020 	.word	0xe3520020
+ 588:	52800004 	.word	0x52800004
+ 58c:	52422020 	.word	0x52422020
+ 590:	e1a01211 	.word	0xe1a01211
+ 594:	e5903064 	.word	0xe5903064
+ 598:	e0013003 	.word	0xe0013003
+ 59c:	e2062001 	.word	0xe2062001
+ 5a0:	e3520000 	.word	0xe3520000
+ 5a4:	15803064 	.word	0x15803064
+ 5a8:	e5903070 	.word	0xe5903070
+ 5ac:	e0013003 	.word	0xe0013003
+ 5b0:	e2062002 	.word	0xe2062002
+ 5b4:	e3520000 	.word	0xe3520000
+ 5b8:	15803070 	.word	0x15803070
+ 5bc:	e590304c 	.word	0xe590304c
+ 5c0:	e0013003 	.word	0xe0013003
+ 5c4:	e2062004 	.word	0xe2062004
+ 5c8:	e3520000 	.word	0xe3520000
+ 5cc:	1580304c 	.word	0x1580304c
+ 5d0:	e5903058 	.word	0xe5903058
+ 5d4:	e0013003 	.word	0xe0013003
+ 5d8:	e2062008 	.word	0xe2062008
+ 5dc:	e3520000 	.word	0xe3520000
+ 5e0:	15803058 	.word	0x15803058
+ 5e4:	e590307c 	.word	0xe590307c
+ 5e8:	e0013003 	.word	0xe0013003
+ 5ec:	e2062010 	.word	0xe2062010
+ 5f0:	e3520000 	.word	0xe3520000
+ 5f4:	1580307c 	.word	0x1580307c
+ 5f8:	e5903080 	.word	0xe5903080
+ 5fc:	e0013003 	.word	0xe0013003
+ 600:	e2062020 	.word	0xe2062020
+ 604:	e3520000 	.word	0xe3520000
+ 608:	15803080 	.word	0x15803080
+ 60c:	e1a0f00e 	.word	0xe1a0f00e
+ 610:	e51f01f4 	.word	0xe51f01f4
+ 614:	e3e01001 	.word	0xe3e01001
+ 618:	e205203f 	.word	0xe205203f
+ 61c:	e352001f 	.word	0xe352001f
+ 620:	52800004 	.word	0x52800004
+ 624:	52422020 	.word	0x52422020
+ 628:	e1a01211 	.word	0xe1a01211
+ 62c:	e5908040 	.word	0xe5908040
+ 630:	e0088001 	.word	0xe0088001
+ 634:	e1a0f00e 	.word	0xe1a0f00e
+ 638:	e51f021c 	.word	0xe51f021c
+ 63c:	e5908040 	.word	0xe5908040
+ 640:	e5908044 	.word	0xe5908044
+ 644:	e1a0f00e 	.word	0xe1a0f00e
+ 648:	e51f022c 	.word	0xe51f022c
+ 64c:	e205203f 	.word	0xe205203f
+ 650:	e3520032 	.word	0xe3520032
+ 654:	52422032 	.word	0x52422032
+ 658:	52800014 	.word	0x52800014
+ 65c:	5a00000e 	.word	0x5a00000e
+ 660:	e3520028 	.word	0xe3520028
+ 664:	52422028 	.word	0x52422028
+ 668:	52800010 	.word	0x52800010
+ 66c:	5a00000a 	.word	0x5a00000a
+ 670:	e352001e 	.word	0xe352001e
+ 674:	5242201e 	.word	0x5242201e
+ 678:	5280000c 	.word	0x5280000c
+ 67c:	5a000006 	.word	0x5a000006
+ 680:	e3520014 	.word	0xe3520014
+ 684:	52422014 	.word	0x52422014
+ 688:	52800008 	.word	0x52800008
+ 68c:	5a000002 	.word	0x5a000002
+ 690:	e352000a 	.word	0xe352000a
+ 694:	5242200a 	.word	0x5242200a
+ 698:	52800004 	.word	0x52800004
+ 69c:	e1a01082 	.word	0xe1a01082
+ 6a0:	e0811002 	.word	0xe0811002
+ 6a4:	e3a02007 	.word	0xe3a02007
+ 6a8:	e1a02112 	.word	0xe1a02112
+ 6ac:	e5908000 	.word	0xe5908000
+ 6b0:	e0088002 	.word	0xe0088002
+ 6b4:	e1a0f00e 	.word	0xe1a0f00e
+ 6b8:	e51f029c 	.word	0xe51f029c
+ 6bc:	e205103f 	.word	0xe205103f
+ 6c0:	e3510032 	.word	0xe3510032
+ 6c4:	52411032 	.word	0x52411032
+ 6c8:	52800014 	.word	0x52800014
+ 6cc:	5a00000e 	.word	0x5a00000e
+ 6d0:	e3510028 	.word	0xe3510028
+ 6d4:	52411028 	.word	0x52411028
+ 6d8:	52800010 	.word	0x52800010
+ 6dc:	5a00000a 	.word	0x5a00000a
+ 6e0:	e351001e 	.word	0xe351001e
+ 6e4:	5241101e 	.word	0x5241101e
+ 6e8:	5280000c 	.word	0x5280000c
+ 6ec:	5a000006 	.word	0x5a000006
+ 6f0:	e3510014 	.word	0xe3510014
+ 6f4:	52411014 	.word	0x52411014
+ 6f8:	52800008 	.word	0x52800008
+ 6fc:	5a000002 	.word	0x5a000002
+ 700:	e351000a 	.word	0xe351000a
+ 704:	5241100a 	.word	0x5241100a
+ 708:	52800004 	.word	0x52800004
+ 70c:	e1a02081 	.word	0xe1a02081
+ 710:	e0822001 	.word	0xe0822001
+ 714:	e3a01007 	.word	0xe3a01007
+ 718:	e3a03007 	.word	0xe3a03007
+ 71c:	e1a03213 	.word	0xe1a03213
+ 720:	e1a01211 	.word	0xe1a01211
+ 724:	e1e01001 	.word	0xe1e01001
+ 728:	e5902000 	.word	0xe5902000
+ 72c:	e1822003 	.word	0xe1822003
+ 730:	e0022001 	.word	0xe0022001
+ 734:	e5802000 	.word	0xe5802000
+ 738:	e1a0f00e 	.word	0xe1a0f00e
+ 73c:	e51f0320 	.word	0xe51f0320
+ 740:	e205103f 	.word	0xe205103f
+ 744:	e3510032 	.word	0xe3510032
+ 748:	52411032 	.word	0x52411032
+ 74c:	52800014 	.word	0x52800014
+ 750:	5a00000e 	.word	0x5a00000e
+ 754:	e3510028 	.word	0xe3510028
+ 758:	52411028 	.word	0x52411028
+ 75c:	52800010 	.word	0x52800010
+ 760:	5a00000a 	.word	0x5a00000a
+ 764:	e351001e 	.word	0xe351001e
+ 768:	5241101e 	.word	0x5241101e
+ 76c:	5280000c 	.word	0x5280000c
+ 770:	5a000006 	.word	0x5a000006
+ 774:	e3510014 	.word	0xe3510014
+ 778:	52411014 	.word	0x52411014
+ 77c:	52800008 	.word	0x52800008
+ 780:	5a000002 	.word	0x5a000002
+ 784:	e351000a 	.word	0xe351000a
+ 788:	5241100a 	.word	0x5241100a
+ 78c:	52800004 	.word	0x52800004
+ 790:	e1a02081 	.word	0xe1a02081
+ 794:	e0822001 	.word	0xe0822001
+ 798:	e3a01006 	.word	0xe3a01006
+ 79c:	e3a03007 	.word	0xe3a03007
+ 7a0:	e1a03213 	.word	0xe1a03213
+ 7a4:	e1a01211 	.word	0xe1a01211
+ 7a8:	e1e01001 	.word	0xe1e01001
+ 7ac:	e5902000 	.word	0xe5902000
+ 7b0:	e1822003 	.word	0xe1822003
+ 7b4:	e0022001 	.word	0xe0022001
+ 7b8:	e5802000 	.word	0xe5802000
+ 7bc:	e1a0f00e 	.word	0xe1a0f00e
+ 7c0:	e51f03a4 	.word	0xe51f03a4
+ 7c4:	e205103f 	.word	0xe205103f
+ 7c8:	e3510032 	.word	0xe3510032
+ 7cc:	52411032 	.word	0x52411032
+ 7d0:	52800014 	.word	0x52800014
+ 7d4:	5a00000e 	.word	0x5a00000e
+ 7d8:	e3510028 	.word	0xe3510028
+ 7dc:	52411028 	.word	0x52411028
+ 7e0:	52800010 	.word	0x52800010
+ 7e4:	5a00000a 	.word	0x5a00000a
+ 7e8:	e351001e 	.word	0xe351001e
+ 7ec:	5241101e 	.word	0x5241101e
+ 7f0:	5280000c 	.word	0x5280000c
+ 7f4:	5a000006 	.word	0x5a000006
+ 7f8:	e3510014 	.word	0xe3510014
+ 7fc:	52411014 	.word	0x52411014
+ 800:	52800008 	.word	0x52800008
+ 804:	5a000002 	.word	0x5a000002
+ 808:	e351000a 	.word	0xe351000a
+ 80c:	5241100a 	.word	0x5241100a
+ 810:	52800004 	.word	0x52800004
+ 814:	e1a02081 	.word	0xe1a02081
+ 818:	e0822001 	.word	0xe0822001
+ 81c:	e3a01003 	.word	0xe3a01003
+ 820:	e3a03007 	.word	0xe3a03007
+ 824:	e1a03213 	.word	0xe1a03213
+ 828:	e1a01211 	.word	0xe1a01211
+ 82c:	e1e01001 	.word	0xe1e01001
+ 830:	e5902000 	.word	0xe5902000
+ 834:	e1822003 	.word	0xe1822003
+ 838:	e0022001 	.word	0xe0022001
+ 83c:	e5802000 	.word	0xe5802000
+ 840:	e1a0f00e 	.word	0xe1a0f00e
+ 844:	e51f0428 	.word	0xe51f0428
+ 848:	e205103f 	.word	0xe205103f
+ 84c:	e3510032 	.word	0xe3510032
+ 850:	52411032 	.word	0x52411032
+ 854:	52800014 	.word	0x52800014
+ 858:	5a00000e 	.word	0x5a00000e
+ 85c:	e3510028 	.word	0xe3510028
+ 860:	52411028 	.word	0x52411028
+ 864:	52800010 	.word	0x52800010
+ 868:	5a00000a 	.word	0x5a00000a
+ 86c:	e351001e 	.word	0xe351001e
+ 870:	5241101e 	.word	0x5241101e
+ 874:	5280000c 	.word	0x5280000c
+ 878:	5a000006 	.word	0x5a000006
+ 87c:	e3510014 	.word	0xe3510014
+ 880:	52411014 	.word	0x52411014
+ 884:	52800008 	.word	0x52800008
+ 888:	5a000002 	.word	0x5a000002
+ 88c:	e351000a 	.word	0xe351000a
+ 890:	5241100a 	.word	0x5241100a
+ 894:	52800004 	.word	0x52800004
+ 898:	e1a02081 	.word	0xe1a02081
+ 89c:	e0822001 	.word	0xe0822001
+ 8a0:	e3a01002 	.word	0xe3a01002
+ 8a4:	e3a03007 	.word	0xe3a03007
+ 8a8:	e1a03213 	.word	0xe1a03213
+ 8ac:	e1a01211 	.word	0xe1a01211
+ 8b0:	e1e01001 	.word	0xe1e01001
+ 8b4:	e5902000 	.word	0xe5902000
+ 8b8:	e1822003 	.word	0xe1822003
+ 8bc:	e0022001 	.word	0xe0022001
+ 8c0:	e5802000 	.word	0xe5802000
+ 8c4:	e1a0f00e 	.word	0xe1a0f00e
+ 8c8:	e51f04ac 	.word	0xe51f04ac
+ 8cc:	e205103f 	.word	0xe205103f
+ 8d0:	e3510032 	.word	0xe3510032
+ 8d4:	52411032 	.word	0x52411032
+ 8d8:	52800014 	.word	0x52800014
+ 8dc:	5a00000e 	.word	0x5a00000e
+ 8e0:	e3510028 	.word	0xe3510028
+ 8e4:	52411028 	.word	0x52411028
+ 8e8:	52800010 	.word	0x52800010
+ 8ec:	5a00000a 	.word	0x5a00000a
+ 8f0:	e351001e 	.word	0xe351001e
+ 8f4:	5241101e 	.word	0x5241101e
+ 8f8:	5280000c 	.word	0x5280000c
+ 8fc:	5a000006 	.word	0x5a000006
+ 900:	e3510014 	.word	0xe3510014
+ 904:	52411014 	.word	0x52411014
+ 908:	52800008 	.word	0x52800008
+ 90c:	5a000002 	.word	0x5a000002
+ 910:	e351000a 	.word	0xe351000a
+ 914:	5241100a 	.word	0x5241100a
+ 918:	52800004 	.word	0x52800004
+ 91c:	e1a02081 	.word	0xe1a02081
+ 920:	e0822001 	.word	0xe0822001
+ 924:	e3a01001 	.word	0xe3a01001
+ 928:	e3a03007 	.word	0xe3a03007
+ 92c:	e1a03213 	.word	0xe1a03213
+ 930:	e1a01211 	.word	0xe1a01211
+ 934:	e1e01001 	.word	0xe1e01001
+ 938:	e5902000 	.word	0xe5902000
+ 93c:	e1822003 	.word	0xe1822003
+ 940:	e0022001 	.word	0xe0022001
+ 944:	e5802000 	.word	0xe5802000
+ 948:	e1a0f00e 	.word	0xe1a0f00e
+ 94c:	e51f0530 	.word	0xe51f0530
+ 950:	e205103f 	.word	0xe205103f
+ 954:	e3510032 	.word	0xe3510032
+ 958:	52411032 	.word	0x52411032
+ 95c:	52800014 	.word	0x52800014
+ 960:	5a00000e 	.word	0x5a00000e
+ 964:	e3510028 	.word	0xe3510028
+ 968:	52411028 	.word	0x52411028
+ 96c:	52800010 	.word	0x52800010
+ 970:	5a00000a 	.word	0x5a00000a
+ 974:	e351001e 	.word	0xe351001e
+ 978:	5241101e 	.word	0x5241101e
+ 97c:	5280000c 	.word	0x5280000c
+ 980:	5a000006 	.word	0x5a000006
+ 984:	e3510014 	.word	0xe3510014
+ 988:	52411014 	.word	0x52411014
+ 98c:	52800008 	.word	0x52800008
+ 990:	5a000002 	.word	0x5a000002
+ 994:	e351000a 	.word	0xe351000a
+ 998:	5241100a 	.word	0x5241100a
+ 99c:	52800004 	.word	0x52800004
+ 9a0:	e1a02081 	.word	0xe1a02081
+ 9a4:	e0822001 	.word	0xe0822001
+ 9a8:	e3a01000 	.word	0xe3a01000
+ 9ac:	e3a03007 	.word	0xe3a03007
+ 9b0:	e1a03213 	.word	0xe1a03213
+ 9b4:	e1a01211 	.word	0xe1a01211
+ 9b8:	e1e01001 	.word	0xe1e01001
+ 9bc:	e5902000 	.word	0xe5902000
+ 9c0:	e1822003 	.word	0xe1822003
+ 9c4:	e0022001 	.word	0xe0022001
+ 9c8:	e5802000 	.word	0xe5802000
+ 9cc:	e1a0f00e 	.word	0xe1a0f00e
+ 9d0:	e51f05b4 	.word	0xe51f05b4
+ 9d4:	e205103f 	.word	0xe205103f
+ 9d8:	e3510032 	.word	0xe3510032
+ 9dc:	52411032 	.word	0x52411032
+ 9e0:	52800014 	.word	0x52800014
+ 9e4:	5a00000e 	.word	0x5a00000e
+ 9e8:	e3510028 	.word	0xe3510028
+ 9ec:	52411028 	.word	0x52411028
+ 9f0:	52800010 	.word	0x52800010
+ 9f4:	5a00000a 	.word	0x5a00000a
+ 9f8:	e351001e 	.word	0xe351001e
+ 9fc:	5241101e 	.word	0x5241101e
+ a00:	5280000c 	.word	0x5280000c
+ a04:	5a000006 	.word	0x5a000006
+ a08:	e3510014 	.word	0xe3510014
+ a0c:	52411014 	.word	0x52411014
+ a10:	52800008 	.word	0x52800008
+ a14:	5a000002 	.word	0x5a000002
+ a18:	e351000a 	.word	0xe351000a
+ a1c:	5241100a 	.word	0x5241100a
+ a20:	52800004 	.word	0x52800004
+ a24:	e1a02081 	.word	0xe1a02081
+ a28:	e0822001 	.word	0xe0822001
+ a2c:	e3a01004 	.word	0xe3a01004
+ a30:	e3a03007 	.word	0xe3a03007
+ a34:	e1a03213 	.word	0xe1a03213
+ a38:	e1a01211 	.word	0xe1a01211
+ a3c:	e1e01001 	.word	0xe1e01001
+ a40:	e5902000 	.word	0xe5902000
+ a44:	e1822003 	.word	0xe1822003
+ a48:	e0022001 	.word	0xe0022001
+ a4c:	e5802000 	.word	0xe5802000
+ a50:	e1a0f00e 	.word	0xe1a0f00e
+ a54:	e51f0638 	.word	0xe51f0638
+ a58:	e205103f 	.word	0xe205103f
+ a5c:	e3510032 	.word	0xe3510032
+ a60:	52411032 	.word	0x52411032
+ a64:	52800014 	.word	0x52800014
+ a68:	5a00000e 	.word	0x5a00000e
+ a6c:	e3510028 	.word	0xe3510028
+ a70:	52411028 	.word	0x52411028
+ a74:	52800010 	.word	0x52800010
+ a78:	5a00000a 	.word	0x5a00000a
+ a7c:	e351001e 	.word	0xe351001e
+ a80:	5241101e 	.word	0x5241101e
+ a84:	5280000c 	.word	0x5280000c
+ a88:	5a000006 	.word	0x5a000006
+ a8c:	e3510014 	.word	0xe3510014
+ a90:	52411014 	.word	0x52411014
+ a94:	52800008 	.word	0x52800008
+ a98:	5a000002 	.word	0x5a000002
+ a9c:	e351000a 	.word	0xe351000a
+ aa0:	5241100a 	.word	0x5241100a
+ aa4:	52800004 	.word	0x52800004
+ aa8:	e1a02081 	.word	0xe1a02081
+ aac:	e0822001 	.word	0xe0822001
+ ab0:	e3a01005 	.word	0xe3a01005
+ ab4:	e3a03007 	.word	0xe3a03007
+ ab8:	e1a03213 	.word	0xe1a03213
+ abc:	e1a01211 	.word	0xe1a01211
+ ac0:	e1e01001 	.word	0xe1e01001
+ ac4:	e5902000 	.word	0xe5902000
+ ac8:	e1822003 	.word	0xe1822003
+ acc:	e0022001 	.word	0xe0022001
+ ad0:	e5802000 	.word	0xe5802000
+ ad4:	e1a0f00e 	.word	0xe1a0f00e
+ ad8:	e205203f 	.word	0xe205203f
+ adc:	e3520020 	.word	0xe3520020
+ ae0:	52424020 	.word	0x52424020
+ ae4:	551f0680 	.word	0x551f0680
+ ae8:	451f0688 	.word	0x451f0688
+ aec:	e3a01001 	.word	0xe3a01001
+ af0:	e1a01411 	.word	0xe1a01411
+ af4:	e0008001 	.word	0xe0008001
+ af8:	e0288001 	.word	0xe0288001
+ afc:	e3580000 	.word	0xe3580000
+ b00:	01a0f00e 	.word	0x01a0f00e
+ b04:	e1800008 	.word	0xe1800008
+ b08:	e3520020 	.word	0xe3520020
+ b0c:	550f06a8 	.word	0x550f06a8
+ b10:	450f06b0 	.word	0x450f06b0
+ b14:	e1a0f00e 	.word	0xe1a0f00e
+
+00000b18 <UART_DRIVER>:
+ b18:	00000b18 	.word	0x00000b18
+ b1c:	000d1000 	.word	0x000d1000
+ b20:	000000fc 	.word	0x000000fc
+ b24:	00000000 	.word	0x00000000
+ b28:	00000028 	.word	0x00000028
+ b2c:	0000006c 	.word	0x0000006c
+ b30:	00000094 	.word	0x00000094
+ b34:	000000a8 	.word	0x000000a8
+ b38:	000000c8 	.word	0x000000c8
+	...
+ b44:	e51f0028 	.word	0xe51f0028
+ b48:	e3a0103f 	.word	0xe3a0103f
+ b4c:	e590202c 	.word	0xe590202c
+ b50:	e0011002 	.word	0xe0011002
+ b54:	e580102c 	.word	0xe580102c
+ b58:	e3a01002 	.word	0xe3a01002
+ b5c:	e5801028 	.word	0xe5801028
+ b60:	e300128b 	.word	0xe300128b
+ b64:	e5801024 	.word	0xe5801024
+ b68:	e3a01e3f 	.word	0xe3a01e3f
+ b6c:	e5801038 	.word	0xe5801038
+ b70:	e3a01000 	.word	0xe3a01000
+ b74:	e3a01068 	.word	0xe3a01068
+ b78:	e580102c 	.word	0xe580102c
+ b7c:	e3001301 	.word	0xe3001301
+ b80:	e5801030 	.word	0xe5801030
+ b84:	e1a0f00e 	.word	0xe1a0f00e
+ b88:	e51f006c 	.word	0xe51f006c
+ b8c:	e30c1b80 	.word	0xe30c1b80
+ b90:	e5902030 	.word	0xe5902030
+ b94:	e0011002 	.word	0xe0011002
+ b98:	e5801030 	.word	0xe5801030
+ b9c:	e3a0103f 	.word	0xe3a0103f
+ ba0:	e590202c 	.word	0xe590202c
+ ba4:	e0011002 	.word	0xe0011002
+ ba8:	e580102c 	.word	0xe580102c
+ bac:	e1a0f00e 	.word	0xe1a0f00e
+ bb0:	e51f0094 	.word	0xe51f0094
+ bb4:	e5902000 	.word	0xe5902000
+ bb8:	e3a010ff 	.word	0xe3a010ff
+ bbc:	e0018002 	.word	0xe0018002
+ bc0:	e1a0f00e 	.word	0xe1a0f00e
+ bc4:	e51f00a8 	.word	0xe51f00a8
+ bc8:	e3a01c0f 	.word	0xe3a01c0f
+ bcc:	e5903000 	.word	0xe5903000
+ bd0:	e0012003 	.word	0xe0012003
+ bd4:	e1a01004 	.word	0xe1a01004
+ bd8:	e0822001 	.word	0xe0822001
+ bdc:	e5804000 	.word	0xe5804000
+ be0:	e1a0f00e 	.word	0xe1a0f00e
+ be4:	e51f00c8 	.word	0xe51f00c8
+ be8:	e3a08000 	.word	0xe3a08000
+ bec:	e5901030 	.word	0xe5901030
+ bf0:	e2012001 	.word	0xe2012001
+ bf4:	e3520000 	.word	0xe3520000
+ bf8:	13888004 	.word	0x13888004
+ bfc:	e2012c01 	.word	0xe2012c01
+ c00:	e3520000 	.word	0xe3520000
+ c04:	13888002 	.word	0x13888002
+ c08:	e2012c02 	.word	0xe2012c02
+ c0c:	e3520000 	.word	0xe3520000
+ c10:	13888001 	.word	0x13888001
+ c14:	e1a0f00e 	.word	0xe1a0f00e
+
+00000c18 <DRIVER_INCLUDES_END>:
+ c18:	3f200000 	.word	0x3f200000
+ c1c:	3f201000 	.word	0x3f201000
